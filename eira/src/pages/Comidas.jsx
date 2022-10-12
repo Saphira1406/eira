@@ -1,21 +1,38 @@
 import { useState } from 'react'
+import * as TratamientoService from '../services/tratamientos.service.js'
 
 function Comidas() {
     const [comida, setComida] = useState("")
     const [comidas, setComidas] = useState([])
+    const [formTratamiento, setFormTratamiento] = useState({})
 
     /** boton subir form */
     function handleSubmit(ev) {
+        
         ev.preventDefault()
-        console.log(comidas)
+       const id_medico = ev.target.id_medico.value
+       const id_paciente = ev.target.id_paciente.value
+        setFormTratamiento({
+            
+            comidas,
+        })
+        TratamientoService.crear({tratamiento: {comidas}, id_medico, id_paciente})
+        .then(resp => {
+            alert(resp);
+        })
+        console.log("--->",formTratamiento)
+        setComidas([])
 
     }
 
     /** boton agregar al array */
     function agregarComida(ev) {
         console.log("Agregar comi", comida);
-        console.log("Array comi", comidas);
+       
+       // console.log("Array comi", comidas);
         setComidas(prev => [...prev, comida]);
+        
+        
         setComida("");
     }
 
