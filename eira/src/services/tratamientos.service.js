@@ -10,6 +10,12 @@ async function crear(tratamiento) {
 
 }
 
+async function traerPorId(id) {
+    return fetch(`http://localhost:2020/api/tratamientos/${id}`)
+    .then(response => response.json())
+}
+
 export {
-    crear
+    crear,
+    traerPorId
 }

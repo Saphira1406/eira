@@ -4,6 +4,9 @@ import * as TratamientosController from '../controllers/tratamientos.controller.
 const route = express.Router()
 
 route.get('/api/tratamientos', TratamientosController.traerTodos)
+route.get('/api/tratamientos/:id', TratamientosController.traerPorId)
 route.post('/api/tratamientos', TratamientosController.crear)
+route.delete('/api/tratamientos/:id', TratamientosController.eliminar)
+route.patch('/api/tratamientos/:id', TratamientosController.editar)
 
 export default route
