@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import * as TratamientoService from '../services/tratamientos.service.js'
+import { useParams } from 'react-router-dom'
 
 function Comidas() {
     const [comida, setComida] = useState("")
     const [comidas, setComidas] = useState([])
-    const [formTratamiento, setFormTratamiento] = useState({})
+    const { id } = useParams()
 
     /** boton subir form */
     function handleSubmit(ev) {
@@ -12,15 +13,12 @@ function Comidas() {
         ev.preventDefault()
        const id_medico = ev.target.id_medico.value
        const id_paciente = ev.target.id_paciente.value
-        setFormTratamiento({
-            
-            comidas,
-        })
+    
         TratamientoService.crear({tratamiento: {comidas}, id_medico, id_paciente})
         .then(resp => {
             alert(resp);
         })
-        console.log("--->",formTratamiento)
+        
         setComidas([])
 
     }
@@ -28,8 +26,7 @@ function Comidas() {
     /** boton agregar al array */
     function agregarComida(ev) {
         console.log("Agregar comi", comida);
-       
-       // console.log("Array comi", comidas);
+   
         setComidas(prev => [...prev, comida]);
         
         
@@ -53,7 +50,7 @@ function Comidas() {
                     <button type="button" onClick={agregarComida}>agregar</button>
                 </div>
                 <input type="hidden" name="id_medico" value="63239b30953ee51e9b52f154" />
-                <input type="hidden" name="id_paciente" value="63239baf953ee51e9b52f157" />
+                <input type="hidden" name="id_paciente" value={id} />
 
                 <p>Lista de comidas agregadas</p>
                 <ul>
