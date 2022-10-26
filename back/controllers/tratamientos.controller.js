@@ -24,6 +24,16 @@ function crear(req, res) {
     })
 }
 
+function traerPorIdPaciente (req, res) {
+ 
+    TratamientosServices.traerPorIdPaciente(req.params.id)
+    .then(function (tratamiento) {
+        tratamiento ?
+        res.status(200).json(tratamiento) :
+        res.status(404).json({mensaje: "No hay tratamiento.." })
+    })
+}
+
 function traerPorId (req, res) {
  
     TratamientosServices.traerPorId(req.params.id)
@@ -44,24 +54,43 @@ function eliminar (req, res) {
     })
 }
 
-function editar (req, res) {
- const id = req.params.id
- const tratamiento = {
-    ...req.body
- }
-    TratamientosServices.editar(id, tratamiento)
-    .then(function (tratamiento) {
-        tratamiento ?
-        res.status(200).json(tratamiento) :
-        res.status(404).json({mensaje: "No hay tratamiento para eliminar.." })
-    })
+function editarMedicamento (req, res) {
+    const id = req.params.id
+    const tratamiento = {
+        ...req.body
+    }
+
+   
+        TratamientosServices.editarMedicamento(id, req.body.tratamiento.id, req.body.tratamiento, req.body.tipo)
+        .then(function (tratamiento) {
+            tratamiento ?
+            res.status(200).json(tratamiento) :
+            res.status(404).json({mensaje: "No hay tratamiento para editar.." })
+        })
 }
+
+function editarComida (req, res) {
+    const id = req.params.id
+    const comidaAntigua = req.body.comidaAntigua
+    const comidaNueva = req.body.comidaNueva
+
+ 
+        TratamientosServices.editarComida(id, comidaAntigua, comidaNueva)
+        .then(function (tratamiento) {
+            tratamiento ?
+            res.status(200).json(tratamiento) :
+            res.status(404).json({mensaje: "No hay tratamiento para editar.." })
+        })
+}
+
 
 
 export {
     traerTodos,
     crear,
+    traerPorIdPaciente,
     traerPorId,
     eliminar,
-    editar
+    editarMedicamento,
+    editarComida
 }

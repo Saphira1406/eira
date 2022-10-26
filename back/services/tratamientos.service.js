@@ -17,17 +17,43 @@ async function crear(tratamiento) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
+
         const tratamientoNuevo = await db.collection('tratamientos').insertOne(tratamiento)
         return tratamientoNuevo
+       /* const existeTratamiento = await db.collection('tratamientos').findOne({'id_medico': tratamiento.id_medico, 'id_paciente': tratamiento.id_paciente})
+        if(!existeTratamiento){
+            const tratamientoNuevo = await db.collection('tratamientos').insertOne(tratamiento)
+            return tratamientoNuevo
+        } else {
+          const tratamientoActualizado = await db.collection('tratamientos').updateOne(
+                {'_id': new Object(existeTratamiento._id)},
+                 {$set: {tratamiento:tratamiento.tratamiento}} 
+                )
+          
+           return tratamientoActualizado*/
+        // console.log(existeTratamiento.tratamiento)
+        //}
+        
+        
     })
     .catch(err => console.log(err))
 }
 
-async function traerPorId(idPaciente) {
+async function traerPorIdPaciente(idPaciente) {
     return client.connect()
     .then(async function() {
         const db = client.db('eira')
-        const tratamiento = await db.collection('tratamientos').find({"id_paciente": ObjectId(idPaciente)}).toArray()
+        const tratamientos = await db.collection('tratamientos').find({"id_paciente": ObjectId(idPaciente)}).toArray()
+        return tratamientos
+    })
+    .catch(err => console.log(err))
+}
+
+async function traerPorId(id) {
+    return client.connect()
+    .then(async function() {
+        const db = client.db('eira')
+        const tratamiento = await db.collection('tratamientos').findOne({"_id": ObjectId(id)})
         return tratamiento
     })
     .catch(err => console.log(err))
@@ -45,12 +71,45 @@ async function eliminar (id) {
     })
 }
 
-async function editar (id, tratamiento) {
+async function editarMedicamento (id, idObj, tratamiento, tipo) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-        const tratameintoEliminado = await db.collection('tratamientos').updateOne({"_id": new ObjectId(id)}, {$set: tratamiento})
-        return tratameintoEliminado
+        if(tipo === "medicamentos") {
+            const tratamientoActualizado = await db.collection('tratamientos').updateOne(
+                { "_id": new ObjectId(id), "tratamiento.medicamentos.id": idObj },
+                { $set: {"tratamiento.medicamentos.$": tratamiento }}
+             )
+            return tratamientoActualizado
+        } else if ( tipo === "ejercicios" ) {
+            const tratamientoActualizado = await db.collection('tratamientos').updateOne(
+                { "_id": new ObjectId(id), "tratamiento.ejercicios.id": idObj },
+                { $set: {"tratamiento.ejercicios.$": tratamiento }}
+             )
+            return tratamientoActualizado
+        }
+       
+      
+    })
+    .catch(function (err) {
+        console.log('hubo un error', err)
+    })
+}
+
+async function editarComida (id, comidaAntigua, comidaNueva) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        await db.collection('tratamientos').updateOne(
+                { "_id": new ObjectId(id)},
+                { $pull: {"tratamiento.comidas": comidaAntigua }}
+             )
+
+             const comidaActualizada = await db.collection('tratamientos').updateOne(
+                { "_id": new ObjectId(id)},
+                { $push: {"tratamiento.comidas": comidaNueva }}
+             )
+        return comidaActualizada
     })
     .catch(function (err) {
         console.log('hubo un error', err)
@@ -60,7 +119,9 @@ async function editar (id, tratamiento) {
 export {
     traerTodos,
     crear,
+    traerPorIdPaciente,
     traerPorId,
     eliminar,
-    editar
+    editarMedicamento,
+    editarComida
 }
