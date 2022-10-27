@@ -5,6 +5,7 @@ import ListadoPacientes from '../components/ListadoPacientes'
 
 function Home() {
     const [pacientes, setPacientes] = useState([])
+    const [idProfesional, setIdProfesional] = useState("63239b30953ee51e9b52f154")
 
     useEffect(() => {
         PacientesService.traer()
@@ -18,6 +19,8 @@ function Home() {
         <>
        
         <ListadoPacientes/>
+
+        <Link to={`/mi-perfil/${idProfesional}`}>Mi perfil profesional</Link>
        
         
         </>
