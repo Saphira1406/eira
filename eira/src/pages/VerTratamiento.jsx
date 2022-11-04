@@ -23,15 +23,16 @@ function VerTratamiento() {
     function handleSubmitBorrarTratamiento(ev) {
         ev.preventDefault()
         
-        TratamientosService.eliminar(ev.target.idTratamiento.value)
-        .then(() => {
-            TratamientosService.traerPorIdPaciente(id)
+        if(window.confirm("¿Eliminar tratamiento?")) {
+             TratamientosService.eliminar(ev.target.idTratamiento.value)
+             .then(() => {
+             TratamientosService.traerPorIdPaciente(id)
             .then(resp => {
-                setTratamientos(resp)
-                
+                setTratamientos(resp)  
             })
-            console.log("elimando")
+           
         })
+        }        
     }
 
     return (
@@ -52,21 +53,21 @@ function VerTratamiento() {
                          <input type="hidden" name="idTratamiento" value={tratamiento._id}/>
                     </form>
 
-                    <p>medicamentos</p>
+                    <p className="bg-success">Medicamentos</p>
                     {tratamiento.tratamiento.medicamentos?.map((medicamento, i) => 
-                        <div key={i}  className="bg-success">
+                        <div key={i}>
                             <ul>
                                 <li>{medicamento.nombre}</li>
                                 <li>{medicamento.horas}</li>
                                 <li>{medicamento.fecha}</li>
-                                <li> <button onClick={ () => test(medicamento)}>edit</button></li>
-                               <li> <Link to={`/editar-tratamiento/${tratamiento._id}`} state={{medicamento, idTratamiento: tratamiento._id, idPaciente: id}} className="">ed </Link></li>
+                            {/*    <li> <button onClick={ () => test(medicamento)}>edit</button></li>*/}
+                               <li> <Link to={`/editar-tratamiento/${tratamiento._id}`} state={{medicamento, idTratamiento: tratamiento._id, idPaciente: id}} className="">Editar </Link></li>
                             </ul>
                 
                           
                         </div>
                     )}
-                    <p>comidas</p>
+                    <p className="bg-success">Comidas</p>
                      {tratamiento.tratamiento.comidas?.map((comida, k) => 
                         <div key={k}>
                             
@@ -74,7 +75,7 @@ function VerTratamiento() {
                     
                         </div>
                     )}
-                    <p>ejercicio</p>
+                    <p className="bg-success">Ejercicio</p>
                     {   tratamiento.tratamiento.ejercicios?.map((ejercicio, l) => 
                         <div key={l}>
                            
@@ -82,7 +83,7 @@ function VerTratamiento() {
                             <li>{ejercicio.ejercicio}</li>
                             <li>{ejercicio.repeticiones}</li>
                             <li>{ejercicio.video}</li>
-                            <li><Link to={`/editar-tratamiento/${tratamiento._id}`} state={{ejercicio, idTratamiento: tratamiento._id, idPaciente: id}} className="">ed </Link></li>
+                            <li><Link to={`/editar-tratamiento/${tratamiento._id}`} state={{ejercicio, idTratamiento: tratamiento._id, idPaciente: id}} className="">editar </Link></li>
                            </ul>
                            
                         </div>

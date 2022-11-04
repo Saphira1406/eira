@@ -34,9 +34,21 @@ function editar (req, res) {
 
 }
 
+function eliminar (req, res) {
+
+
+    ProfesionalesServices.eliminar(req.params.id)
+    .then((usuarioEliminado) => {
+        usuarioEliminado ?
+        res.status(200).json(usuarioEliminado) :
+        res.status(404).json({mensaje: "No existe el profesional..." })
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
-    editar
+    editar,
+    eliminar
     
 }
