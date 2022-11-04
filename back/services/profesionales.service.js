@@ -39,8 +39,22 @@ async function editar (id, usuario) {
     })
 }
 
+async function eliminar (id) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const usuarioEliminado = await db.collection('medicos').deleteOne({"_id": ObjectId(id)})
+
+        return usuarioEliminado
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
-    editar
+    editar,
+    eliminar
 }

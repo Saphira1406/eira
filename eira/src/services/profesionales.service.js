@@ -21,10 +21,24 @@ async function editar (idUsuario, usuario) {
     .then(response => response.json())
 }
 
+async function eliminar(idUsuario) {
+    return fetch(`http://localhost:2020/api/profesionales/${idUsuario}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+      
+        window.location.replace('/')
+        return response.json()
+    })
+}
 
 
 export {
     traer,
     traerPorId,
-    editar
+    editar,
+    eliminar
 }
