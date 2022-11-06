@@ -19,7 +19,7 @@ function crear(req, res) {
     .then(function (tratamiento) {
         tratamiento ?
         res.status(201).json("creado")
-        : 
+        :
         res.status(500).json("hubo un error")
     })
 }

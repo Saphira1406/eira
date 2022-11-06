@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body, #root{
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+}
+
+#root div{
+    min-height: 100%;
+}
+
+.bgNavbarGreen {
+    background-color: #36beb0;
+}
+
+.dropdown-menu {
+    width: max-content;
+}
+
+.dropdown-menu[data-bs-popper] {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.nombreNavbar {
+    color: #4971b7;
+    padding-left: 5px;
+}
+
+.titulo {
+    font-weight: 600;
+    font-size: 35px !important;
+}
+
+#listadoPacientes {
+    background-image: url('../imgs/fondo-listado-pacientes.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+#buscador {
+    background-image: url('../imgs/icono-buscador.png');
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
+#buscador::placeholder {
+    color: #666666;
+}
+
+#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula {
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
+#nombre, #apellido {
+    background-image: url('../imgs/icono-nombre.png');
+}
+
+#telefono {
+    background-image: url('../imgs/icono-telefono-gris.png');
+}
+
+#email {
+    background-image: url('../imgs/icono-email-gris.png');
+}
+
+#dni {
+    background-image: url('../imgs/icono-identificacion-gris.png');
+}
+
+#especialidad {
+    background-image: url('../imgs/icono-estetoscopio.png');
+}
+
+#matricula {
+    background-image: url('../imgs/icono-matricula.png');
+}
+
+.form-control, .form-control:focus {
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgb(54 190 1756/ 45%)
+}
+
+form-control::placeholder {
+    color: #666666;
+}
+
+.table>thead {
+    border-bottom: 2px solid #014035;
+}
+
+.table>tbody>tr {
+    border-bottom: 2px solid #d9e3e1;
+}
+
+.btn-crear, .btn-crear:hover {
+    background-color: #42b7ad;
+}
+
+.btn-ver, .btn-ver:hover {
+    background-color: #fbbe49;
+}
+
+.btn-eliminar, .btn-eliminar:hover {
+    background-color: #f3944d;
+}
+
+.flechaPag a {
+    border: none;
+    color: #014035;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.flechaPag a:hover {
+    background-color: transparent;
+}
+
+.numPag {
+    margin: auto 7px;
+}
+
+.numPag.active .page-link, .numPag.active .page-link:hover {
+    color: #014035;
+    background-color: #fff;
+    border: 1px solid #014035;
+    border-radius: 5px;
+}
+
+.numPag a, .numPag a:hover {
+    background-color: #014035;
+    color: #fff;
+    border: 1px solid #014035;
+    border-radius: 5px;
+}
+
+.accordion-item {
+    border: none !important;
+    background-color: transparent;
+    border-radius: 5px !important;
+}
+
+.accordion-button, .accordion-button:link, .accordion-button:visited, .accordion-button:hover, .accordion-button:active  {
+    color:#262626 !important;
+    font-size: 18px;
+    text-decoration: none !important;
+    border: hidden !important;
+    border-color: #FFF !important;
+    box-shadow: 0px !important;
+    border-radius: 5px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #42b7ad;
+    color: #ffffff !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f3944f'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.btn-crear-tratamiento, .btn-crear-tratamiento:hover {
+    background-color: #f3944f;
+    color: #ffffff;
+    font-weight: 500;
+    width: 23%;
+    border-radius: 10px;
+}
+
+.btn-agregar, .btn-agregar:hover {
+    background-color: #4971b7;
+    color: #ffffff;
+    font-weight: 500;
+    width: 15%;
+    border-radius: 10px;
+}
+
+.btn-editar {
+    background-color: #4971b7;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.lista-agregada, .lista-agregada-meds {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-agregada li {
+    background-color: #FFF;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.lista-agregada-meds li{
+    background-color: #FFF;
+    border: 1px solid #e5e5e5;
+    padding: 15px 20px;
+    line-height: 2.1em;
+}
+
+.bt-azul {
+    border-top: 15px solid #4971b7;
+}
+
+.btn-editar-perfil, .btn-editar-perfil:hover {
+    background-color: #42b7ad;
+    color: #fff;
+}
+
+.btn-eliminar-perfil, .btn-eliminar-perfil:hover {
+    background-color: #f3944f;
+    color: #fff;
+}
+
+footer {
+    background-color: #014035;
+    padding: 20px 0px;
+    width: 100%;
+}
+
+footer p {
+    margin-bottom: 0;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+footer ul {
+    margin-bottom: 0;
+    color: #ffffff;
+    font-size: 13px;
+    list-style: none;
+}
+
+footer ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}

@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import * as ProfesionalService from "../services/profesionales.service.js"
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 function EditarPerfilProfesional() {
     const location = useLocation()
@@ -12,7 +18,7 @@ function EditarPerfilProfesional() {
     const [email, setEmail] = useState(location.state.profesional?.email || "")
     const [dni, setDni] = useState(location.state.profesional?.dni || "")
     const [matricula, setMatricula] = useState(location.state.profesional?.matricula || "")
-   
+
     const { id } = useParams()
     let navigate = useNavigate();
 
@@ -31,49 +37,68 @@ function EditarPerfilProfesional() {
     
 
     return (
-        <>
-            <p>Edición de perfil</p>
+        <main>
+            <section>
+                <Container className="py-5">
+                    <Row>
+                        <Col>
+                            <Card body className='shadow px-2 pt-2'>
+                            <h1 className="titulo mb-3">Editar perfil</h1>
+                                <Form onSubmit={handleSubmit}>
+                                    <Row>
+                                        <Col>
+                                            <Form.Group className="my-3" controlId="nombre">
+                                                <Form.Control type="text" placeholder="Nombre" name="nombre" value={nombre} onChange={(ev) => setNombre(ev.target.value)}/>
+                                            </Form.Group>
+                                        </Col>
+                                        <Col>
+                                            <Form.Group className="my-3" controlId="apellido">
+                                                <Form.Control type="text" placeholder="Apellido" name="apellido" value={apellido} onChange={(ev) => setApellido(ev.target.value)}/>
+                                            </Form.Group>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <Form.Group className="my-3" controlId="telefono">
+                                                <Form.Control type="text" placeholder="Teléfono" name="telefono" value={telefono} onChange={(ev) => setTelefono(ev.target.value)}/>
+                                            </Form.Group>
+                                        </Col>
+                                        <Col>
+                                            <Form.Group className="my-3" controlId="email">
+                                                <Form.Control type="text" placeholder="Email" name="email" value={email} onChange={(ev) => setEmail(ev.target.value)} disabled/>
+                                            </Form.Group>
+                                        </Col>
+                                    </Row>
 
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                            <label htmlFor="nombre" className="form-label">Nombre</label>
-                            <input type="text" className="form-control" id="nombre" name="nombre" value={nombre} onChange={(ev) => setNombre(ev.target.value)}/>
-                </div>
+                                    <Form.Group className="my-3" controlId="dni">
+                                        <Form.Control type="text" placeholder="N° de documento" name="dni" value={dni} onChange={(ev) => setDni(ev.target.value)} disabled/>
+                                    </Form.Group>
 
-                <div className="mb-3">
-                            <label htmlFor="medicamento" className="form-label">Apellido</label>
-                            <input type="text" className="form-control" id="medicamento" name="medicamento" value={apellido} onChange={(ev) => setApellido(ev.target.value)}/>
-                </div>
+                                    <Row>
+                                        <Col>
+                                            <Form.Group className="my-3" controlId="especialidad">
+                                                <Form.Control type="text" placeholder="Especialidad" name="especialidad" value={especialidad} onChange={(ev) => setEspecialidad(ev.target.value)}/>
+                                            </Form.Group>
+                                        </Col>
+                                        <Col>
+                                            <Form.Group className="my-3" controlId="matricula">
+                                                <Form.Control type="text" placeholder="N° de matrícula" name="matricula" value={matricula} onChange={(ev) => setMatricula(ev.target.value)} disabled/>
+                                            </Form.Group>
+                                        </Col>
+                                    </Row>
 
-                <div className="mb-3">
-                            <label htmlFor="telefono" className="form-label">Teléfono</label>
-                            <input type="text" className="form-control" id="telefono" name="telefono" value={telefono} onChange={(ev) => setTelefono(ev.target.value)}/>
-                </div>
-
-                <div className="mb-3">
-                            <label htmlFor="especialidad" className="form-label">Especialidad</label>
-                            <input type="text" className="form-control" id="especialidad" name="especialidad" value={especialidad} onChange={(ev) => setEspecialidad(ev.target.value)}/>
-                </div>
-
-                <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="especialidad" name="email" value={email} onChange={(ev) => setEmail(ev.target.value)} disabled />
-                </div>
-
-                <div className="mb-3">
-                            <label htmlFor="dni" className="form-label">Dni</label>
-                            <input type="text" className="form-control" id="dni" name="dni" value={dni} onChange={(ev) => setDni(ev.target.value)} disabled/>
-                </div>
-
-                <div className="mb-3">
-                            <label htmlFor="matricula" className="form-label">Matrícula</label>
-                            <input type="text" className="form-control" id="matricula" name="matricula" value={matricula} onChange={(ev) => setMatricula(ev.target.value)} disabled/>
-                </div>
-
-                <button type="submit" className="btn btn-success">Actualizar mi perfil</button>
-
-            </form>
-        </>
+                                    <div className="d-flex justify-content-center my-3">
+                                        <Button type="submit" className="btn btn-editar">
+                                            Actualizar perfil
+                                        </Button>
+                                    </div>
+                                </Form>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+        </main>
     )
 }
 

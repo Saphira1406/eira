@@ -10,7 +10,6 @@ function traerTodos (req ,res) {
 }
 
 function traerPorId (req ,res) {
-    
     ProfesionalesServices.traerPorId(req.params.id)
     .then(function (profesional) {
         profesional ?
