@@ -16,9 +16,7 @@ function MiPerfilProfesional () {
         if(window.confirm("¿Eliminar tratamiento?")) {
             ProfesionalService.eliminar(id)
             .then(() => alert("Profesional eliminado"))
-           
         }
-       
     }
 
 

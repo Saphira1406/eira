@@ -9,6 +9,16 @@ function traerTodos (req ,res) {
     })
 }
 
+function traerPorId (req ,res) {
+    PacientesServices.traerPorId(req.params.id)
+    .then(function (paciente) {
+        paciente ?
+        res.status(200).json(paciente) :
+        res.status(404).json({mensaje: "No existe el paciente que busca" })
+    })
+}
+
 export {
-    traerTodos
+    traerTodos,
+    traerPorId
 }
