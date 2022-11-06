@@ -41,7 +41,7 @@ function ListadoPacientes() {
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
-                                        <th>Diagnóstico</th>
+                                        <th>Email</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -50,10 +50,10 @@ function ListadoPacientes() {
                                     <tr key={i}>
                                         <td>{paciente.nombre}</td>
                                         <td>{paciente.apellido}</td>
-                                        <td>-</td>
+                                        <td>{paciente.email}</td>
                                         <td>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
-                                            <a className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></a>
+                                            <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
                                             <a className="btn btn-eliminar"><img src={IconoEliminar} alt="Icono eliminar"/></a>
                                         </td>
                                     </tr>

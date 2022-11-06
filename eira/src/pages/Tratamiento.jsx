@@ -30,8 +30,9 @@ function Tratamiento() {
         ev.preventDefault()
         const id_medico = ev.target.id_medico.value
         const id_paciente = ev.target.id_paciente.value
+        const diagnostico = ev.target.diagnostico.value
 
-        TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente})
+        TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente, diagnostico})
         .then(() => {
             navigate(`/`, { replace: true })
             console.log("??")
@@ -78,7 +79,7 @@ function Tratamiento() {
                                 <Form.Control type="hidden" name="id_paciente" value={id} controlid="id_paciente"/>
 
                                 <Form.Group className="my-3" controlid="diagnostico">
-                                    <Form.Control type="text" placeholder="Diagnóstico" />
+                                    <Form.Control type="text" placeholder="Diagnóstico" name="diagnostico"/>
                                 </Form.Group>
 
                                 <Accordion alwaysOpen className='mt-4'>
