@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 
 function FormComida(props) {
@@ -9,10 +11,9 @@ function FormComida(props) {
 
     function agregarComida(ev) {
         console.log("Agregar comi", comida);
-   
+
         setComidas(prev => [...prev, comida]);
-        
-       
+
         setComida("");
     }
 
@@ -22,25 +23,23 @@ function FormComida(props) {
 
     return (
         <>
-        
-                 <div className="mb-3">
-                    <label htmlFor="comida" className="form-label">Nombre comida a restringir</label>
-                    <input type="text" className="form-control" id="comida" name="comida" value={comida} onChange={(ev) => setComida(ev.target.value)} />
-                    <button type="button" className="btn btn-success mt-3" onClick={agregarComida}>agregar</button>
-                </div>
-               
+        <Form.Group className="my-3" controlId="comida">
+            <Form.Control type="text" placeholder="Nombre comida a restringir" name="comida" value={comida} onChange={(ev) => setComida(ev.target.value)}/>
+        </Form.Group>
+        <div className="d-flex justify-content-center">
+            <Button type="button" onClick={agregarComida} className="btn btn-agregar">
+                Agregar
+            </Button>
+        </div>
 
-                <p>Lista de comidas agregadas</p>
-                <ul>
-                    {comidas.map((comida, i) => 
-                    
-                    <li key={i}>
-                        {comida}
-                    </li>
-                    )}
-                </ul>
-                --------------------------------------------------------
-                
+        <p className="fw-bold text-center mt-4">Lista de comidas restringidas:</p>
+        <ul className="lista-agregada d-flex justify-content-center">
+            {comidas.map((comida, i) =>
+            <li key={i} className="shadow mx-2">
+                {comida}
+            </li>
+            )}
+        </ul>
         </>
     )
 }

@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import * as PacientesService from '../services/pacientes.service.js'
-import Collapse from 'react-bootstrap/Collapse'
+import Accordion from 'react-bootstrap/Accordion'
 
 function Tratamiento() {
     const [comidas, setComidas] = useState([])
@@ -81,41 +81,35 @@ function Tratamiento() {
                                     <Form.Control type="text" placeholder="Diagnóstico" />
                                 </Form.Group>
 
-                                <Button
-                                    onClick={() => setOpen(!open)}
-                                    aria-controls="example-collapse-text"
-                                    aria-expanded={open}
-                                >
-                                    click
-                                </Button>
-                                <Collapse in={open}>
-                                    <div id="example-collapse-text">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                                    terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                                    labore wes anderson cred nesciunt sapiente ea proident.
-                                    </div>
-                                </Collapse>
-
+                                <Accordion alwaysOpen className='mt-4'>
+                                    <Accordion.Item eventKey="0" className='shadow'>
+                                        <Accordion.Header>Comidas restringidas</Accordion.Header>
+                                        <Accordion.Body>
+                                        <FormComida guardarComidas={guardarComidas} />
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                    <Accordion.Item eventKey="1" className='shadow my-4'>
+                                        <Accordion.Header>Medicamentos</Accordion.Header>
+                                        <Accordion.Body>
+                                        <FormMedicamentos guardarMedicamentos={guardarMedicamentos} />
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                    <Accordion.Item eventKey="2" className='shadow'>
+                                        <Accordion.Header>Ejercicios</Accordion.Header>
+                                        <Accordion.Body>
+                                        <FormEjercicios guardarEjercicios={guardarEjercicios} />
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                </Accordion>
+                                <div className='mt-5 mb-3 d-flex justify-content-center'>
+                                    <button type="submit" className="btn btn-crear-tratamiento">Crear tratamiento</button>
+                                </div>
                             </Form>
                             </Card>
                         </Col>
                     </Row>
                 </Container>
             </section>
-
-            <form onSubmit={handleSubmit}>
-                <input type="hidden" name="id_medico" value="63239b30953ee51e9b52f154" />
-                <input type="hidden" name="id_paciente" value={id} />
-
-                <FormComida guardarComidas={guardarComidas} />
-
-                <FormMedicamentos guardarMedicamentos={guardarMedicamentos} />
-
-                <FormEjercicios guardarEjercicios={guardarEjercicios} />
-
-                <button type="submit" className="btn btn-success">Guardar</button>
-            </form>
-
         </main>
     )
 }
