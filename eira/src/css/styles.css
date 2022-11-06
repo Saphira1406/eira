@@ -167,8 +167,9 @@ form-control::placeholder {
     border-radius: 10px;
 }
 
-.lista-agregada {
+.lista-agregada, .lista-agregada-meds {
     list-style: none;
+    padding-left: 0;
 }
 
 .lista-agregada li {
@@ -176,6 +177,13 @@ form-control::placeholder {
     border: 1px solid #e5e5e5;
     text-align: center;
     padding: 10px 15px;
+}
+
+.lista-agregada-meds li{
+    background-color: #FFF;
+    border: 1px solid #e5e5e5;
+    padding: 15px 20px;
+    line-height: 2.1em;
 }
 
 footer {
