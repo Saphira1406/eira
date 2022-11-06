@@ -18,7 +18,6 @@ function Home() {
     return (
         <main>
         <ListadoPacientes/>
-
         {/* <Link to={`/mi-perfil/${idProfesional}`}>Mi perfil profesional</Link> */}
         </main>
     )

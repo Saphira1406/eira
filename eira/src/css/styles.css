@@ -193,6 +193,20 @@ form-control::placeholder {
     line-height: 2.1em;
 }
 
+.bt-azul {
+    border-top: 15px solid #4971b7;
+}
+
+.btn-editar-perfil, .btn-editar-perfil:hover {
+    background-color: #42b7ad;
+    color: #fff;
+}
+
+.btn-eliminar-perfil, .btn-eliminar-perfil:hover {
+    background-color: #f3944f;
+    color: #fff;
+}
+
 footer {
     background-color: #014035;
     padding: 20px 0px;
