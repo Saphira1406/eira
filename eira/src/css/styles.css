@@ -59,6 +59,39 @@ html, body, #root{
     color: #666666;
 }
 
+#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula {
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
+#nombre, #apellido {
+    background-image: url('../imgs/icono-nombre.png');
+}
+
+#telefono {
+    background-image: url('../imgs/icono-telefono-gris.png');
+}
+
+#email {
+    background-image: url('../imgs/icono-email-gris.png');
+}
+
+#dni {
+    background-image: url('../imgs/icono-identificacion-gris.png');
+}
+
+#especialidad {
+    background-image: url('../imgs/icono-estetoscopio.png');
+}
+
+#matricula {
+    background-image: url('../imgs/icono-matricula.png');
+}
+
 .form-control, .form-control:focus {
     background-color: #ededed;
     border: none;

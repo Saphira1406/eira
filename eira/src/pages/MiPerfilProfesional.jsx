@@ -43,7 +43,7 @@ function MiPerfilProfesional () {
                                             <p className="fw-bold mb-2">Matrícula: {profesional.matricula}</p>
                                             <p className="mb-2"><img src={IconoEmail} alt="Icono de email"/> {profesional.email}</p>
                                             <p className="mb-2"><img src={IconoTelefono} alt="Icono de email"/> {profesional.telefono}</p>
-                                            <p><img src={IconoIdentificacion} alt="Icono de email"/> 22.222.222</p>
+                                            <p><img src={IconoIdentificacion} alt="Icono de email"/> {profesional.dni}</p>
                                         </Col>
                                         <Col lg="4">
                                             <img src={IconoUsuario} alt="Icono de usuario" className="img-fluid"/>

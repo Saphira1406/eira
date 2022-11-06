@@ -79,7 +79,7 @@ function EditarTratamiento(props) {
                             {location.state.comida &&
                             <Form onSubmit={handleSubmitComidas}>
                                 <Form.Group className="my-3" controlId="comida">
-                                    <Form.Control type="text" placeholder="Nombre comida a restringir" ame="comida" value={comida} onChange={(ev) => setComida(ev.target.value)}/>
+                                    <Form.Control type="text" placeholder="Nombre comida a restringir" name="comida" value={comida} onChange={(ev) => setComida(ev.target.value)}/>
                                 </Form.Group>
                                 <div className="d-flex justify-content-center">
                                     <Button type="submit" className="btn btn-editar">
