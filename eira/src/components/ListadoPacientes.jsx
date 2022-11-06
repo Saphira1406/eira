@@ -71,11 +71,6 @@ function ListadoPacientes() {
                     </Col>
                 </Row>
             </Container>
-        {/* <ul>
-            {pacientes.map((paciente, i) =>
-                <li key={i}>{paciente.nombre} (<Link to={`/tratamiento/${paciente._id}`} className="">Crear tratamiento </Link>) (<Link to={`/ver-tratamiento/${paciente._id}`} className="">ver tratamiento </Link>)</li>
-            )}
-        </ul> */}
         </section>
     )
 }
