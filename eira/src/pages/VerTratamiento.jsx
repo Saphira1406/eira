@@ -58,62 +58,55 @@ function VerTratamiento() {
                                     <Accordion.Item eventKey="0" className='shadow'>
                                         <Accordion.Header>Comidas restringidas</Accordion.Header>
                                             <Accordion.Body>
+                                            <ul className="lista-agregada d-flex justify-content-center">
                                             {tratamiento.tratamiento.comidas?.map((comida, k) =>
-                                                <div key={k}>
-                                                    <ul className="lista-agregada d-flex justify-content-center">
-                                                        <li className="shadow mx-2">{comida}</li>
-                                                    </ul>
-                                                    <div className='d-flex justify-content-center'>
-                                                        <Link to={`/editar-tratamiento/${tratamiento._id}`} state={{comida,idTratamiento: tratamiento._id, idPaciente: id}} className="btn btn-agregar">Editar </Link>
-                                                    </div>
-                                                </div>
+                                                <li className="shadow mx-2" key={k}>{comida}<br/>
+                                                <Link to={`/editar-tratamiento/${tratamiento._id}`} state={{comida,idTratamiento: tratamiento._id, idPaciente: id}} className="btn btn-editar mt-2">Editar </Link>
+                                                </li>
                                                 )}
+                                            </ul>
                                             </Accordion.Body>
                                         </Accordion.Item>
                                         <Accordion.Item eventKey="1" className='shadow my-4'>
                                             <Accordion.Header>Medicamentos</Accordion.Header>
                                             <Accordion.Body>
+                                            <ul className="lista-agregada-meds">
                                             {tratamiento.tratamiento.medicamentos?.map((medicamento, i) =>
-                                                <div key={i}>
-                                                    <ul className="lista-agregada-meds">
-                                                        <li className="shadow mb-3">
-                                                            <span className="fw-bold">{medicamento.nombre}</span><br/>
-                                                            <span className="me-5">
-                                                                <span className="fw-bold">Debe tomar el medicamento cada:</span> {medicamento.horas} hs
-                                                            </span>
-                                                            <span>
-                                                                <span className="fw-bold">Finaliza el:</span> {medicamento.fecha}
-                                                            </span>
-                                                            </li>
-                                                    </ul>
-                                                    <div className='d-flex justify-content-center'>
+                                                <li className="shadow mb-3" key={i}>
+                                                    <span className="fw-bold">{medicamento.nombre}</span><br/>
+                                                    <span className="me-5">
+                                                        <span className="fw-bold">Debe tomar el medicamento cada:</span> {medicamento.horas} hs
+                                                    </span>
+                                                    <span>
+                                                        <span className="fw-bold">Finaliza el:</span> {medicamento.fecha}
+                                                    </span>
+                                                    <span className='d-flex justify-content-center mt-3'>
                                                         <Link to={`/editar-tratamiento/${tratamiento._id}`} state={{medicamento, idTratamiento: tratamiento._id, idPaciente: id}} className="btn btn-agregar">Editar </Link>
-                                                    </div>
-                                                </div>
+                                                    </span>
+                                                </li>
                                             )}
+                                            </ul>
                                             </Accordion.Body>
                                         </Accordion.Item>
                                         <Accordion.Item eventKey="2" className='shadow'>
                                             <Accordion.Header>Ejercicios</Accordion.Header>
                                             <Accordion.Body>
+                                            <ul className="lista-agregada-meds">
                                             {   tratamiento.tratamiento.ejercicios?.map((ejercicio, l) =>
-                                            <div key={l}>
-                                                <ul className="lista-agregada-meds">
-                                                    <li className="shadow mb-3">
-                                                        <span className="fw-bold">{ejercicio.ejercicio}</span><br/>
-                                                        <span className="me-5">
-                                                            <span className="fw-bold">Cantidad de repeticiones:</span> {ejercicio.repeticiones}
-                                                        </span>
-                                                        <span className="me-5">
-                                                            <span className="fw-bold">Video:</span> {ejercicio.video}
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                                <div className='d-flex justify-content-center'>
+                                            <li className="shadow mb-3" key={l}>
+                                                <span className="fw-bold">{ejercicio.ejercicio}</span><br/>
+                                                <span className="me-5">
+                                                    <span className="fw-bold">Cantidad de repeticiones:</span> {ejercicio.repeticiones}
+                                                </span>
+                                                <span className="me-5">
+                                                    <span className="fw-bold">Video:</span> {ejercicio.video}
+                                                </span>
+                                                <span className='d-flex justify-content-center mt-4'>
                                                     <Link to={`/editar-tratamiento/${tratamiento._id}`} state={{ejercicio, idTratamiento: tratamiento._id, idPaciente: id}} className="btn btn-agregar">Editar</Link>
-                                                </div>
-                                            </div>
+                                                </span>
+                                            </li>
                                             )}
+                                            </ul>
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>

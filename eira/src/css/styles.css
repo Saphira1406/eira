@@ -167,6 +167,13 @@ form-control::placeholder {
     border-radius: 10px;
 }
 
+.btn-editar {
+    background-color: #4971b7;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
 .lista-agregada, .lista-agregada-meds {
     list-style: none;
     padding-left: 0;
