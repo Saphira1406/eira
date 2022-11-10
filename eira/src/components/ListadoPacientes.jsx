@@ -12,6 +12,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import IconoCrear from '../imgs/icono-crear.png'
 import IconoVer from '../imgs/icono-ver.png'
 import IconoEliminar from '../imgs/icono-eliminar.png'
+import IconoHistoriaClinica from '../imgs/icono-historia-clinica.png'
 import { Button } from 'react-bootstrap'
 import Paginador from './Paginador.jsx'
 
@@ -23,10 +24,10 @@ function ListadoPacientes() {
     const idProfesional = "63239b30953ee51e9b52f154" // cambiar para usar 
 
     useEffect(() => {
-        /*PacientesService.traer()
-        .then((pacientes) => {
-            setPacientes(pacientes)
-        })*/
+        // PacientesService.traer()
+        // .then((pacientes) => {
+        //     setPacientes(pacientes)
+        // })
         ProfesionalesService.traerPacientes(idProfesional)
         .then( (resp) => setPacientes(resp))
     }, [])
@@ -49,10 +50,8 @@ function ListadoPacientes() {
         ProfesionalesService.eliminarPaciente(idProfesional,ev.target.idPaciente.value)
         .then( (resp) => {
             ProfesionalesService.traerPacientes(idProfesional)
-            .then( (resp) => setPacientes(resp))
         })
-       
-  
+        .then( (resp) => setPacientes(resp))
     }
 
 
@@ -70,7 +69,6 @@ function ListadoPacientes() {
                                     </Form.Group>
                                 </Form>
                             </div>
-                            {resultados.length === 0 && <p>No existe paciente...</p>}
                             <Table hover responsive className="mt-4">
                                 <thead>
                                     <tr>
@@ -82,19 +80,19 @@ function ListadoPacientes() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                               
+                                {resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado pacientes</td></tr>}
                                 {resultados.map((paciente, i) =>
                                     <tr key={i}>
                                         <td>{paciente.dni}</td>
                                         <td>{paciente.nombre}</td>
                                         <td>{paciente.apellido}</td>
                                         <td>{paciente.email}</td>
-                                        <td>
+                                        <td className='d-flex'>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
                                             <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
-                                         
-                                            <form onSubmit={handleSubmitBorrarTratamiento}>
-                                                <button type="submit" className="fs-5 px-3 btn btn-outline-danger border-0"><img src={IconoEliminar} alt="Icono eliminar"/></button>
+                                            <Link to={`/tratamiento/${paciente._id}`} className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
+                                            <form onSubmit={handleSubmitBorrarTratamiento} >
+                                                <button type="submit" className="btn btn-eliminar"><img src={IconoEliminar} alt="Icono eliminar"/></button>
                                                 <input type="hidden" name="idPaciente" value={paciente._id}/>
                                             </form>
                                         </td>
@@ -102,15 +100,11 @@ function ListadoPacientes() {
                                 )}
                                 </tbody>
                             </Table>
-                           
-
-                           <Paginador 
+                            <Paginador
                                 elementosPorPagina={pacientesPorPagina}
                                 totalElementos={pacientes.length}
-                                setPaginaActual={setPaginaActual} 
+                                setPaginaActual={setPaginaActual}
                                 paginaActual={paginaActual} />
-
-
                         </Card>
                     </Col>
                 </Row>
