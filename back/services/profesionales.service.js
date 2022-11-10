@@ -14,6 +14,18 @@ async function traerTodos () {
     })
 }
 
+async function traerPacientes (idProfesional) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const pacientes = await db.collection('conexiones').findOne({"medico": ObjectId(idProfesional)})
+        return pacientes.pacientes
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
 async function traerPorId(idProfesional) {
     return client.connect()
     .then( async function () {
@@ -52,9 +64,31 @@ async function eliminar (id) {
     })
 }
 
+async function eliminarPaciente (idProfesional, idPaciente) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const pacienteEliminado = await db.collection('conexiones').updateOne(
+                { "medico": ObjectId(idProfesional) },
+                { $pull: { "pacientes": { "_id": new ObjectId(idPaciente) }} }
+            )
+
+            await db.collection('tratamientos').deleteMany(
+                { "id_medico": new ObjectId(idProfesional), "id_paciente": new ObjectId(idPaciente) }
+            )
+
+        return pacienteEliminado
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
     editar,
-    eliminar
+    eliminar,
+    traerPacientes,
+    eliminarPaciente
 }

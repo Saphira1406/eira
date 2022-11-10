@@ -9,6 +9,15 @@ function traerTodos (req ,res) {
     })
 }
 
+function traerPacientes (req ,res) {
+    ProfesionalesServices.traerPacientes(req.params.id)
+    .then(function (pacientes) {
+        pacientes ?
+        res.status(200).json(pacientes) :
+        res.status(404).json({mensaje: "No hay pacientes vinculados al profesional..." })
+    })
+}
+
 function traerPorId (req ,res) {
     ProfesionalesServices.traerPorId(req.params.id)
     .then(function (profesional) {
@@ -44,10 +53,21 @@ function eliminar (req, res) {
     })
 }
 
+function eliminarPaciente (req, res) {
+    ProfesionalesServices.eliminarPaciente(req.params.idProfesional, req.params.idPaciente)
+    .then((pacienteEliminado) => {
+        pacienteEliminado ?
+        res.status(200).json(pacienteEliminado) :
+        res.status(404).json({mensaje: "No existe el pacientee..." })
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
     editar,
-    eliminar
+    eliminar,
+    traerPacientes,
+    eliminarPaciente
     
 }

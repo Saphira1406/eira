@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as PacientesService from '../services/pacientes.service.js'
+import * as ProfesionalesService from '../services/profesionales.service.js'
 import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
@@ -19,13 +20,15 @@ function ListadoPacientes() {
     const [busqueda, setBusqueda] = useState("")
     const [paginaActual, setPaginaActual] = useState(1)
     const [pacientesPorPagina, setPacientesPorPagina] = useState(2)
+    const idProfesional = "63239b30953ee51e9b52f154" // cambiar para usar 
 
     useEffect(() => {
-        PacientesService.traer()
+        /*PacientesService.traer()
         .then((pacientes) => {
             setPacientes(pacientes)
-        })
-       
+        })*/
+        ProfesionalesService.traerPacientes(idProfesional)
+        .then( (resp) => setPacientes(resp))
     }, [])
 
    
@@ -37,6 +40,21 @@ function ListadoPacientes() {
     // busqueda
     //const resultados = !busqueda ? pacientes : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
     const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
+
+
+    function handleSubmitBorrarTratamiento(ev) {
+        ev.preventDefault()
+        console.log(ev.target.idPaciente.value)
+
+        ProfesionalesService.eliminarPaciente(idProfesional,ev.target.idPaciente.value)
+        .then( (resp) => {
+            ProfesionalesService.traerPacientes(idProfesional)
+            .then( (resp) => setPacientes(resp))
+        })
+       
+  
+    }
+
 
     return (
         <section id="listadoPacientes">
@@ -74,7 +92,11 @@ function ListadoPacientes() {
                                         <td>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
                                             <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
-                                            <a className="btn btn-eliminar" href="/#"><img src={IconoEliminar} alt="Icono eliminar"/></a>
+                                         
+                                            <form onSubmit={handleSubmitBorrarTratamiento}>
+                                                <button type="submit" className="fs-5 px-3 btn btn-outline-danger border-0"><img src={IconoEliminar} alt="Icono eliminar"/></button>
+                                                <input type="hidden" name="idPaciente" value={paciente._id}/>
+                                            </form>
                                         </td>
                                     </tr>
                                 )}
