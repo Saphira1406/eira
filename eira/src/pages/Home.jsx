@@ -8,11 +8,11 @@ function Home() {
     const [idProfesional, setIdProfesional] = useState("63239b30953ee51e9b52f154")
 
     useEffect(() => {
-        PacientesService.traer()
+       /* PacientesService.traer()
         .then( resp => {
             setPacientes(resp)
             console.log(resp)
-        } )
+        } )*/
     }, [])    
 
     return (

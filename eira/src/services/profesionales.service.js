@@ -10,6 +10,12 @@ async function traerPorId(idProfesional) {
 
 }
 
+async function traerPacientes(idProfesional) {
+    return fetch(`http://localhost:2020/api/profesionales/${idProfesional}/pacientes`)
+    .then(response => response.json())
+}
+
+
 async function editar (idUsuario, usuario) {
     return fetch(`http://localhost:2020/api/profesionales/${idUsuario}`, {
         method: 'PATCH',
@@ -35,10 +41,24 @@ async function eliminar(idUsuario) {
     })
 }
 
+async function eliminarPaciente(idProfesional, idPaciente) {
+    return fetch(`http://localhost:2020/api/profesionales/${idProfesional}/pacientes/${idPaciente}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        return response.json()
+    })
+}
+
 
 export {
     traer,
     traerPorId,
     editar,
-    eliminar
+    eliminar,
+    traerPacientes,
+    eliminarPaciente
 }
