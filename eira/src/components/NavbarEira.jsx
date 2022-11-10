@@ -7,6 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import LogoEiraBlanco from '../imgs/logo-eira-blanco.png';
 import IconoUsuarioBlanco from '../imgs/icono-usuario-blanco.png';
 import IconoUsuarioAzul from '../imgs/icono-usuario-azul.png';
+import { Link } from "react-router-dom";
 
 function NavbarEira() {
     const [idProfesional, setIdProfesional] = useState("63239b30953ee51e9b52f154")
@@ -15,9 +16,9 @@ function NavbarEira() {
         <header>
             <Navbar className="bgNavbarGreen" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#home">
-                        <img src={LogoEiraBlanco} alt="Logo de Eira" />
-                    </Navbar.Brand>
+                   
+                    <Link to={`/`} ><img src={LogoEiraBlanco} alt="Logo de Eira" /> </Link> 
+                   
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">

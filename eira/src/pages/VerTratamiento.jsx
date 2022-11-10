@@ -29,7 +29,7 @@ function VerTratamiento() {
 
     function handleSubmitBorrarTratamiento(ev) {
         ev.preventDefault()
-        if(window.confirm("¿Eliminar tratamiento?")) {
+        /*if(window.confirm("¿Eliminar tratamiento?")) {
             TratamientosService.eliminar(ev.target.idTratamiento.value)
             .then(() => {
             TratamientosService.traerPorIdPaciente(id)
@@ -37,7 +37,16 @@ function VerTratamiento() {
             .then(resp => {
                 setTratamientos(resp)
             })
-        }
+        }*/
+        
+        TratamientosService.eliminar(ev.target.idTratamiento.value)
+        .then(() => {
+        TratamientosService.traerPorIdPaciente(id)
+        .then(resp => {
+            setTratamientos(resp)  
+        })
+      
+        })
     }
 
     return (
@@ -50,7 +59,7 @@ function VerTratamiento() {
                             <h1 className="titulo">Ver tratamiento</h1>
                             <div className='d-flex justify-content-between mt-4'>
                                 <p><span className="fw-bold">Paciente:</span> {paciente.nombre} {paciente.apellido}</p>
-                                <p><span className="fw-bold">N° de Documento: </span> ...</p>
+                                <p><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
                             </div>
                             {tratamientos.map((tratamiento, j) =>
                             <Card body className='shadow px-2 pt-2 my-3' key={j}>
@@ -110,6 +119,13 @@ function VerTratamiento() {
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>
+
+                                    <Card.Footer>
+                                    <form onSubmit={handleSubmitBorrarTratamiento}>
+                                        <button type="submit" className="fs-5 px-3 btn btn-outline-danger border-0">x</button>
+                                        <input type="hidden" name="idTratamiento" value={tratamiento._id}/>
+                                    </form>
+                                    </Card.Footer>
                                 </Card>
                                 )}
                             </Card>

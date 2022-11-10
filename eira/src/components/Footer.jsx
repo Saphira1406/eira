@@ -12,9 +12,9 @@ function Footer() {
                     </Col>
                     <Col>
                         <ul className="d-flex justify-content-end">
-                            <li><a href="#" className="me-3">Contacto</a></li>
-                            <li><a href="#" className="me-3">Políticas de Privacidad</a></li>
-                            <li><a href="#">Términos y Condiciones</a></li>
+                            <li><a href="/#" className="me-3">Contacto</a></li>
+                            <li><a href="/#" className="me-3">Políticas de Privacidad</a></li>
+                            <li><a href="/#">Términos y Condiciones</a></li>
                         </ul>
                     </Col>
                 </Row>
