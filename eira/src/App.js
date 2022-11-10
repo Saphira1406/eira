@@ -7,6 +7,7 @@ import VerTratamiento from './pages/VerTratamiento'
 import EditarTratamiento from './pages/EditarTratamiento'
 import MiPerfilProfesional from './pages/MiPerfilProfesional'
 import EditarPerfilProfesional from './pages/EditarPerfilProfesional'
+import VerHistoriaClinica from './pages/VerHistoriaClinica'
 
 
 
@@ -16,6 +17,7 @@ function App() {
       <NavbarEira />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/historia-clinica' element={<VerHistoriaClinica />} />
         <Route path='/tratamiento/:id' element={<Tratamiento />} />
         <Route path='/ver-tratamiento/:id' element={<VerTratamiento />} />
         <Route path='/editar-tratamiento/:id' element={<EditarTratamiento />} />

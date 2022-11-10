@@ -231,16 +231,24 @@ form-control::placeholder {
     border-radius: 10px;
 }
 
-.lista-agregada, .lista-agregada-meds {
+.lista-agregada, .lista-agregada-meds, .lista-antecedentes, .lista-archivos {
     list-style: none;
     padding-left: 0;
+}
+
+.lista-antecedentes li, .lista-archivos li {
+    padding: 15px 20px;
 }
 
 .lista-agregada li {
     background-color: #FFF;
     border: 1px solid #e5e5e5;
     text-align: center;
-    padding: 10px 15px;
+    padding: 5px 15px;
+}
+
+.text-antecedentes {
+    padding: 15px 20px;
 }
 
 .lista-agregada-meds li{

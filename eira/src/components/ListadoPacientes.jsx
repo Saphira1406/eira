@@ -90,7 +90,7 @@ function ListadoPacientes() {
                                         <td className='d-flex'>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
                                             <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
-                                            <Link to={`/tratamiento/${paciente._id}`} className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
+                                            <Link to='/historia-clinica' className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
                                             <form onSubmit={handleSubmitBorrarTratamiento} >
                                                 <button type="submit" className="btn btn-eliminar"><img src={IconoEliminar} alt="Icono eliminar"/></button>
                                                 <input type="hidden" name="idPaciente" value={paciente._id}/>
