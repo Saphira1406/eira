@@ -12,7 +12,7 @@ function Paginador ({ elementosPorPagina, totalElementos, setPaginaActual, pagin
         <>
             <Pagination className='d-flex justify-content-center mt-3'>
                     {paginaActual !== 1 && <Pagination.Prev className='flechaPag' onClick={() => setPaginaActual(paginaActual - 1)} />}
-                        {numeroPaginas.map(pagina => 
+                        {numeroPaginas.map(pagina =>
                             <Pagination.Item key={pagina} className={pagina === paginaActual ? 'numPag active' : 'numPag'} onClick={() => setPaginaActual(pagina)} >{pagina}</Pagination.Item>
                         )}
                     {paginaActual !== numeroPaginas.length && <Pagination.Next className='flechaPag' onClick={() => setPaginaActual(paginaActual + 1)}/>}

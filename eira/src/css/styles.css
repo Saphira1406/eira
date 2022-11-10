@@ -126,6 +126,30 @@ form-control::placeholder {
     background-color: #f3944d;
 }
 
+.btn-ver-historia, .btn-ver-historia:hover {
+    background-color: #4971b7;
+}
+
+.link-eliminar {
+    background-color: transparent;
+    text-decoration: underline;
+    color: #f3944f;
+}
+
+.btn-editar-trat, .btn-editar-trat:hover {
+    background-color: transparent;
+    text-decoration: underline;
+    color: #4971b7;
+    font-size: 14px;
+}
+
+.btn-eliminar-trat, .btn-eliminar-trat:hover {
+    background-color: transparent;
+    text-decoration: underline;
+    color: #f3944f;
+    font-size: 14px;
+}
+
 .flechaPag a {
     border: none;
     color: #014035;
