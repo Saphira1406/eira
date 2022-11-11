@@ -4,8 +4,26 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Accordion from 'react-bootstrap/Accordion'
 import IconoArchivo from '../imgs/icono-archivo.png'
+import { useEffect, useState } from 'react'
+import * as PacientesService from '../services/pacientes.service.js'
+import { useParams } from 'react-router-dom'
+
 
 function VerHistoriaClinica() {
+    const [paciente, setPaciente] = useState({})
+    const [historiaClinica, setHistoriaClinica] = useState({})
+    const { id } = useParams()
+
+    useEffect(() => {
+        PacientesService.traerHistoriaClinica(id)
+        .then((resp) => setHistoriaClinica(resp))
+
+        PacientesService.traerPorId(id)
+        .then((resp) => setPaciente(resp))
+    }, [])
+
+
+
     return (
         <main>
             <section>
@@ -13,18 +31,18 @@ function VerHistoriaClinica() {
                     <Row>
                         <Col>
                             <Card body className='shadow px-2 pt-2'>
-                            <h1 className="titulo">Ver tratamiento</h1>
+                            <h1 className="titulo">Historia clínica</h1>
                             <Container className='my-4'>
                                 <Row>
                                     <Col lg={6}>
-                                        <p><span className="fw-bold">Paciente:</span> Nombre del paciente</p>
+                                        <p><span className="fw-bold">Paciente:</span> {paciente.nombre}</p>
                                         <p><span className="fw-bold">Diagnóstico o condición pre-existente:</span> Lorem ipsum</p>
                                         <p><span className="fw-bold">Alergias:</span> Lorem ipsum</p>
                                     </Col>
                                     <Col lg={6}>
-                                        <p><span className="fw-bold">N° de Documento:</span> 22.222.222</p>
-                                        <p><span className="fw-bold">Peso:</span> XXkg</p>
-                                        <p><span className="fw-bold">Altura:</span> X,XXcm</p>
+                                        <p><span className="fw-bold">N° de Documento:</span> {paciente.dni}</p>
+                                        <p><span className="fw-bold">Peso:</span> {historiaClinica.peso} kg</p>
+                                        <p><span className="fw-bold">Altura:</span> {historiaClinica.altura} cm</p>
                                     </Col>
                                 </Row>
                             </Container>
@@ -33,15 +51,12 @@ function VerHistoriaClinica() {
                                         <Accordion.Header>Medicamentos</Accordion.Header>
                                             <Accordion.Body>
                                             <ul className="lista-agregada d-flex justify-content-center mt-3">
-                                                <li className="shadow mx-2">
-                                                <span>Medicamento 1</span>
-                                                </li>
-                                                <li className="shadow mx-2">
-                                                <span>Medicamento 2</span>
-                                                </li>
-                                                <li className="shadow mx-2">
-                                                <span>Medicamento 3</span>
-                                                </li>
+                                                {historiaClinica.medicamentos?.map((medicamento, i) => 
+                                                    <li className="shadow mx-2" key={i}>
+                                                    <span>{medicamento}</span>
+                                                    </li>
+                                                )}
+                                                
                                             </ul>
                                             </Accordion.Body>
                                         </Accordion.Item>
@@ -50,10 +65,10 @@ function VerHistoriaClinica() {
                                             <Accordion.Body>
                                             <ul className="lista-antecedentes mt-3">
                                                 <li>
-                                                    <span className="fw-bold">Fumador:</span> Sí
+                                                    <span className="fw-bold">Fumador:</span> {historiaClinica.fumador ? "Si": "No"}
                                                 </li>
                                                 <li>
-                                                    <span className="fw-bold">Consume alcohol:</span> Ocasionalmente
+                                                    <span className="fw-bold">Consume alcohol:</span> {historiaClinica.alcohol ? "Si": "No"}
                                                 </li>
                                             </ul>
                                             </Accordion.Body>
@@ -63,13 +78,13 @@ function VerHistoriaClinica() {
                                             <Accordion.Body>
                                             <ul className="lista-antecedentes mt-3">
                                                 <li>
-                                                    <span className="fw-bold">cantidad de comidas por día:</span> 3
+                                                    <span className="fw-bold">cantidad de comidas por día:</span> {historiaClinica.comidasDiarias}
                                                 </li>
                                                 <li>
-                                                    <span className="fw-bold">Sigue una dieta:</span> No
+                                                    <span className="fw-bold">Sigue una dieta:</span> {historiaClinica.dieta ? "Si" : "No"}
                                                 </li>
                                                 <li>
-                                                    <span className="fw-bold">Hábitos de sueño:</span> Lorem ipsum
+                                                    <span className="fw-bold">Hábitos de sueño:</span> {historiaClinica.habitoSuenio}
                                                 </li>
                                             </ul>
                                             </Accordion.Body>
@@ -77,10 +92,10 @@ function VerHistoriaClinica() {
                                         <Accordion.Item eventKey="3" className='shadow my-4'>
                                             <Accordion.Header>Antecedentes familiares</Accordion.Header>
                                             <Accordion.Body>
-                                            <p className='text-antecedentes'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                            <p className='text-antecedentes'>{historiaClinica.antencedentesFamiliares}</p>
                                             </Accordion.Body>
                                         </Accordion.Item>
-                                        <Accordion.Item eventKey="3" className='shadow my-4'>
+                                        <Accordion.Item eventKey="4" className='shadow my-4'>
                                             <Accordion.Header>Exámenes complementarios</Accordion.Header>
                                             <Accordion.Body>
                                             <ul className='lista-archivos d-flex'>
