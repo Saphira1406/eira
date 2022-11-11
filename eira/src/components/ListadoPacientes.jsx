@@ -50,8 +50,35 @@ function ListadoPacientes() {
         ProfesionalesService.eliminarPaciente(idProfesional,ev.target.idPaciente.value)
         .then( (resp) => {
             ProfesionalesService.traerPacientes(idProfesional)
+            .then( (resp) => setPacientes(resp))
         })
-        .then( (resp) => setPacientes(resp))
+        
+    }
+
+   
+    function noti(){
+        console.log("hola")
+        if (!("Notification" in window)) {
+            // Check if the browser supports notifications
+            alert("This browser does not support desktop notification");
+          } else if (Notification.permission === "granted") {
+            // Check whether notification permissions have already been granted;
+            // if so, create a notification
+            setTimeout( () => {
+                const notification = new Notification("Hora de comer");
+            }, 3000)
+            
+            // …
+          } else if (Notification.permission !== "denied") {
+            // We need to ask the user for permission
+            Notification.requestPermission().then((permission) => {
+              // If the user accepts, let's create a notification
+              if (permission === "granted") {
+                const notification = new Notification("Hi there!");
+                // …
+              }
+            });
+          }
     }
 
 
@@ -60,6 +87,7 @@ function ListadoPacientes() {
             <Container>
                 <Row>
                     <Col>
+                    <button onClick={noti}>notificacion</button>
                         <Card body className='shadow'>
                             <div className="d-flex justify-content-between align-items-center">
                                 <h1 className="titulo">Pacientes</h1>
@@ -90,7 +118,7 @@ function ListadoPacientes() {
                                         <td className='d-flex'>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
                                             <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
-                                            <Link to='/historia-clinica' className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
+                                            <Link to={`/historia-clinica/${paciente._id}`} className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
                                             <form onSubmit={handleSubmitBorrarTratamiento} >
                                                 <button type="submit" className="btn btn-eliminar"><img src={IconoEliminar} alt="Icono eliminar"/></button>
                                                 <input type="hidden" name="idPaciente" value={paciente._id}/>
