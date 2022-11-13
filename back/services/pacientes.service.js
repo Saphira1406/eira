@@ -27,7 +27,21 @@ async function traerPorId(idpaciente) {
 
 }
 
+async function traerHistoriaClinica(idpaciente) {
+    return client.connect()
+    .then( async function () {
+        const db = client.db('eira')
+        const historiaClinica = await db.collection('historias-clinicas').findOne({"paciente._id": ObjectId(idpaciente)})
+        return historiaClinica
+    } )
+    .catch(function (err) {
+        console.log(err)
+    })
+
+}
+
 export {
     traerTodos,
-    traerPorId
+    traerPorId,
+    traerHistoriaClinica
 }

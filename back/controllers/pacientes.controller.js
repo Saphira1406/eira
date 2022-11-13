@@ -18,7 +18,18 @@ function traerPorId (req ,res) {
     })
 }
 
+
+function traerHistoriaClinica (req ,res) {
+    PacientesServices.traerHistoriaClinica(req.params.id)
+    .then(function (historiaClinica) {
+        historiaClinica ?
+        res.status(200).json(historiaClinica) :
+        res.status(404).json({mensaje: "No existe la historia clinica" })
+    })
+}
+
 export {
     traerTodos,
-    traerPorId
+    traerPorId,
+    traerHistoriaClinica
 }
