@@ -4,6 +4,7 @@ html, body, #root{
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
     height: 100%;
+    color: #262626;
 }
 
 #root div{
@@ -30,6 +31,57 @@ html, body, #root{
 .nombreNavbar {
     color: #4971b7;
     padding-left: 5px;
+}
+
+#header-home {
+    background-image: url('../imgs/fondo-header-home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#header-home h1 {
+    font-weight: 700;
+    color: #014035;
+}
+
+#header-home p {
+    font-size: 19px;
+}
+
+#header-home button {
+    background-color: #fbbe49;
+    color: #262626;
+    border: none;
+    padding: 5px;
+    width: 45%;
+}
+
+.down-div {
+    margin-top: -10px;
+}
+
+.down-button {
+    background-color: #fff;
+    padding: 10px 12px;
+    border-radius: 50%;
+}
+
+#funciones {
+    background-image: url('../imgs/fondo-seccion-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.titulo-item {
+    color: #42B7AD;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.texto-item {
+    font-size: 14px;
 }
 
 .titulo {
