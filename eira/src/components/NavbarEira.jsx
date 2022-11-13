@@ -31,7 +31,7 @@ function NavbarEira() {
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href={'/'}>Inicio</NavDropdown.Item>
-                        <NavDropdown.Item href={'/'}>Pacientes</NavDropdown.Item>
+                        <NavDropdown.Item href={'/profesional/pacientes'}>Pacientes</NavDropdown.Item>
                         <NavDropdown.Item href={`/mi-perfil/${idProfesional}`}>Mi Perfil</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#">Cerrar Sesión</NavDropdown.Item>
