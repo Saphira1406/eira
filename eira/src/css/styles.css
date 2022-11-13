@@ -84,6 +84,55 @@ html, body, #root{
     font-size: 14px;
 }
 
+#pacientes {
+    background-image: url('../imgs/fondo-pacientes.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#pacientes h2, #profesionales h2, #contacto h2 {
+    font-weight: 800;
+}
+
+#pacientes button {
+    background-color: #F3944D;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    width: 55%;
+}
+
+#profesionales button {
+    background-color: #4971B7;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    width: 58%;
+}
+
+#contacto {
+    background-image: url('../imgs/fondo-contacto.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#contacto button {
+    background-color: #F3944D;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    width: 20%;
+}
+
+.text-verde-claro {
+    color: #42B7AD;
+}
+
 .titulo {
     font-weight: 600;
     font-size: 35px !important;
@@ -120,6 +169,15 @@ html, body, #root{
     border-radius: 10px;
 }
 
+#mensaje {
+    background-position: 10px 10px;
+    text-indent: 20px;
+    background-repeat: no-repeat;
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
 #nombre, #apellido {
     background-image: url('../imgs/icono-nombre.png');
 }
@@ -128,7 +186,7 @@ html, body, #root{
     background-image: url('../imgs/icono-telefono-gris.png');
 }
 
-#email {
+#email, #mensaje {
     background-image: url('../imgs/icono-email-gris.png');
 }
 
