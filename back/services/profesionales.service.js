@@ -1,6 +1,7 @@
 import MongoDB, { ObjectId } from 'mongodb'
 
 const client = new MongoDB.MongoClient('mongodb://127.0.0.1:27017')
+//const client = new MongoDB.MongoClient("mongodb+srv://sergio:eira@cluster0.luq2ol6.mongodb.net/?retryWrites=true&w=majority")
 
 async function traerTodos () {
     return client.connect()

@@ -14,7 +14,6 @@ function crear(req, res) {
         id_medico: new ObjectId(req.body.id_medico),
         id_paciente: new ObjectId(req.body.id_paciente),
     }
-
     TratamientosServices.crear(tratamiento)
     .then(function (tratamiento) {
         tratamiento ?

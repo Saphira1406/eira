@@ -43,8 +43,7 @@ function editar (req, res) {
 }
 
 function eliminar (req, res) {
-
-
+    
     ProfesionalesServices.eliminar(req.params.id)
     .then((usuarioEliminado) => {
         usuarioEliminado ?

@@ -34,7 +34,7 @@ function Tratamiento() {
 
         TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente, diagnostico})
         .then(() => {
-            navigate(`/`, { replace: true })
+            navigate(`/profesional/pacientes`, { replace: true })
             console.log("??")
         })
         setComidas([])
@@ -72,7 +72,7 @@ function Tratamiento() {
                             <h1 className="titulo">Crear tratamiento</h1>
                             <div className='d-flex justify-content-between mt-4'>
                                 <p><span className="fw-bold">Paciente:</span> {paciente.nombre} {paciente.apellido}</p>
-                                <p><span className="fw-bold">N° de Documento: </span> ...</p>
+                                <p><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
                             </div>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Control type="hidden" name="id_medico" value="63239b30953ee51e9b52f154" controlid="id_medico"/>

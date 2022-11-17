@@ -24,12 +24,58 @@ function traerHistoriaClinica (req ,res) {
     .then(function (historiaClinica) {
         historiaClinica ?
         res.status(200).json(historiaClinica) :
-        res.status(404).json({mensaje: "No existe la historia clinica" })
+        res.status(404).json({
+            success: false,
+            mensaje: "No existe la historia clinica"
+         })
     })
+}
+
+function eliminar (req, res) {
+    
+    PacientesServices.eliminar(req.params.id)
+    .then((usuarioEliminado) => {
+        usuarioEliminado ?
+        res.status(200).json(usuarioEliminado) :
+        res.status(404).json({mensaje: "No existe el paciente..." })
+    })
+}
+
+function crearHistoriaClinica(req, res) {
+   
+    console.log(req.body)
+   PacientesServices.crearHistoriaClinica(req.body)
+    .then(function (tratamiento) {
+        tratamiento ?
+        res.status(201).json({
+            success: true,
+            mensaje: "Se guardó tu historia clinica con éxito"
+         }) :
+        res.status(500).json({
+            success: false,
+            mensaje: "Hubo un error al guardar, intente de nuevo"
+         })
+    })
+}
+
+function editar (req, res) {
+    const id = req.params.id
+    const usuario = req.body
+
+    console.log(id, usuario)
+    
+    PacientesServices.editar(id, usuario)
+    .then(function (usuarioEditado) {
+        res.status(200).json(usuarioEditado)
+    })
+
 }
 
 export {
     traerTodos,
     traerPorId,
-    traerHistoriaClinica
+    traerHistoriaClinica,
+    editar,
+    crearHistoriaClinica,
+    eliminar
 }

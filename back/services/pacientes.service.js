@@ -1,6 +1,8 @@
 import MongoDB, { ObjectId } from 'mongodb'
+import * as dotenv from 'dotenv'
+dotenv.config({ path: 'variables.env' })
 
-const client = new MongoDB.MongoClient('mongodb://127.0.0.1:27017')
+const client = new MongoDB.MongoClient(process.env.DB_URL)
 
 async function traerTodos () {
     return client.connect()
@@ -31,7 +33,7 @@ async function traerHistoriaClinica(idpaciente) {
     return client.connect()
     .then( async function () {
         const db = client.db('eira')
-        const historiaClinica = await db.collection('historias-clinicas').findOne({"paciente._id": ObjectId(idpaciente)})
+        const historiaClinica = await db.collection('historias-clinicas').findOne({"paciente": ObjectId(idpaciente)})
         return historiaClinica
     } )
     .catch(function (err) {
@@ -40,8 +42,51 @@ async function traerHistoriaClinica(idpaciente) {
 
 }
 
+async function editar (id, usuario) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const usuarioEditado = await db.collection('pacientes').updateOne({"_id": new ObjectId(id)}, {$set: {...usuario}})
+        await db.collection('conexiones').updateMany({"pacientes._id": new ObjectId(id)}, {$set: {"pacientes.$": {...usuario, "_id": new ObjectId(id)}}}) // probar con todos los datos en form aver si cambia
+        return usuarioEditado
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
+async function eliminar (id) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const usuarioEliminado = await db.collection('pacientes').deleteOne({"_id": ObjectId(id)})
+
+        return usuarioEliminado
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
+
+async function crearHistoriaClinica(historia) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+
+        const historiaNueva = await db.collection('historias-clinicas').insertOne({...historia, paciente: new ObjectId(historia.paciente)})
+        return historiaNueva
+        
+    })
+    .catch(err => console.log(err))
+}
+
+
 export {
     traerTodos,
     traerPorId,
-    traerHistoriaClinica
+    traerHistoriaClinica,
+    editar,
+    crearHistoriaClinica,
+    eliminar
 }
