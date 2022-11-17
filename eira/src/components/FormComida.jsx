@@ -16,7 +16,7 @@ function FormComida(props) {
     useEffect(() => {
         props.guardarComidas(comidas)
     }, [comidas])
-
+    
     return (
         <div>
             <Form.Group className="my-3" controlId="comida">

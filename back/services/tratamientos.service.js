@@ -2,6 +2,7 @@ import MongoDB from 'mongodb'
 import { ObjectId } from 'mongodb'
 
 const client = new MongoDB.MongoClient('mongodb://127.0.0.1:27017')
+//const client = new MongoDB.MongoClient("mongodb+srv://sergio:eira@cluster0.luq2ol6.mongodb.net/?retryWrites=true&w=majority")
 
 async function traerTodos() {
     return client.connect()
@@ -81,6 +82,7 @@ async function editarMedicamento (id, idObj, tratamiento, tipo) {
                 { $set: {"tratamiento.medicamentos.$": tratamiento }}
              )
             return tratamientoActualizado
+            
         } else if ( tipo === "ejercicios" ) {
             const tratamientoActualizado = await db.collection('tratamientos').updateOne(
                 { "_id": new ObjectId(id), "tratamiento.ejercicios.id": idObj },
@@ -100,7 +102,7 @@ async function editarComida (id, comidaAntigua, comidaNueva) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-        await db.collection('tratamientos').updateOne(
+       /* await db.collection('tratamientos').updateOne(
                 { "_id": new ObjectId(id)},
                 { $pull: {"tratamiento.comidas": comidaAntigua }}
              )
@@ -109,6 +111,13 @@ async function editarComida (id, comidaAntigua, comidaNueva) {
                 { "_id": new ObjectId(id)},
                 { $push: {"tratamiento.comidas": comidaNueva }}
              )
+        return comidaActualizada*/
+
+       const comidaActualizada = await db.collection("tratamientos").updateOne(
+            { "_id": new ObjectId(id), "tratamiento.comidas": comidaAntigua},
+            { $set: {"tratamiento.comidas.$": comidaNueva} }
+        )
+
         return comidaActualizada
     })
     .catch(function (err) {

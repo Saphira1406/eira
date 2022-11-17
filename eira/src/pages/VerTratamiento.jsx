@@ -21,13 +21,9 @@ function VerTratamiento() {
         })
         PacientesService.traerPorId(id)
         .then(resp => setPaciente(resp))
+       
     }, [])
-    console.log("-->",tratamientos)
-
-    function test(tests) {
-        console.log("click", tests)
-    }
-
+   
     function handleSubmitBorrarTratamiento(ev) {
         ev.preventDefault()
         /*if(window.confirm("¿Eliminar tratamiento?")) {
@@ -39,13 +35,16 @@ function VerTratamiento() {
                 setTratamientos(resp)
             })
         }*/
-        TratamientosService.eliminar(ev.target.idTratamiento.value)
-        .then(() => {
-        TratamientosService.traerPorIdPaciente(id)
-        .then(resp => {
-            setTratamientos(resp)
+        if(window.confirm("¿Eliminar tratamiento?")) { 
+            TratamientosService.eliminar(ev.target.idTratamiento.value)
+            .then(() => {
+            TratamientosService.traerPorIdPaciente(id)
+            .then(resp => {
+                setTratamientos(resp)
+            })
         })
-        })
+        }
+        
     }
 
     return (
@@ -56,10 +55,15 @@ function VerTratamiento() {
                         <Col>
                             <Card body className='shadow px-2 pt-2'>
                             <h1 className="titulo">Ver tratamiento</h1>
-                            <div className='d-flex justify-content-between mt-4'>
-                                <p><span className="fw-bold">Paciente:</span> {paciente.nombre} {paciente.apellido}</p>
+                            <Row>
+                                     <Col lg={6}>
+                                     <p><span className="fw-bold">Paciente:</span> {paciente.nombre} {paciente.apellido}</p>
                                 <p><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
-                            </div>
+                                     </Col>
+                                     <Col lg={12} >
+                                     {!tratamientos.length && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> no tiene un tratamiento asignado, si desea crear uno, <Link to={`/tratamiento/${id}`}>entrá acá</Link></p>}
+                                     </Col>
+                                 </Row>
                             {tratamientos.map((tratamiento, j) =>
                             <Card body className='shadow px-2 pt-2 my-3' key={j}>
                                 <Accordion alwaysOpen className='mt-3 mb-4'>

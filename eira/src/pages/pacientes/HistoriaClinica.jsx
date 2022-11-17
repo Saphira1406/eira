@@ -3,25 +3,27 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Accordion from 'react-bootstrap/Accordion'
-import IconoArchivo from '../imgs/icono-archivo.png'
-import { useEffect, useState } from 'react'
-import * as PacientesService from '../services/pacientes.service.js'
-import { useParams } from 'react-router-dom'
+import IconoArchivo from '../../imgs/icono-archivo.png'
+import { useContext, useEffect, useState } from 'react'
+import * as PacientesService from '../../services/pacientes.service.js'
+import { UsuarioContext } from '../../context/UsuarioContext'
+import { Link } from 'react-router-dom'
 
 
 function VerHistoriaClinica() {
-    const [paciente, setPaciente] = useState({})
+    
+    //const usuarioLogueado = useContext(UsuarioContext)
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
     const [historiaClinica, setHistoriaClinica] = useState({})
-    const { id } = useParams()
 
     useEffect(() => {
-        PacientesService.traerHistoriaClinica(id)
-        .then((resp) => setHistoriaClinica(resp))
+        PacientesService.traerHistoriaClinica(usuarioLogueado._id)
+        .then((resp) => {
+            return setHistoriaClinica(resp)
+        })
 
-        PacientesService.traerPorId(id)
-        .then((resp) => setPaciente(resp))
     }, [])
-
+console.log(historiaClinica)
 
 
     return (
@@ -32,23 +34,21 @@ function VerHistoriaClinica() {
                         <Col>
                             <Card body className='shadow px-2 pt-2'>
                             <h1 className="titulo">Historia clínica</h1>
-                            {!historiaClinica && 
-                            <>
-                            <p>Este paciente todavía no subió si historia clinica</p>
+                            
+                            <p>Si todavia no completaste tu historia clínica. <Link to={`/paciente/formulario-historia-clinica`}>Podes hacerlo acá</Link></p>
                            
-                            </>
-                            }
+                         
                             {historiaClinica && 
                                 <>
                                  <Container className='my-4'>
                                  <Row>
                                      <Col lg={6}>
-                                         <p><span className="fw-bold">Paciente:</span> {paciente.nombre}</p>
+                                         <p><span className="fw-bold">Paciente:</span> {usuarioLogueado.nombre}</p>
                                          <p><span className="fw-bold">Diagnóstico o condición pre-existente:</span> {historiaClinica.condicion}</p>
                                          <p><span className="fw-bold">Alergias:</span> {historiaClinica.alergia}</p>
                                      </Col>
                                      <Col lg={6}>
-                                         <p><span className="fw-bold">N° de Documento:</span> {paciente.dni}</p>
+                                         <p><span className="fw-bold">N° de Documento:</span> {usuarioLogueado.dni}</p>
                                          <p><span className="fw-bold">Peso:</span> {historiaClinica.peso} kg</p>
                                          <p><span className="fw-bold">Altura:</span> {historiaClinica.altura} cm</p>
                                      </Col>
