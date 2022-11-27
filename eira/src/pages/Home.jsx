@@ -32,6 +32,7 @@ function Home() {
             <div className='text-center down-div'>
                 <a href='#funciones' className='down-button'><img src={Flecha} alt="Flecha hacia abajo"/></a>
             </div>
+
             <section className='py-5' id='funciones'>
                 <Container className='py-5'>
                     <Row md={1} lg={3} className="g-5">
@@ -65,6 +66,7 @@ function Home() {
                     </Row>
                 </Container>
             </section>
+            
             <section id='pacientes' className='py-5'>
                 <Container className='py-4'>
                     <Row className='align-items-center'>

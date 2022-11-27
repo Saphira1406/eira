@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import * as ProfesionalesService from '../services/profesionales.service.js'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -23,25 +23,38 @@ function ListadoPacientes() {
 
     //const usuarioLogueado = useContext(UsuarioContext)
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
-    //const idProfesional = "63239b30953ee51e9b52f154" 
+    //const idProfesional = "63239b30953ee51e9b52f154"
+    let navigate = useNavigate();
+
+    useEffect(
+        () => {
+          if(!usuarioLogueado.matricula) {
+            navigate('/', { replace: true })
+          }
+          // eslint-disable-next-line
+        }, [])
 
     useEffect(() => {
-        console.log("holaaaaaa",usuarioLogueado)
-        ProfesionalesService.traerPacientes(usuarioLogueado?._id)
-        .then( (resp) => setPacientes(resp))
+            ProfesionalesService.traerPacientes(usuarioLogueado?._id)
+            .then( (resp) => setPacientes(resp))
+        console.log("vvvv", pacientes)
     }, [])
 
    
 
     const indexUltimoPaciente = paginaActual * pacientesPorPagina
     const indexPrimerPaciente = indexUltimoPaciente - pacientesPorPagina
-    const pacientesActuales = pacientes.slice(indexPrimerPaciente, indexUltimoPaciente)
+    let pacientesActuales = []
+    if(pacientes.length > 0) {
+
+     pacientesActuales = pacientes.slice(indexPrimerPaciente, indexUltimoPaciente)
+    }
    
     // busqueda
     //const resultados = !busqueda ? pacientes : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
     const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
 
-
+console.log("ggg",resultados)
     function handleSubmitEliminarPaciente(ev) {
         ev.preventDefault()
         console.log(ev.target.idPaciente.value)
@@ -102,11 +115,15 @@ function ListadoPacientes() {
                                 )}
                                 </tbody>
                             </Table>
-                            <Paginador
-                                elementosPorPagina={pacientesPorPagina}
-                                totalElementos={pacientes.length}
-                                setPaginaActual={setPaginaActual}
-                                paginaActual={paginaActual} />
+                            
+                            {resultados.length !== 0 &&
+                               <Paginador
+                               elementosPorPagina={pacientesPorPagina}
+                               totalElementos={pacientes.length}
+                               setPaginaActual={setPaginaActual}
+                               paginaActual={paginaActual} />
+                               }
+                          
                         </Card>
                     </Col>
                 </Row>

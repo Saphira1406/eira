@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import * as PacienteService from "../../services/pacientes.service.js"
 import Card from 'react-bootstrap/Card'
@@ -9,11 +9,13 @@ import IconoUsuario from '../../imgs/icono-usuario-perfil.png'
 import IconoEmail from '../../imgs/icono-email.png'
 import IconoTelefono from '../../imgs/icono-telefono.png'
 import IconoIdentificacion from '../../imgs/icono-identificacion.png'
+import { UsuarioContext } from '../../context/UsuarioContext'
 
 function MiPerfilPaciente () {
     const [paciente, setPaciente] = useState({})
     const { id } = useParams()
-    const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
+    //const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
+    const {usuarioLogueado} = useContext(UsuarioContext)
 
     useEffect(() => {
         PacienteService.traerPorId(id)
