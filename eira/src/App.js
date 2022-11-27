@@ -24,6 +24,8 @@ import { useContext } from 'react'
 function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(JSON.parse(localStorage.getItem('usuario')))
 
+  const [showNav, setShowNav] = useState(true);
+
   let navigate = useNavigate();
 
   useEffect(
@@ -36,7 +38,7 @@ function App() {
     }, [])
 
   function onLogin({usuario, token}) {
-      
+
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
@@ -51,10 +53,10 @@ function App() {
 
   return (
     <UsuarioContext.Provider value={{usuarioLogueado, setUsuarioLogueado}} >
-      <NavbarEira />
+      {showNav && <NavbarEira />}
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login onLogin={onLogin}/>} />
+        <Route path='/login' element={<Login onLogin={onLogin} funcNav={setShowNav} />} />
         <Route path='/profesional/pacientes' element={<ListaPacientes />} />
         <Route path='/historia-clinica/:id' element={<VerHistoriaClinica />} />
         <Route path='/tratamiento/:id' element={<Tratamiento />} />
@@ -69,8 +71,8 @@ function App() {
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
-      <Footer />
-      </UsuarioContext.Provider>
+      {showNav && <Footer />}
+    </UsuarioContext.Provider>
   );
 }
 
