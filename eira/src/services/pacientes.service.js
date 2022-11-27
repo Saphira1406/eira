@@ -4,12 +4,20 @@ async function traer() {
 }
 
 async function traerPorId(id) {
-    return fetch(`http://localhost:2020/api/pacientes/${id}`)
+    return fetch(`http://localhost:2020/api/pacientes/${id}`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        }
+    })
     .then(response => response.json())
 }
 
 async function traerHistoriaClinica(id) {
-    return fetch(`http://localhost:2020/api/pacientes/${id}/historia`)
+    return fetch(`http://localhost:2020/api/pacientes/${id}/historia`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        }
+    })
     .then(response => response.json())
 }
 

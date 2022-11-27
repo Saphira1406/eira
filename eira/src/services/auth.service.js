@@ -14,6 +14,18 @@ async function login(email, password) {
     })
 }
 
+async function registro (usuario) {
+    return fetch('http://localhost:2020/api/registro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(usuario)
+    })
+    .then(response => response.json())
+}
+
 export {
+    registro,
     login
 }

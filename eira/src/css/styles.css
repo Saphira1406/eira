@@ -162,7 +162,7 @@ html, body, #root{
     color: #666666;
 }
 
-#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula {
+#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password {
     background-position: 10px center;
     background-repeat: no-repeat;
     text-indent: 20px;
@@ -182,6 +182,10 @@ html, body, #root{
 
 #nombre, #apellido {
     background-image: url('../imgs/icono-nombre.png');
+}
+
+#password {
+    background-image: url('../imgs/icono-contrasena.png');
 }
 
 #telefono {
@@ -406,4 +410,12 @@ footer ul {
 footer ul li a {
     color: #ffffff;
     text-decoration: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("../imgs/icono-usuario-blanco.png") !important;
+}
+
+.navbar-toggler-icon::before {
+    background-image: url("../imgs/icono-usuario-blanco.png") !important;
 }

@@ -14,21 +14,32 @@ import EditarPerfilPaciente from './pages/pacientes/EditarPerfilPaciente'
 import HistoriaClinicaPaciente from './pages/pacientes/HistoriaClinica'
 import FormHistorialClinico from './pages/pacientes/FormHistorialClinico'
 import Login from './pages/Login'
-import { useState } from 'react'
+import UsuarioRegistro from './pages/UsuarioRegistro'
+import { useEffect, useState } from 'react'
+import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
 
 
 function App() {
-  const [usuario, setUsuario] = useState(null)
+  const [usuarioLogueado, setUsuarioLogueado] = useState(JSON.parse(localStorage.getItem('usuario')))
 
   let navigate = useNavigate();
-  const usuarioContext = useContext(UsuarioContext)
 
-  function onLogin(usuario) {
+  useEffect(
+    () => {
+      const token = localStorage.getItem('token')
+      if(!token) {
+        navigate('/login', { replace: true })
+      }
+      // eslint-disable-next-line
+    }, [])
+
+  function onLogin({usuario, token}) {
+      
     localStorage.setItem('usuario', JSON.stringify(usuario))
-    //setUsuario(usuario)
-    //localStorage.setItem('token', token)
+    setUsuarioLogueado(usuario)
+    localStorage.setItem('token', token)
     if(!usuario.matricula) {
       navigate(`/home/perfil-paciente/${usuario._id}`, { replace: true })
     } else {
@@ -39,7 +50,7 @@ function App() {
 
 
   return (
-    <UsuarioContext.Provider value={usuarioContext} >
+    <UsuarioContext.Provider value={{usuarioLogueado, setUsuarioLogueado}} >
       <NavbarEira />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -51,10 +62,12 @@ function App() {
         <Route path='/editar-tratamiento/:id' element={<EditarTratamiento />} />
         <Route path='/mi-perfil/:id' element={<MiPerfilProfesional />} />
         <Route path='/editar-perfil/:id' element={<EditarPerfilProfesional />} />
+        <Route path='/registro' element={<UsuarioRegistro />} />
         <Route path='/home/perfil-paciente/:id' element={<MiPerfilPaciente />} /> 
         <Route path='/paciente/editar-perfil/:id' element={<EditarPerfilPaciente />} />
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
+        <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />
       </UsuarioContext.Provider>

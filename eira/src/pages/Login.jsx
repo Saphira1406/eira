@@ -12,9 +12,8 @@ function LoginForm({onLogin}) {
         e.preventDefault()
       
         authService.login(email, password)
-        .then((resp) => {
-            console.log(resp)
-           return onLogin(resp)
+        .then(({usuario, token}) => {
+           return onLogin({usuario, token})
         })
         .catch(err=>setError(err.message))
     }
@@ -41,7 +40,7 @@ function LoginForm({onLogin}) {
                             </div>
                         </form>
                     <div className="col-12 mt-5 justify-content-center">
-                        <p>¿No tenes cuenta? <Link to="/registro">registrate</Link></p>
+                        <p>¿No tenés cuenta? <Link to="/registro">registrate</Link></p>
 
                     </div>
 
