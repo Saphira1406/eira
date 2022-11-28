@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 
 function LoginForm({onLogin}) {
     const [email, setEmail] = useState("")
@@ -37,6 +38,7 @@ function LoginForm({onLogin}) {
                                 <Row className="pt-5">
                                     <Col lg={7} className="mx-auto pt-5">
                                         <h1 className="text-center mb-5">Iniciar Sesión</h1>
+                                        {error && <Alert variant="danger"><p className="mb-0">{error}</p></Alert>}
                                         <Form onSubmit={handleSubmit}>
                                             <Form.Group className="mb-4" controlId="email">
                                                 <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
@@ -47,7 +49,6 @@ function LoginForm({onLogin}) {
                                             <div className="d-flex justify-content-center mb-3">
                                                 <Button type="submit" className="btn btn-login">Ingresar</Button>
                                             </div>
-                                            {error && <p>{error}</p>}
                                             <div className="text-center mb-4">
                                                 <Link to="/olvideContrasena">¿Olvidaste tu contraseña?</Link>
                                             </div>

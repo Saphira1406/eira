@@ -42,7 +42,7 @@ function App() {
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
     if(!usuario.matricula) {
-      navigate(`/home/perfil-paciente/${usuario._id}`, { replace: true })
+      navigate(`/paciente/${usuario._id}`, { replace: true })
     } else {
       navigate(`/profesional/pacientes`, { replace: true })
     }
