@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from 'react-router-dom'
 import * as authService from "../services/auth.service.js"
 import Container from 'react-bootstrap/Container';
@@ -7,14 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Logo from '../imgs/logo-eira.png'
 
-function LoginForm({onLogin, funcNav}) {
-    
-    useEffect(() => {
-        funcNav(false);;
-      }, []);
-
+function LoginForm({onLogin}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
@@ -35,7 +29,6 @@ function LoginForm({onLogin, funcNav}) {
                 <Container fluid className="h-100">
                     <Row className="h-100">
                         <Col lg={6} className="bg-login py-4 px-5">
-                            <img src={Logo} alt="Logo de Eira" className="img-fluid mb-custom"/>
                             <p className="text-white login-title mb-0 mt-5 pt-5">¡Bienvenido!</p>
                             <p className="text-white login-subtitle">Para poder acceder tenés que Iniciar Sesión</p>
                         </Col>
@@ -63,24 +56,6 @@ function LoginForm({onLogin, funcNav}) {
                                     </Col>
                                 </Row>
                             </Container>
-                            {/* <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="password" className="form-label">Contraseña</label>
-                                    <input type="password" className="form-control" id="password" name="password" autoComplete="on" value={password} onChange={e => setPassword(e.target.value)} />
-                                </div>
-                                <button type="submit" className="btn btn-form w-100">Iniciar Sesión</button>
-                                <div className="text-center">
-                                    <Link to="/olvideContrasena">¿Olvidaste tu contraseña?</Link>
-                                </div>
-                            </form>
-                            <div className="col-12 mt-5 justify-content-center">
-                                <p>¿No tenés cuenta? <Link to="/registro">registrate</Link></p>
-                            </div>
-                            {error && <p>{error}</p>} */}
                         </Col>
                     </Row>
                 </Container>

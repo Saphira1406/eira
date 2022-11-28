@@ -13,8 +13,8 @@ main {
     min-height: 87vh;
 }
 
-#login, #login section, #dashboard {
-    height: 90%;
+#login, #login section {
+    height: 100%;
 }
 
 a, a:hover {
@@ -181,6 +181,11 @@ a, a:hover {
 
 .text-verde-claro {
     color: #42B7AD;
+}
+
+.btn-verde {
+    background-color: #42B7AD;
+    color: #fff;
 }
 
 .titulo {
@@ -428,7 +433,7 @@ form-control::placeholder {
 }
 
 .btn-editar-perfil, .btn-editar-perfil:hover {
-    background-color: #42b7ad;
+    background-color: #4971b7;
     color: #fff;
 }
 

@@ -9,6 +9,7 @@ import Recetas from '../../imgs/medicamentos.png'
 import ImgPerfil from '../../imgs/perfil.png'
 
 function Dashboard() {
+
     let { id } = useParams();
 
     return (
