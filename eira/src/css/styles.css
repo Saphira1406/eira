@@ -9,13 +9,12 @@ html, body, #root{
     scroll-behavior: smooth;
 }
 
-#root div, main{
-    min-height: 100%;
-    height: 100%;
+main {
+    min-height: 87vh;
 }
 
-#login section {
-    height: 100%;
+#login, #login section, #dashboard {
+    height: 90%;
 }
 
 a, a:hover {
@@ -436,6 +435,34 @@ form-control::placeholder {
 .btn-eliminar-perfil, .btn-eliminar-perfil:hover {
     background-color: #f3944f;
     color: #fff;
+}
+
+#dashboard {
+    background-image: url('../imgs/fondo-listado-pacientes.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-dashboard {
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.text-azul {
+    color: #4971B7;
+}
+
+.text-verde {
+    color: #42b7ad;
+}
+
+.text-amarillo {
+    color: #fbbe49;
+}
+
+.text-naranja {
+    color: #f3944d;
 }
 
 footer {

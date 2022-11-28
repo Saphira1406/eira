@@ -13,6 +13,7 @@ import MiPerfilPaciente from './pages/pacientes/MiPerfilPaciente'
 import EditarPerfilPaciente from './pages/pacientes/EditarPerfilPaciente'
 import HistoriaClinicaPaciente from './pages/pacientes/HistoriaClinica'
 import FormHistorialClinico from './pages/pacientes/FormHistorialClinico'
+import DashboardPaciente from './pages/pacientes/Dashboard'
 import Login from './pages/Login'
 import UsuarioRegistro from './pages/UsuarioRegistro'
 import { useEffect, useState } from 'react'
@@ -53,10 +54,13 @@ function App() {
 
   return (
     <UsuarioContext.Provider value={{usuarioLogueado, setUsuarioLogueado}} >
-      {showNav && <NavbarEira />}
+      {   showNav &&
+          <NavbarEira />
+   }
+      
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login onLogin={onLogin} funcNav={setShowNav} />} />
+        <Route path='/login' element={<Login onLogin={onLogin} funcNav={setShowNav}/>} />
         <Route path='/profesional/pacientes' element={<ListaPacientes />} />
         <Route path='/historia-clinica/:id' element={<VerHistoriaClinica />} />
         <Route path='/tratamiento/:id' element={<Tratamiento />} />
@@ -65,13 +69,14 @@ function App() {
         <Route path='/mi-perfil/:id' element={<MiPerfilProfesional />} />
         <Route path='/editar-perfil/:id' element={<EditarPerfilProfesional />} />
         <Route path='/registro' element={<UsuarioRegistro />} />
-        <Route path='/home/perfil-paciente/:id' element={<MiPerfilPaciente />} /> 
+        <Route path='/home/perfil-paciente/:id' element={<MiPerfilPaciente />} />
+        <Route path='/paciente/:id' element={<DashboardPaciente />} />
         <Route path='/paciente/editar-perfil/:id' element={<EditarPerfilPaciente />} />
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
-      {showNav && <Footer />}
+      <Footer />
     </UsuarioContext.Provider>
   );
 }

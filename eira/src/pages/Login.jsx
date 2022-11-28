@@ -32,8 +32,8 @@ function LoginForm({onLogin, funcNav}) {
     return (
         <main id="login">
             <section>
-                <Container fluid>
-                    <Row>
+                <Container fluid className="h-100">
+                    <Row className="h-100">
                         <Col lg={6} className="bg-login py-4 px-5">
                             <img src={Logo} alt="Logo de Eira" className="img-fluid mb-custom"/>
                             <p className="text-white login-title mb-0 mt-5 pt-5">¡Bienvenido!</p>
