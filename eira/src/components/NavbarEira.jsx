@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useState } from 'react'
+import { useState} from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -19,43 +19,39 @@ function NavbarEira() {
     const {usuarioLogueado} = useContext(UsuarioContext)
     //const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
     console.log("aca",usuarioLogueado)
-   
 
     return (
         <header>
             <Navbar className="bgNavbarGreen fw-bold" expand="lg" variant="dark">
                 <Container fluid>
-                   
-                    <Link to={`/`} ><img src={LogoEiraBlanco} alt="Logo de Eira" /> </Link> 
-                   
+                    <Link to={`/`} ><img src={LogoEiraBlanco} alt="Logo de Eira" /> </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
-                    <Nav.Link href="#home">Inicio</Nav.Link>
-                    <Nav.Link href="#funciones">Funcionalidades</Nav.Link>
-                    <Nav.Link href="#home">Iniciar sesión</Nav.Link>
-                    <Nav.Link href="#pacientes">Registarse</Nav.Link>
-                    <Nav.Link href="#contacto">Contacto</Nav.Link>
+                    <Nav.Link href="#home" className="fw-normal">Inicio</Nav.Link>
+                    <Nav.Link href="#funciones" className="fw-normal">Funcionalidades</Nav.Link>
+                    <Nav.Link href="#home" className="fw-normal">Iniciar sesión</Nav.Link>
+                    <Nav.Link href="#pacientes" className="fw-normal">Registarse</Nav.Link>
+                    <Nav.Link href="#contacto" className="fw-normal">Contacto</Nav.Link>
                     <NavDropdown title={
                             <img src={IconoUsuarioBlanco} alt="Icono de usuario blanco" className="img-fluid"/>
                         } id="basic-nav-dropdown">
-                            {usuarioLogueado && 
-                                 <NavDropdown.Item>
+                            {usuarioLogueado &&
+                                <NavDropdown.Item>
                                     <img src={IconoUsuarioAzul} alt="Icono de usuario color azul" className="img-fluid"/>
                                     <span className="nombreNavbar">{usuarioLogueado?.nombre}</span>
                                 </NavDropdown.Item>
                             }
-                       
+
                         <NavDropdown.Divider />
                         <Link to={`/`} className="dropdown-item">Inicio</Link>
-                        {!usuarioLogueado && <Link to={`/login`} className="dropdown-item">Iniciar sesión</Link>} 
-                        {!usuarioLogueado && <Link to={`/registro`} className="dropdown-item">Registrarse</Link>} 
+                        {!usuarioLogueado && <Link to={`/login`} className="dropdown-item">Iniciar sesión</Link>}
+                        {!usuarioLogueado && <Link to={`/registro`} className="dropdown-item">Registrarse</Link>}
                         {usuarioLogueado?.matricula && <Link to={`/profesional/pacientes`} className="dropdown-item">Lista mis pacientes</Link>} 
                         {usuarioLogueado && <Link to={usuarioLogueado.matricula ? `/mi-perfil/${usuarioLogueado._id}` : `/home/perfil-paciente/${usuarioLogueado._id}`} className="dropdown-item">Mi perfil</Link>} 
                         {usuarioLogueado && <Link to={`/paciente/historia-clinica`} className="dropdown-item">Mi historia clínico</Link>} 
                         <NavDropdown.Divider />
                         {usuarioLogueado && <Logout />}
-                      
                         </NavDropdown>
                     </Nav>
                     </Navbar.Collapse>

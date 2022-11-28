@@ -9,8 +9,16 @@ html, body, #root{
     scroll-behavior: smooth;
 }
 
-#root div{
-    min-height: 100%;
+main {
+    min-height: 87vh;
+}
+
+#login, #login section {
+    height: 100%;
+}
+
+a, a:hover {
+    color: #4971b7;
 }
 
 .bgNavbarGreen {
@@ -33,6 +41,46 @@ html, body, #root{
 .nombreNavbar {
     color: #4971b7;
     padding-left: 5px;
+}
+
+.bg-login {
+    background-image: url('../imgs/fondo-login-registro.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-title {
+    font-weight: 700;
+    font-size: 80px;
+}
+
+.login-subtitle {
+    font-size: 25px;
+}
+
+.bg-form-login {
+    background-image: url('../imgs/fondo-login.jpg');
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+.bg-form-login h1 {
+    font-weight: 600;
+    font-size: 45px;
+}
+
+.btn-login, .btn-login:hover {
+    background-color: #f3944f;
+    color: #fff;
+    border: none;
+    width: 40%;
+    border-radius: 10px;
+    padding: 3px 10px;
+}
+
+#login .mb-custom {
+    margin-bottom: 160px;
 }
 
 #header-home {
@@ -135,6 +183,11 @@ html, body, #root{
     color: #42B7AD;
 }
 
+.btn-verde {
+    background-color: #42B7AD;
+    color: #fff;
+}
+
 .titulo {
     font-weight: 600;
     font-size: 35px !important;
@@ -165,15 +218,16 @@ html, body, #root{
 #nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password {
     background-position: 10px center;
     background-repeat: no-repeat;
-    text-indent: 20px;
+    text-indent: 25px;
     background-color: #ededed;
     border: none;
     border-radius: 10px;
+    height: 45px;
 }
 
 #mensaje {
     background-position: 10px 10px;
-    text-indent: 20px;
+    text-indent:20px;
     background-repeat: no-repeat;
     background-color: #ededed;
     border: none;
@@ -379,13 +433,41 @@ form-control::placeholder {
 }
 
 .btn-editar-perfil, .btn-editar-perfil:hover {
-    background-color: #42b7ad;
+    background-color: #4971b7;
     color: #fff;
 }
 
 .btn-eliminar-perfil, .btn-eliminar-perfil:hover {
     background-color: #f3944f;
     color: #fff;
+}
+
+#dashboard {
+    background-image: url('../imgs/fondo-listado-pacientes.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-dashboard {
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.text-azul {
+    color: #4971B7;
+}
+
+.text-verde {
+    color: #42b7ad;
+}
+
+.text-amarillo {
+    color: #fbbe49;
+}
+
+.text-naranja {
+    color: #f3944d;
 }
 
 footer {

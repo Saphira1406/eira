@@ -66,7 +66,7 @@ function Home() {
                     </Row>
                 </Container>
             </section>
-            
+
             <section id='pacientes' className='py-5'>
                 <Container className='py-4'>
                     <Row className='align-items-center'>
