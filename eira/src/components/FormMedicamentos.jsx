@@ -25,6 +25,7 @@ function FormMedicamentos(props) {
         )
         setMedicamento("")
         setHoras("")
+        setFecha("")
     }
 
     useEffect(() => {

@@ -39,6 +39,11 @@ async function traerPorIdPaciente(id) {
     .then(response => response.json())
 }
 
+async function traerPorIdProfesional(idPaciente, idProfesional) {
+    return fetch(`http://localhost:2020/api/tratamientos/profesional/${idProfesional}/paciente/${idPaciente}`)
+    .then(response => response.json())
+}
+
 async function traerPorId(id) {
     return fetch(`http://localhost:2020/api/tratamientos/${id}`)
     .then(response => response.json())
@@ -61,5 +66,6 @@ export {
     editarMedicamento,
     traerPorId,
     editarComida,
-    eliminar
+    eliminar,
+    traerPorIdProfesional
 }

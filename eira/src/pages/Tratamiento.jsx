@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import * as TratamientoService from '../services/tratamientos.service.js'
 import { useNavigate, useParams } from 'react-router-dom'
 import FormComida from '../components/FormComida'
@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import * as PacientesService from '../services/pacientes.service.js'
 import Accordion from 'react-bootstrap/Accordion'
+import { UsuarioContext } from '../context/UsuarioContext.jsx'
 
 function Tratamiento() {
     const [comidas, setComidas] = useState([])
@@ -20,6 +21,7 @@ function Tratamiento() {
     const [ejercicios, setEjercicios] = useState([])
 
     const [paciente, setPaciente] = useState({})
+    const {usuarioLogueado} = useContext(UsuarioContext)
 
     const { id } = useParams()
     let navigate = useNavigate();
@@ -30,9 +32,11 @@ function Tratamiento() {
         ev.preventDefault()
         const id_medico = ev.target.id_medico.value
         const id_paciente = ev.target.id_paciente.value
+        const profesional_nombre = ev.target.profesional_nombre.value
+        const profesional_apellido = ev.target.profesional_apellido.value
         const diagnostico = ev.target.diagnostico.value
 
-        TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente, diagnostico})
+        TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente, profesional_nombre, profesional_apellido,diagnostico})
         .then(() => {
             navigate(`/profesional/pacientes`, { replace: true })
             console.log("??")
@@ -61,7 +65,7 @@ function Tratamiento() {
         .then(resp => setPaciente(resp))
         console.log(medicamentos)
     }, [medicamentos])
-
+console.log("lol",usuarioLogueado.nombre)
     return (
         <main>
             <section>
@@ -75,7 +79,9 @@ function Tratamiento() {
                                 <p><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
                             </div>
                             <Form onSubmit={handleSubmit}>
-                                <Form.Control type="hidden" name="id_medico" value="63239b30953ee51e9b52f154" controlid="id_medico"/>
+                                <Form.Control type="hidden" name="id_medico" value={usuarioLogueado._id} controlid="id_medico"/>
+                                <Form.Control type="hidden" name="profesional_nombre" value={usuarioLogueado.nombre} controlid="profesional_nombre"/>
+                                <Form.Control type="hidden" name="profesional_apellido" value={usuarioLogueado.apellido} controlid="profesional_apellido"/>
                                 <Form.Control type="hidden" name="id_paciente" value={id} controlid="id_paciente"/>
 
                                 <Form.Group className="my-3" controlid="diagnostico">

@@ -1,5 +1,6 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import NavbarEira from './components/NavbarEira'
+import NavbarEiraLanding from './components/NavbarEiraLanding'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Tratamiento from './pages/Tratamiento'
@@ -42,7 +43,7 @@ function App() {
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
     if(!usuario.matricula) {
-      navigate(`/paciente/${usuario._id}`, { replace: true })
+      navigate(`/paciente`, { replace: true })
     } else {
       navigate(`/profesional/pacientes`, { replace: true })
     }
@@ -52,7 +53,8 @@ function App() {
 
   return (
     <UsuarioContext.Provider value={{usuarioLogueado, setUsuarioLogueado}} >
-      <NavbarEira />
+      {!usuarioLogueado && <NavbarEiraLanding />}
+      {usuarioLogueado && <NavbarEira />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login onLogin={onLogin}/>} />
@@ -65,7 +67,7 @@ function App() {
         <Route path='/editar-perfil/:id' element={<EditarPerfilProfesional />} />
         <Route path='/registro' element={<UsuarioRegistro />} />
         <Route path='/home/perfil-paciente/:id' element={<MiPerfilPaciente />} />
-        <Route path='/paciente/:id' element={<DashboardPaciente />} />
+        <Route path='/paciente' element={<DashboardPaciente />} />
         <Route path='/paciente/editar-perfil/:id' element={<EditarPerfilPaciente />} />
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />

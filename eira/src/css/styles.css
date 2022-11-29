@@ -99,7 +99,7 @@ a, a:hover {
     font-size: 19px;
 }
 
-#header-home button {
+#header-home a {
     background-color: #fbbe49;
     color: #262626;
     border: none;
@@ -145,8 +145,9 @@ a, a:hover {
     font-weight: 800;
 }
 
-#pacientes button {
+#pacientes a {
     background-color: #F3944D;
+    color: white;
     border: none;
     font-size: 14px;
     font-weight: 600;
@@ -154,8 +155,9 @@ a, a:hover {
     width: 55%;
 }
 
-#profesionales button {
+#profesionales a {
     background-color: #4971B7;
+    color: white;
     border: none;
     font-size: 14px;
     font-weight: 600;
@@ -494,10 +496,11 @@ footer ul li a {
     text-decoration: none;
 }
 
+
 .navbar-toggler-icon {
     background-image: url("../imgs/icono-usuario-blanco.png") !important;
 }
 
-.navbar-toggler-icon::before {
-    background-image: url("../imgs/icono-usuario-blanco.png") !important;
+a {
+    text-decoration: none;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,10 +7,12 @@ import Tratamiento from '../../imgs/tratamiento.png'
 import Historia from '../../imgs/historia-clinica.png'
 import Recetas from '../../imgs/medicamentos.png'
 import ImgPerfil from '../../imgs/perfil.png'
+import { UsuarioContext } from "../../context/UsuarioContext";
 
 function Dashboard() {
 
-    let { id } = useParams();
+    //let { id } = useParams();
+    const {usuarioLogueado} = useContext(UsuarioContext)
 
     return (
         <main id="dashboard" className="pt-5">
@@ -19,12 +21,13 @@ function Dashboard() {
                 <Container fluid className="pt-5 px-5">
                     <Row className="g-5">
                         <Col className="mx-5">
-                            <div className="text-decoration-none">
+                            <Link to={`/ver-tratamiento/${usuarioLogueado._id}`} className="text-decoration-none">
                                 <div className="bg-white text-center shadow py-5">
                                     <img src={Tratamiento} alt="icono tratamiento médico" className="img-fluid mb-2"/>
                                     <p className="mb-0 title-dashboard text-azul">Mis tratamientos</p>
                                 </div>
-                            </div>
+                            </Link>
+                            
                         </Col>
                         <Col className="mx-5">
                             <Link to={`/paciente/historia-clinica`} className="text-decoration-none">
@@ -43,7 +46,7 @@ function Dashboard() {
                             </div>
                         </Col>
                         <Col className="mx-5">
-                            <Link to={`/home/perfil-paciente/${id}`} className="text-decoration-none">
+                            <Link to={`/home/perfil-paciente/${usuarioLogueado._id}`} className="text-decoration-none">
                                 <div className="bg-white text-center shadow py-5">
                                     <img src={ImgPerfil} alt="icono tratamiento médico" className="img-fluid mb-2"/>
                                     <p className="mb-0 title-dashboard text-naranja">Mi perfil</p>

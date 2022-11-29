@@ -15,6 +15,7 @@ function VerHistoriaClinica() {
     const { id } = useParams()
 
     useEffect(() => {
+        
         PacientesService.traerHistoriaClinica(id)
         .then((resp) => setHistoriaClinica(resp))
 
@@ -34,7 +35,7 @@ function VerHistoriaClinica() {
                             <h1 className="titulo">Historia clínica</h1>
                             {!historiaClinica && 
                             <>
-                            <p>Este paciente todavía no subió si historia clinica</p>
+                            <p><b>{paciente.nombre} {paciente.apellido} </b>todavía no subió su historia clinica</p>
                            
                             </>
                             }

@@ -12,8 +12,8 @@ function FormHistorialClinico () {
     const [altura, setAltura] = useState("")
     const [medicamento, setMedicamento] = useState("")
     const [medicamentos, setMedicamentos] = useState([])
-    const [fumador, setFumador] = useState("")
-    const [alcohol, setAlcohol] = useState("")
+    const [fumador, setFumador] = useState("Si")
+    const [alcohol, setAlcohol] = useState("Si")
     const [comidasDiarias, setComidasDiarias] = useState("")
     const [dieta, setDieta] = useState("")
     const [habitosSuenio, setHabitosSuenio] = useState("")
@@ -47,7 +47,7 @@ function FormHistorialClinico () {
               habitosSuenio,
               antecedentesFamiliares
             })
-            .then(resp =>  navigate(`/home/perfil-paciente/${usuarioLogueado._id}`, { replace: true }))
+            .then(resp =>  navigate(`/paciente/historia-clinica`, { replace: true }))
 
     }
 

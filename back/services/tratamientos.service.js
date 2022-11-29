@@ -50,6 +50,18 @@ async function traerPorIdPaciente(idPaciente) {
     .catch(err => console.log(err))
 }
 
+async function traerPorIdProfesional(idPaciente, idProfesional) {
+    return client.connect()
+    .then(async function() {
+        const db = client.db('eira')
+        const tratamientos = await db.collection('tratamientos').find(
+            {"id_paciente": new ObjectId(idPaciente),
+            "profesional.id_medico": new ObjectId(idProfesional)}).toArray()
+        return tratamientos
+    })
+    .catch(err => console.log(err))
+}
+
 async function traerPorId(id) {
     return client.connect()
     .then(async function() {
@@ -132,5 +144,6 @@ export {
     traerPorId,
     eliminar,
     editarMedicamento,
-    editarComida
+    editarComida,
+    traerPorIdProfesional
 }

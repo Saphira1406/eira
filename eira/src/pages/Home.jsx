@@ -11,6 +11,7 @@ import IconoNotificacion from '../imgs/icono-notificaciones-home.png'
 import IconoCompartir from '../imgs/icono-compartir-home.png'
 import MockupCelular from '../imgs/celular-app-mockup.png'
 import ImgProfesionales from '../imgs/profesionales-de-la-salud.png'
+import { Link } from 'react-router-dom';
 
 function Home() {
     return (
@@ -21,7 +22,7 @@ function Home() {
                         <Col lg={6}>
                             <h1 className='mb-2'>EIRA TE AYUDA A RECORDAR SIN IMPORTAR DÓNDE ESTÉS</h1>
                             <p className='mb-4'>Ayudamos a los pacientes a recordar sus tratamientos y a los medicos a hacer el seguimiento del mismo.</p>
-                            <Button>Registrate</Button>
+                            <Link to={`/registro`} className="nav-link btn btn-primary">Registrate</Link>
                         </Col>
                         <Col lg={6}>
                             <img src={ImgHeader} alt="Ilustración representando aplicación de salud" className='img-fluid'/>
@@ -77,7 +78,7 @@ function Home() {
                             <h2 className='mb-3'><span className='text-verde-claro'>NO</span> TE OLVIDES MÁS</h2>
                             <p>Eira facilita a los pacientes elseguimiento de sus tratamientos médicos prolongados, ayudándoles a recordar qué ejercicios tienen que hacer, qué medicamentos deben tomar y si tienen algún tipo de restricción con respecto a las comidas que pueden ingerir.</p>
                             <p className='mb-4'>Eira permite tener toda esta información en el celular, para poder aceder desde cualquier lugar y en cualquier momento.</p>
-                            <Button>¡Quiero registrarme como paciente!</Button>
+                            <Link to={`/registro`} className="nav-link btn btn-primary">¡Quiero registrarme como paciente!</Link>
                         </Col>
                     </Row>
                 </Container>
@@ -88,7 +89,7 @@ function Home() {
                         <Col lg={6}>
                             <h2 className='mb-3'>SEGUÍ EL <span className='text-verde-claro'>PROGRESO</span> DE TUS PACIENTES</h2>
                             <p className='mb-4'>Con Eira seguí el progreso de tus pacientes en los tratamientos asignados sin que deban asistir al consultorio y alivianando la agenda de turnos.</p>
-                            <Button>¡Quiero registrarme como profesional!</Button>
+                           <Link to={`/registro`} className="nav-link btn btn-primary">¡Quiero registrarme como paciente!</Link>
                         </Col>
                         <Col lg={6} className="text-center">
                             <img src={ImgProfesionales} alt="Profesionales de la salud" className='img-fluid'/>
