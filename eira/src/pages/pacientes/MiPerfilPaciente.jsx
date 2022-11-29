@@ -10,6 +10,8 @@ import IconoEmail from '../../imgs/icono-email.png'
 import IconoTelefono from '../../imgs/icono-telefono.png'
 import IconoIdentificacion from '../../imgs/icono-identificacion.png'
 import { UsuarioContext } from '../../context/UsuarioContext'
+import Swal from 'sweetalert2'
+
 
 function MiPerfilPaciente () {
     const [paciente, setPaciente] = useState({})
@@ -24,11 +26,33 @@ function MiPerfilPaciente () {
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        if(window.confirm("¿Querés eliminar tu usuario?")) {
+        /*if(window.confirm("¿Querés eliminar tu usuario?")) {
             PacienteService.eliminar(usuarioLogueado._id)
             .then(() => alert("Eliminaste tu usuario eliminado"))
             localStorage.removeItem('usuario')
-        }
+        }*/
+
+        Swal.fire({
+            title: '¿Seguro que quiere eliminar su usuario?',
+            text: "No podrás volver atrás",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'Cancelar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                PacienteService.eliminar(usuarioLogueado._id)
+                .then(() =>   Swal.fire(
+                    'Se borró correctamente',
+                    '',
+                    'success'
+                  ))
+                localStorage.removeItem('usuario')
+            
+            }
+          })
         
     }
 

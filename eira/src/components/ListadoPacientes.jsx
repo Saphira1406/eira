@@ -13,13 +13,14 @@ import IconoEliminar from '../imgs/icono-eliminar.png'
 import IconoHistoriaClinica from '../imgs/icono-historia-clinica.png'
 import Paginador from './Paginador.jsx'
 import { UsuarioContext } from '../context/UsuarioContext'
+import Swal from 'sweetalert2'
 
 function ListadoPacientes() {
     const [pacientes, setPacientes] = useState([])
     const [busqueda, setBusqueda] = useState("")
     const [paginaActual, setPaginaActual] = useState(1)
     // eslint-disable-next-line no-unused-vars
-    const [pacientesPorPagina, setPacientesPorPagina] = useState(2)
+    const [pacientesPorPagina, setPacientesPorPagina] = useState(5)
 
     //const usuarioLogueado = useContext(UsuarioContext)
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
@@ -55,17 +56,42 @@ function ListadoPacientes() {
     const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
 
 console.log("ggg",resultados)
+
     function handleSubmitEliminarPaciente(ev) {
         ev.preventDefault()
         console.log(ev.target.idPaciente.value)
 
-        if(window.confirm("¿Eliminar paciente de tu lista?")) { 
+        /*if(window.confirm("¿Eliminar paciente de tu lista?")) { 
             ProfesionalesService.eliminarPaciente(usuarioLogueado._id,ev.target.idPaciente.value)
             .then( (resp) => {
             ProfesionalesService.traerPacientes(usuarioLogueado._id)
             .then( (resp) => setPacientes(resp))
-        })
-        }
+            })
+        }*/
+
+        Swal.fire({
+            title: '¿Seguro que quiere eliminar el paciente de su lista?',
+            text: "No podrás volver atrás",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'Cancelar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                ProfesionalesService.eliminarPaciente(usuarioLogueado._id,ev.target.idPaciente.value)
+                .then( (resp) => {
+                ProfesionalesService.traerPacientes(usuarioLogueado._id)
+                .then( (resp) => setPacientes(resp))
+                })
+              Swal.fire(
+                'Se borró correctamente',
+                '',
+                'success'
+              )
+            }
+          })
        
         
     }

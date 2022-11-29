@@ -31,12 +31,14 @@ function NavbarEira() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
-                    <Nav.Link href="#home">Inicio</Nav.Link>
-                    <Nav.Link href="#funciones">Funcionalidades</Nav.Link>
-                    <Nav.Link href="#home">Iniciar sesión</Nav.Link>
-                    <Nav.Link href="#pacientes">Registarse</Nav.Link>
-                    <Nav.Link href="#contacto">Contacto</Nav.Link>
-                    <NavDropdown title={
+                        <Link to={`/`} className="nav-link">Inicio</Link>
+                        <Nav.Link href="#contacto">Contacto</Nav.Link>
+                        <Nav.Link href="#funciones">Funcionalidades</Nav.Link>
+                        {!usuarioLogueado && <Link to={`/login`} className="nav-link">Iniciar sesión</Link>} 
+                        {!usuarioLogueado && <Link to={`/registro`} className="nav-link">Registrarse</Link>} 
+                       
+                        
+                    { /*<NavDropdown title={
                             <img src={IconoUsuarioBlanco} alt="Icono de usuario blanco" className="img-fluid"/>
                         } id="basic-nav-dropdown">
                             {usuarioLogueado && 
@@ -56,7 +58,7 @@ function NavbarEira() {
                         <NavDropdown.Divider />
                         {usuarioLogueado && <Logout />}
                       
-                        </NavDropdown>
+                        </NavDropdown>*/ }
                     </Nav>
                     </Navbar.Collapse>
                 </Container>

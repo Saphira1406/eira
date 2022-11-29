@@ -11,7 +11,11 @@ function traerTodos(req, res) {
 function crear(req, res) {
     const tratamiento = {
         ...req.body,
-        id_medico: new ObjectId(req.body.id_medico),
+        profesional: {
+            id_medico: new ObjectId(req.body.id_medico),
+            nombre: req.body.profesional_nombre,
+            apellido: req.body.profesional_apellido,
+        },
         id_paciente: new ObjectId(req.body.id_paciente),
     }
     TratamientosServices.crear(tratamiento)
@@ -26,6 +30,17 @@ function crear(req, res) {
 function traerPorIdPaciente (req, res) {
  
     TratamientosServices.traerPorIdPaciente(req.params.id)
+    .then(function (tratamiento) {
+        tratamiento ?
+        res.status(200).json(tratamiento) :
+        res.status(404).json({mensaje: "No hay tratamiento.." })
+    })
+}
+
+function traerPorIdProfesional (req, res) {
+    console.log(req.params)
+ 
+    TratamientosServices.traerPorIdProfesional(req.params.idPaciente,req.params.idProfesional)
     .then(function (tratamiento) {
         tratamiento ?
         res.status(200).json(tratamiento) :
@@ -91,5 +106,6 @@ export {
     traerPorId,
     eliminar,
     editarMedicamento,
-    editarComida
+    editarComida,
+    traerPorIdProfesional
 }

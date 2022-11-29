@@ -7,7 +7,7 @@ import IconoArchivo from '../../imgs/icono-archivo.png'
 import { useContext, useEffect, useState } from 'react'
 import * as PacientesService from '../../services/pacientes.service.js'
 import { UsuarioContext } from '../../context/UsuarioContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 function VerHistoriaClinica() {
@@ -15,12 +15,18 @@ function VerHistoriaClinica() {
     //const usuarioLogueado = useContext(UsuarioContext)
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
     const [historiaClinica, setHistoriaClinica] = useState({})
-
+    let navigate = useNavigate();
     useEffect(() => {
-        PacientesService.traerHistoriaClinica(usuarioLogueado._id)
-        .then((resp) => {
+        if(!usuarioLogueado.matricula) {
+            PacientesService.traerHistoriaClinica(usuarioLogueado._id)
+            .then((resp) => {
             return setHistoriaClinica(resp)
         })
+        } else {
+            navigate('/profesional/pacientes', { replace: true })
+           
+        }
+       
 
     }, [])
 console.log(historiaClinica)
@@ -35,7 +41,7 @@ console.log(historiaClinica)
                             <Card body className='shadow px-2 pt-2'>
                             <h1 className="titulo">Historia clínica</h1>
                             
-                            <p>Si todavia no completaste tu historia clínica. <Link to={`/paciente/formulario-historia-clinica`}>Podes hacerlo acá</Link></p>
+                           {!historiaClinica && <p>Todavía no completaste tu historia clínica. <Link to={`/paciente/formulario-historia-clinica`}>Podes hacerlo acá</Link></p>}
                            
                          
                             {historiaClinica && 

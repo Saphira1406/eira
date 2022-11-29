@@ -5,6 +5,7 @@ const route = express.Router()
 
 route.get('/api/tratamientos', TratamientosController.traerTodos)
 route.get('/api/tratamientos/paciente/:id', TratamientosController.traerPorIdPaciente)
+route.get('/api/tratamientos/profesional/:idProfesional/paciente/:idPaciente', TratamientosController.traerPorIdProfesional)
 route.get('/api/tratamientos/:id', TratamientosController.traerPorId)
 route.post('/api/tratamientos', TratamientosController.crear)
 route.delete('/api/tratamientos/:id', TratamientosController.eliminar)

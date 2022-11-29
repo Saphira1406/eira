@@ -9,6 +9,7 @@ import IconoUsuario from '../imgs/icono-usuario-perfil.png'
 import IconoEmail from '../imgs/icono-email.png'
 import IconoTelefono from '../imgs/icono-telefono.png'
 import IconoIdentificacion from '../imgs/icono-identificacion.png'
+import Swal from 'sweetalert2'
 
 function MiPerfilProfesional () {
     const [profesional, setProfesional] = useState({})
@@ -21,10 +22,28 @@ function MiPerfilProfesional () {
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        if(window.confirm("¿Eliminar tratamiento?")) {
+       /* if(window.confirm("¿Eliminar tratamiento?")) {
             ProfesionalService.eliminar(id)
             .then(() => alert("Profesional eliminado"))
-        }
+        }*/
+
+        Swal.fire({
+            title: '¿Seguro que quiere eliminar su usuario?',
+            text: "No podrás volver atrás",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'Cancelar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                ProfesionalService.eliminar(id)
+                .then(() => alert("Profesional eliminado"))
+                localStorage.removeItem('usuario')
+            
+            }
+          })
     }
 
 
