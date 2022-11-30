@@ -29,9 +29,9 @@ function ListadoPacientes() {
 
     useEffect(
         () => {
-          if(!usuarioLogueado.matricula) {
-            navigate('/', { replace: true })
-          }
+            if(!usuarioLogueado.matricula) {
+                navigate('/', { replace: true })
+            }
           // eslint-disable-next-line
         }, [])
 
@@ -41,16 +41,14 @@ function ListadoPacientes() {
         console.log("vvvv", pacientes)
     }, [])
 
-   
-
     const indexUltimoPaciente = paginaActual * pacientesPorPagina
     const indexPrimerPaciente = indexUltimoPaciente - pacientesPorPagina
     let pacientesActuales = []
     if(pacientes.length > 0) {
 
-     pacientesActuales = pacientes.slice(indexPrimerPaciente, indexUltimoPaciente)
+        pacientesActuales = pacientes.slice(indexPrimerPaciente, indexUltimoPaciente)
     }
-   
+
     // busqueda
     //const resultados = !busqueda ? pacientes : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
     const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
@@ -78,22 +76,19 @@ console.log("ggg",resultados)
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 ProfesionalesService.eliminarPaciente(usuarioLogueado._id,ev.target.idPaciente.value)
                 .then( (resp) => {
                 ProfesionalesService.traerPacientes(usuarioLogueado._id)
                 .then( (resp) => setPacientes(resp))
                 })
-              Swal.fire(
+            Swal.fire(
                 'Se borró correctamente',
                 '',
                 'success'
-              )
-            }
-          })
-       
-        
+            )}
+        })
     }
 
     return (

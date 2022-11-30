@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function EditarPerfilPaciente() {
     const location = useLocation()
@@ -45,34 +46,32 @@ function EditarPerfilPaciente() {
                                 <Form onSubmit={handleSubmit}>
                                     <Row>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="nombre">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="nombre" label="Nombre">
                                                 <Form.Control type="text" placeholder="Nombre" name="nombre" value={nombre} onChange={(ev) => setNombre(ev.target.value)}/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="apellido">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="apellido" label="Aellido">
                                                 <Form.Control type="text" placeholder="Apellido" name="apellido" value={apellido} onChange={(ev) => setApellido(ev.target.value)}/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="telefono">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="telefono" label="Teléfono">
                                                 <Form.Control type="text" placeholder="Teléfono" name="telefono" value={telefono} onChange={(ev) => setTelefono(ev.target.value)}/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="email">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="email" label="Email">
                                                 <Form.Control type="text" placeholder="Email" name="email" value={email} onChange={(ev) => setEmail(ev.target.value)} disabled/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                     </Row>
 
-                                    <Form.Group className="my-3" controlId="dni">
+                                    <FloatingLabel className="my-3 floating-distance-2" controlId="dni" label="N° de documento">
                                         <Form.Control type="text" placeholder="N° de documento" name="dni" value={dni} onChange={(ev) => setDni(ev.target.value)} disabled/>
-                                    </Form.Group>
-
-                                   
+                                    </FloatingLabel>
 
                                     <div className="d-flex justify-content-center my-3">
                                         <Button type="submit" className="btn btn-editar">
