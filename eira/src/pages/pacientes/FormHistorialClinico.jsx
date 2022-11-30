@@ -147,10 +147,10 @@ function FormHistorialClinico () {
                                     </Accordion.Item>
 
                                     <Accordion.Item eventKey="6" className='shadow my-4'>
-                                        <Accordion.Header>¿Cuántas comidas por dia ingerís?</Accordion.Header>
+                                        <Accordion.Header>¿Cuántas comidas por día ingerís?</Accordion.Header>
                                         <Accordion.Body>
                                             <Form.Group className="my-3" controlId="comidaDiaria">
-                                                <Form.Label className="visually-hidden">¿Cuántas comidas por dia ingerís?</Form.Label>
+                                                <Form.Label className="visually-hidden">¿Cuántas comidas por día ingerís?</Form.Label>
                                                 <Form.Control type="number" name="comidaDiaria" value={comidasDiarias} onChange={(ev) => setComidasDiarias(ev.target.value)}/>
                                             </Form.Group>
                                         </Accordion.Body>
