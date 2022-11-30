@@ -29,7 +29,7 @@ function FormHistorialClinico () {
     function handleSubmit(ev) {
 
         ev.preventDefault()
-        console.log("holaaaa") // me falta guardar el historial, luego hacer test para que todo funcione en la demo de HOY
+        console.log("holaaaa") 
 
         PacienteService.crearHistoriaClinica(
             usuarioLogueado._id,
