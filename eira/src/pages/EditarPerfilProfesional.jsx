@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function EditarPerfilProfesional() {
     const location = useLocation()
@@ -47,43 +48,43 @@ function EditarPerfilProfesional() {
                                 <Form onSubmit={handleSubmit}>
                                     <Row>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="nombre">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="nombre" label="Nombre">
                                                 <Form.Control type="text" placeholder="Nombre" name="nombre" value={nombre} onChange={(ev) => setNombre(ev.target.value)}/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="apellido">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="apellido" label="Apellido">
                                                 <Form.Control type="text" placeholder="Apellido" name="apellido" value={apellido} onChange={(ev) => setApellido(ev.target.value)}/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="telefono">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="telefono" label="Teléfono">
                                                 <Form.Control type="text" placeholder="Teléfono" name="telefono" value={telefono} onChange={(ev) => setTelefono(ev.target.value)}/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="email">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="email" label="Email">
                                                 <Form.Control type="text" placeholder="Email" name="email" value={email} onChange={(ev) => setEmail(ev.target.value)} disabled/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                     </Row>
 
-                                    <Form.Group className="my-3" controlId="dni">
+                                    <FloatingLabel className="my-3 floating-distance-2" controlId="dni" label="N° de documento">
                                         <Form.Control type="text" placeholder="N° de documento" name="dni" value={dni} onChange={(ev) => setDni(ev.target.value)} disabled/>
-                                    </Form.Group>
+                                    </FloatingLabel>
 
                                     <Row>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="especialidad">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="especialidad" label="Especialidad">
                                                 <Form.Control type="text" placeholder="Especialidad" name="especialidad" value={especialidad} onChange={(ev) => setEspecialidad(ev.target.value)}/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                         <Col>
-                                            <Form.Group className="my-3" controlId="matricula">
+                                            <FloatingLabel className="my-3 floating-distance-2" controlId="matricula" label="Matrícula">
                                                 <Form.Control type="text" placeholder="N° de matrícula" name="matricula" value={matricula} onChange={(ev) => setMatricula(ev.target.value)} disabled/>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                         </Col>
                                     </Row>
 

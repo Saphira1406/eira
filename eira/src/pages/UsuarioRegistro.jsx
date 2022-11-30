@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function UsuarioRegistro(){
     const [nombre, setNombre] = useState("")
@@ -68,47 +69,47 @@ function UsuarioRegistro(){
                                         {error && <Alert variant="danger"><p className="mb-0">{error}</p></Alert>}
                                         <Form onSubmit={handleSubmit(onSubmit)}>
                                             <Row>
-                                                <Form.Group className="mb-4" as={Col} controlId="nombre">
+                                                <FloatingLabel controlId="nombre" label="Nombre*" className="mb-4 floating-distance" as={Col}>
                                                     <Form.Control type="text" placeholder="Nombre*" name="nombre" {...register('nombre', {required: true})} value={nombre} onChange={(ev) => setNombre(ev.target.value)}/>
                                                     {errors.nombre && <span className="text-danger">Campo requerido</span>}
-                                                </Form.Group>
-                                                <Form.Group className="mb-4" as={Col} controlId="apellido">
+                                                </FloatingLabel>
+                                                <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="apellido" label="Apellido*">
                                                     <Form.Control type="text" placeholder="Apellido*" name="apellido" {...register('apellido', {required: true})} value={apellido} onChange={(ev) => setApellido(ev.target.value)}/>
                                                     {errors.apellido && <span className="text-danger">Campo requerido</span>}
-                                                </Form.Group>
+                                                </FloatingLabel>
                                             </Row>
                                             <Row>
-                                                <Form.Group className="mb-4" as={Col} controlId="telefono">
+                                                <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="telefono" label="Teléfono">
                                                     <Form.Control type="text" placeholder="Teléfono" name="telefono" value={telefono} onChange={(ev) => setTelefono(ev.target.value)}/>
                                                     {errors.telefono && <span className="text-danger">Campo requerido</span>}
-                                                </Form.Group>
-                                                <Form.Group className="mb-4" as={Col} controlId="email">
+                                                </FloatingLabel>
+                                                <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="email" label="Email*">
                                                     <Form.Control type="email" placeholder="Email*" name="apellido" {...register('email', { required:true, pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/ })}  value={email} onChange={(ev) => setEmail(ev.target.value)}/>
                                                     {errors.email?.type === 'required' && <span className="text-danger">Campo obligatorio</span>}
                                                     {errors.email?.type === 'pattern' && <span className="text-danger">Email inválido</span>}
-                                                </Form.Group>
+                                                </FloatingLabel>
                                             </Row>
-                                            <Form.Group className="mb-4" as={Col} controlId="dni">
+                                            <FloatingLabel className="mb-4 floating-distance-2" as={Col} controlId="dni" label="N° de Documento*">
                                                 <Form.Control type="text" placeholder="N° de Documento*" name="dni" {...register('dni', {required: true})} value={dni} onChange={(ev) => setDni(ev.target.value)}/>
                                                 {errors.dni && <span className="text-danger">Campo requerido</span>}
-                                            </Form.Group>
+                                            </FloatingLabel>
                                             {!registroPaciente &&
                                             <Row>
-                                                <Form.Group className="mb-4" as={Col} controlId="especialidad">
+                                                <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="especialidad" label="Especialidad*">
                                                     <Form.Control type="text" placeholder="Especialidad*" name="especialidad" {...register('especialidad', {required: true})} value={especialidad} onChange={(ev) => setEspecialidad(ev.target.value)}/>
                                                     {errors.especialidad && <span className="text-danger">Campo requerido</span>}
-                                                </Form.Group>
-                                                <Form.Group className="mb-4" as={Col} controlId="matricula">
+                                                </FloatingLabel>
+                                                <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="matricula" label="Matrícula*">
                                                     <Form.Control type="text" placeholder="Matrícula*" name="matricula" {...register('matricula', {required: true})} value={matricula}  onChange={(ev) => setMatricula(ev.target.value)}/>
                                                     {errors.matricula && <span className="text-danger">Campo requerido</span>}
-                                                </Form.Group>
+                                                </FloatingLabel>
                                             </Row>
                                             }
-                                            <Form.Group className="mb-4" as={Col} controlId="password">
+                                            <FloatingLabel className="mb-4 floating-distance-2" as={Col} controlId="password" label="Contraseña*">
                                                 <Form.Control type="text" placeholder="Contraseña*" name="password" {...register('password', {required: true, minLength: 3})} value={password} onChange={(ev) => setPassword(ev.target.value)}/>
                                                 {errors.password?.type === 'required' && <span className="text-danger">Campo obligatorio</span>}
                                                 {errors.password?.type === 'minLength' && <span className="text-danger">La contraseña debe tener almenos 3 caracteres</span>}
-                                            </Form.Group>
+                                            </FloatingLabel>
                                             <div className="d-flex justify-content-center mb-4">
                                                 <Button type="submit" className="btn btn-login">Registrarse</Button>
                                             </div>

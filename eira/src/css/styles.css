@@ -217,6 +217,26 @@ a, a:hover {
     color: #666666;
 }
 
+.floating-distance-2>label {
+    text-indent: 27px;
+}
+
+.floating-distance>label {
+    text-indent: 35px;
+}
+
+.form-control {
+    height: 45px !important;
+}
+
+textarea.form-control {
+    height: auto !important;
+}
+
+.form-floating>label {
+    padding: 0.6rem 0.75rem !important;
+}
+
 #nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password {
     background-position: 10px center;
     background-repeat: no-repeat;
@@ -370,6 +390,14 @@ form-control::placeholder {
 .accordion-button:not(.collapsed) {
     background-color: #42b7ad;
     color: #ffffff !important;
+}
+
+.tratamiento-header {
+    background-color: #42b7ad;
+    color: #ffffff;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .accordion-button:not(.collapsed)::after {

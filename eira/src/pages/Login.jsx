@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function LoginForm({onLogin}) {
     const [email, setEmail] = useState("")
@@ -40,12 +41,12 @@ function LoginForm({onLogin}) {
                                         <h1 className="text-center mb-5">Iniciar Sesión</h1>
                                         {error && <Alert variant="danger"><p className="mb-0">{error}</p></Alert>}
                                         <Form onSubmit={handleSubmit}>
-                                            <Form.Group className="mb-4" controlId="email">
+                                            <FloatingLabel controlId="email" label="Email" className="mb-4 floating-distance-2">
                                                 <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
-                                            </Form.Group>
-                                            <Form.Group className="mb-5" controlId="password">
+                                            </FloatingLabel>
+                                            <FloatingLabel controlId="password" label="Contraseña" className="mb-4 floating-distance-2">
                                                 <Form.Control type="password" placeholder="Contraseña" name="password" autoComplete="on" value={password} onChange={e => setPassword(e.target.value)}></Form.Control>
-                                            </Form.Group>
+                                            </FloatingLabel>
                                             <div className="d-flex justify-content-center mb-3">
                                                 <Button type="submit" className="btn btn-login">Ingresar</Button>
                                             </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ObjectId from "bson-objectid"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 
 function FormMedicamentos(props) {
@@ -34,18 +35,15 @@ function FormMedicamentos(props) {
 
     return(
         <div className="mt-3">
-            <Form.Group className="mb-4" controlId="medicamento">
-                <Form.Control type="text" placeholder="Nombre del medicamento" name="medicamento" value={medicamento} onChange={(ev) => setMedicamento(ev.target.value)}/>
-            </Form.Group>
-            <Form.Group className="mb-4" controlId="horas">
-                <Form.Control type="number" placeholder="¿Cáda cuánto tiempo debe tomar el medicamento? (Indicar en cant. de horas)" name="horas" value={horas} onChange={(ev) => setHoras(ev.target.value)}/>
-            </Form.Group>
-            <Form.Group className="mb-4" controlId="finalizacion">
+            <FloatingLabel className="mb-4" controlId="medicamento" label="Nombre del medicamento">
+                <Form.Control type="text" name="medicamento" placeholder="Nombre del medicamento" value={medicamento} onChange={(ev) => setMedicamento(ev.target.value)}/>
+            </FloatingLabel>
+            <FloatingLabel className="mb-4" controlId="horas" label="¿Cáda cuánto tiempo debe tomar el medicamento? (Indicar en cant. de horas)">
+                <Form.Control type="number" name="horas" placeholder="¿Cáda cuánto tiempo debe tomar el medicamento? (Indicar en cant. de horas)" value={horas} onChange={(ev) => setHoras(ev.target.value)}/>
+            </FloatingLabel>
+            <FloatingLabel className="mb-4" controlId="finalizacion" label="Fecha en que finaliza la toma de medicamentos">
                 <Form.Control type="date" placeholder="Fecha en que finaliza la toma de medicamentos" name="finalizacion" value={fecha} onChange={ (ev) => setFecha(ev.target.value)}/>
-                <Form.Text className="text-muted">
-                Fecha en que finaliza la toma de medicamentos
-                </Form.Text>
-            </Form.Group>
+            </FloatingLabel>
             <div className="d-flex justify-content-center">
                 <Button type="button" onClick={agregarMedicamento} className="btn btn-agregar">
                     Agregar
