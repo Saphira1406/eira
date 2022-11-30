@@ -14,6 +14,8 @@ import IconoHistoriaClinica from '../imgs/icono-historia-clinica.png'
 import Paginador from './Paginador.jsx'
 import { UsuarioContext } from '../context/UsuarioContext'
 import Swal from 'sweetalert2'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip'
 
 function ListadoPacientes() {
     const [pacientes, setPacientes] = useState([])
@@ -124,13 +126,37 @@ console.log("ggg",resultados)
                                         <td>{paciente.apellido}</td>
                                         <td>{paciente.email}</td>
                                         <td className='d-flex'>
+                                            <OverlayTrigger key="top" placement="top" overlay={
+                                                <Tooltip id="tooltip-top">
+                                                    Crear historia clínica
+                                                </Tooltip>
+                                            }>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
+                                            </OverlayTrigger>
+                                            <OverlayTrigger key="top" placement="top" overlay={
+                                                <Tooltip id="tooltip-top">
+                                                    Ver tratamiento
+                                                </Tooltip>
+                                            }>
                                             <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
+                                            </OverlayTrigger>
+                                            <OverlayTrigger key="top" placement="top" overlay={
+                                                <Tooltip id="tooltip-top">
+                                                    Ver historia clínica
+                                                </Tooltip>
+                                            }>
                                             <Link to={`/historia-clinica/${paciente._id}`} className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
+                                            </OverlayTrigger>
+                                            <OverlayTrigger key="top" placement="top" overlay={
+                                                <Tooltip id="tooltip-top">
+                                                    Eliminar paciente
+                                                </Tooltip>
+                                            }>
                                             <form onSubmit={handleSubmitEliminarPaciente} >
                                                 <button type="submit" className="btn btn-eliminar"><img src={IconoEliminar} alt="Icono eliminar"/></button>
                                                 <input type="hidden" name="idPaciente" value={paciente._id}/>
                                             </form>
+                                            </OverlayTrigger>
                                         </td>
                                     </tr>
                                 )}
