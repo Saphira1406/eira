@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function EditarTratamiento(props) {
     const location = useLocation()
@@ -78,9 +79,9 @@ function EditarTratamiento(props) {
 
                             {location.state.comida &&
                             <Form onSubmit={handleSubmitComidas}>
-                                <Form.Group className="my-3" controlId="comida">
+                                <FloatingLabel className="my-3" controlId="comida" label="Nombre comida a restringir">
                                     <Form.Control type="text" placeholder="Nombre comida a restringir" name="comida" value={comida} onChange={(ev) => setComida(ev.target.value)}/>
-                                </Form.Group>
+                                </FloatingLabel>
                                 <div className="d-flex justify-content-center">
                                     <Button type="submit" className="btn btn-editar">
                                         Actualizar comida
@@ -92,18 +93,15 @@ function EditarTratamiento(props) {
                             <Form onSubmit={handleSubmit}>
                                 <Form.Control type="hidden" name="id_medico" value="63239b30953ee51e9b52f154" controlid="id_medico"/>
                                 <Form.Control type="hidden" name="id_paciente" value={id} controlid="id_paciente"/>
-                                <Form.Group className="mb-4" controlId="medicamento">
+                                <FloatingLabel className="mb-4" controlId="medicamento" label="Nombre del medicamento">
                                     <Form.Control type="text" placeholder="Nombre del medicamento" name="medicamento" value={medicamento} onChange={(ev) => setMedicamento(ev.target.value)}/>
-                                </Form.Group>
-                                <Form.Group className="mb-4" controlId="horas">
+                                </FloatingLabel>
+                                <FloatingLabel className="mb-4" controlId="horas" label="¿Cáda cuánto tiempo debe tomar el medicamento? (Indicar en cant. de horas)">
                                     <Form.Control type="number" placeholder="¿Cáda cuánto tiempo debe tomar el medicamento? (Indicar en cant. de horas)" name="horas" value={horas} onChange={(ev) => setHoras(ev.target.value)}/>
-                                </Form.Group>
-                                <Form.Group className="mb-4" controlId="finalizacion">
+                                </FloatingLabel>
+                                <FloatingLabel className="mb-4" controlId="finalizacion" label="Fecha en que finaliza la toma de medicamentos">
                                     <Form.Control type="date" placeholder="Fecha en que finaliza la toma de medicamentos" name="finalizacion" value={fecha} onChange={ (ev) => setFecha(ev.target.value)}/>
-                                    <Form.Text className="text-muted">
-                                    Fecha en que finaliza la toma de medicamentos
-                                    </Form.Text>
-                                </Form.Group>
+                                </FloatingLabel>
                                 <div className="d-flex justify-content-center">
                                     <Button type="submit" className="btn btn-editar">
                                         Actualizar medicamento
@@ -113,15 +111,15 @@ function EditarTratamiento(props) {
 
                             {location.state.ejercicio &&
                             <Form onSubmit={handleSubmitEjercicios}>
-                                <Form.Group className="mb-4" controlId="ejercicio">
+                                <FloatingLabel className="mb-4" controlId="ejercicio" label="Nombre del ejercicio">
                                     <Form.Control type="text" placeholder="Nombre del ejercicio" name="ejercicio" value={ejercicio} onChange={(ev) => setEjercicio(ev.target.value)}/>
-                                </Form.Group>
-                                <Form.Group className="mb-4" controlId="repeticiones">
+                                </FloatingLabel>
+                                <FloatingLabel className="mb-4" controlId="repeticiones" label="Indicar cantidad de repeticiones">
                                     <Form.Control type="text" placeholder="Indicar cantidad de repeticiones" name="repeticiones" value={repeticiones} onChange={e => setRepeticiones(e.target.value)}/>
-                                </Form.Group>
-                                <Form.Group className="mb-4" controlId="video">
+                                </FloatingLabel>
+                                <FloatingLabel className="mb-4" controlId="video" label="URL de video">
                                     <Form.Control type="text" placeholder="URL de video" name="video" value={video} onChange={e => setVideo(e.target.value)}/>
-                                </Form.Group>
+                                </FloatingLabel>
                                 <div className="d-flex justify-content-center">
                                     <Button type="submit" className="btn btn-editar">
                                         Actualizar ejercicio

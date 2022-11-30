@@ -22,7 +22,7 @@ function MiPerfilProfesional () {
 
     function handleSubmit(ev) {
         ev.preventDefault()
-       /* if(window.confirm("¿Eliminar tratamiento?")) {
+        /* if(window.confirm("¿Eliminar tratamiento?")) {
             ProfesionalService.eliminar(id)
             .then(() => alert("Profesional eliminado"))
         }*/
@@ -36,14 +36,13 @@ function MiPerfilProfesional () {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 ProfesionalService.eliminar(id)
                 .then(() => alert("Profesional eliminado"))
                 localStorage.removeItem('usuario')
-            
             }
-          })
+        })
     }
 
 

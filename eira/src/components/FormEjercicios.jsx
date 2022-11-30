@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ObjectId from "bson-objectid"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function FormEjercicios(props) {
     const [ejercicio, setEjercicio] = useState("")
@@ -31,15 +32,15 @@ function FormEjercicios(props) {
 
     return(
         <div className="mt-3">
-            <Form.Group className="mb-4" controlId="ejercicio">
+            <FloatingLabel className="mb-4" controlId="ejercicio" label="Nombre del ejercicio">
                 <Form.Control type="text" placeholder="Nombre del ejercicio" name="ejercicio" value={ejercicio} onChange={(ev) => setEjercicio(ev.target.value)}/>
-            </Form.Group>
-            <Form.Group className="mb-4" controlId="repeticiones">
+            </FloatingLabel>
+            <FloatingLabel className="mb-4" controlId="repeticiones" label="Indicar cantidad de repeticiones">
                 <Form.Control type="text" placeholder="Indicar cantidad de repeticiones" name="repeticiones" value={repeticiones} onChange={e => setRepeticiones(e.target.value)}/>
-            </Form.Group>
-            <Form.Group className="mb-4" controlId="video">
+            </FloatingLabel>
+            <FloatingLabel className="mb-4" controlId="video" label="URL de video">
                 <Form.Control type="text" placeholder="URL de video" name="video" value={video} onChange={e => setVideo(e.target.value)}/>
-            </Form.Group>
+            </FloatingLabel>
             <div className="d-flex justify-content-center">
                 <Button type="button" onClick={agregarEjercicio} className="btn btn-agregar">
                     Agregar

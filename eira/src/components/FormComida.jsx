@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 
 function FormComida(props) {
@@ -19,9 +20,9 @@ function FormComida(props) {
     
     return (
         <div>
-            <Form.Group className="my-3" controlId="comida">
+            <FloatingLabel className="my-3" controlId="comida" label="Nombre de la comida a restringir">
                 <Form.Control type="text" placeholder="Nombre comida a restringir" name="comida" value={comida} onChange={(ev) => setComida(ev.target.value)}/>
-            </Form.Group>
+            </FloatingLabel>
             <div className="d-flex justify-content-center">
                 <Button type="button" onClick={agregarComida} className="btn btn-agregar">
                     Agregar

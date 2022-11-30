@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Accordion, Button, Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import * as PacienteService from "../../services/pacientes.service.js"
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function FormHistorialClinico () {
 
@@ -20,8 +21,7 @@ function FormHistorialClinico () {
     const [antecedentesFamiliares, setAntecedentesFamiliares] = useState("")
     //const [antecendentesFamiliares, setAntecendentesFamiliares] = useState("") para fotos?
     let navigate = useNavigate();
-    function agregarComida(ev) {
-        
+    function agregarMedicamento(ev) {
         setMedicamentos(prev => [...prev, medicamento]);
         setMedicamento("");
     }
@@ -29,23 +29,23 @@ function FormHistorialClinico () {
     function handleSubmit(ev) {
 
         ev.preventDefault()
-        console.log("holaaaa") // me falta guardar el historial, luego hacer test para que todo funcione en la demo de HOY
+        console.log("holaaaa") 
 
         PacienteService.crearHistoriaClinica(
             usuarioLogueado._id,
-            { 
-              paciente: usuarioLogueado._id,
-              condicion,
-              alergia,
-              peso,
-              altura,
-              medicamentos,
-              fumador,
-              alcohol,
-              comidasDiarias,
-              dieta,
-              habitosSuenio,
-              antecedentesFamiliares
+            {
+            paciente: usuarioLogueado._id,
+            condicion,
+            alergia,
+            peso,
+            altura,
+            medicamentos,
+            fumador,
+            alcohol,
+            comidasDiarias,
+            dieta,
+            habitosSuenio,
+            antecedentesFamiliares
             })
             .then(resp =>  navigate(`/paciente/historia-clinica`, { replace: true }))
 
@@ -58,52 +58,38 @@ function FormHistorialClinico () {
             <Container className="py-5">
                 <Row>
                     <Col>
-                    <Card body className='shadow px-2 pt-2'>
-                    <h1 className="titulo">Mi historia clínica</h1>
-                        <Form onSubmit={handleSubmit}>
-                        <Accordion alwaysOpen className='mt-4'>
-                                    <Accordion.Item eventKey="0" className='shadow'>
-                                        <Accordion.Header>Diagnóstico o condición preexistente</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="condicion">
-                                            <Form.Label className="visually-hidden">Diagnóstico o condición preexistente</Form.Label>
-                                                <Form.Control as="textarea" aria-describedby="passwordHelpBlock" placeholder="Condicion preexistente" rows={3} value={condicion} onChange={(ev) => setCondicion(ev.target.value)} />
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                              
-                                    <Accordion.Item eventKey="1" className='shadow my-4'>
-                                        <Accordion.Header>¿Tenés alguna alergía? De ser así, ¿cuál?</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="alergia">
-                                                <Form.Label className="visually-hidden">¿Tenés alguna alergía? De ser así, ¿cuál?</Form.Label>
-                                                <Form.Control as="textarea" placeholder="..." rows={3} value={alergia} onChange={(ev) => setAlergia(ev.target.value)} />
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
+                        <Card body className='shadow px-2 pt-2'>
+                        <h1 className="titulo">Mi historia clínica</h1>
+                            <Form onSubmit={handleSubmit}>
+                                <FloatingLabel className="my-3" controlId="condicion" label="¿Ya tenés un diagnóstico o alguna condición pre-existente? De ser así ¿cuál?">
+                                    <Form.Control aria-describedby="passwordHelpBlock" placeholder="¿Ya tenés un diagnóstico o alguna condición pre-existente? De ser así ¿cuál?" value={condicion} onChange={(ev) => setCondicion(ev.target.value)} />
+                                </FloatingLabel>
 
-                                    <Accordion.Item eventKey="2" className='shadow my-4'>
-                                        <Accordion.Header>Peso y altura</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group  className="my-3" controlId="peso">
-                                                <Form.Label className="visually-hidden">Peso</Form.Label>
-                                                <Form.Control type="number" placeholder="Peso" name="peso" value={peso} onChange={(ev) => setPeso(ev.target.value)}/>
-                                            </Form.Group>
-                                            <Form.Group className="my-3" controlId="altura">
-                                                <Form.Label className="visually-hidden">Altura</Form.Label>
-                                                <Form.Control type="number" placeholder="Altura" name="altura" value={altura} onChange={(ev) => setAltura(ev.target.value)}/>
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
+                                <FloatingLabel className="my-3" controlId="alergia" label="¿Tenés alguna alergía? De ser así, ¿cuál?">
+                                    <Form.Control placeholder="¿Tenés alguna alergía? De ser así, ¿cuál?" value={alergia} onChange={(ev) => setAlergia(ev.target.value)} />
+                                </FloatingLabel>
 
-                                    <Accordion.Item eventKey="3" className='shadow my-4'>
-                                        <Accordion.Header>Medicamentos</Accordion.Header>
-                                        <Accordion.Body>
-                                        <Form.Group className="my-3" controlId="comida">
-                                            <Form.Control type="text" placeholder="Nombre medicamento" name="medicamento" value={medicamento} onChange={(ev) => setMedicamento(ev.target.value)}/>
-                                         </Form.Group>
+                                <Row className="my-3">
+                                    <Col>
+                                        <FloatingLabel controlId="peso" label="¿Cuál es tu peso?">
+                                            <Form.Control type="number" placeholder="¿Cuál es tu peso?" name="peso" value={peso} onChange={(ev) => setPeso(ev.target.value)}/>
+                                        </FloatingLabel>
+                                    </Col>
+                                    <Col>
+                                        <FloatingLabel controlId="altura" label="¿Cuál es tu altura?">
+                                            <Form.Control type="number" placeholder="¿Cuál es tu altura?" name="altura" value={altura} onChange={(ev) => setAltura(ev.target.value)}/>
+                                        </FloatingLabel>
+                                    </Col>
+                                </Row>
+
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Medicamentos</Card.Header>
+                                    <Card.Body className="px-4">
+                                        <FloatingLabel className="my-3" controlId="medicamento" label="Nombre del medicamento que estás tomando actualmente">
+                                            <Form.Control type="text" placeholder="Nombre del medicamento que estás tomando actualmente" name="medicamento" value={medicamento} onChange={(ev) => setMedicamento(ev.target.value)}/>
+                                        </FloatingLabel>
                                             <div className="d-flex justify-content-center">
-                                                <Button type="button" onClick={agregarComida} className="btn btn-agregar">
+                                                <Button type="button" onClick={agregarMedicamento} className="btn btn-agregar">
                                                     Agregar
                                                 </Button>
                                             </div>
@@ -115,93 +101,68 @@ function FormHistorialClinico () {
                                                     </li>
                                                     )}
                                                 </ul>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
+                                    </Card.Body>
+                                </Card>
 
-                                    <Accordion.Item eventKey="4" className='shadow my-4'>
-                                        <Accordion.Header>¿Sos fumador?</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="fumador">
-                                                <Form.Label className="visually-hidden">¿Sos fumador?</Form.Label>
-                                                <Form.Select aria-label="Elige una opcion" value={fumador} onChange={(ev) => setFumador(ev.target.value)}>
-                                                    <option value="Si">Si</option>
-                                                    <option value="No">No</option>
-                                                    <option value="Ocasionalmente">Ocasionalmente</option>
-                                                </Form.Select>
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Antecedentes personales</Card.Header>
+                                    <Card.Body className="px-4">
+                                        <Row>
+                                            <Col>
+                                                <FloatingLabel className="my-3" controlId="fumador" label="¿Sos fumador?">
+                                                    <Form.Select aria-label="¿Sos fumador?" value={fumador} onChange={(ev) => setFumador(ev.target.value)}>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                        <option value="Ocasionalmente">Ocasionalmente</option>
+                                                    </Form.Select>
+                                                </FloatingLabel>
+                                            </Col>
+                                            <Col>
+                                                <FloatingLabel className="my-3" controlId="alcohol" label="¿Consumís alcohol?">
+                                                    <Form.Select aria-label="Elige una opcion" value={alcohol} onChange={(ev) => setAlcohol(ev.target.value)}>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                        <option value="Ocasionalmente">Ocasionalmente</option>
+                                                    </Form.Select>
+                                                </FloatingLabel>
+                                            </Col>
+                                        </Row>
+                                    </Card.Body>
+                                </Card>
 
-                                    <Accordion.Item eventKey="5" className='shadow my-4'>
-                                        <Accordion.Header>¿Consumís alcohol?</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="alcohol">
-                                                <Form.Label className="visually-hidden">¿Consumís alcohol?</Form.Label>
-                                                <Form.Select aria-label="Elige una opcion" value={alcohol} onChange={(ev) => setAlcohol(ev.target.value)}>
-                                                    <option value="Si">Si</option>
-                                                    <option value="No">No</option>
-                                                    <option value="Ocasionalmente">Ocasionalmente</option>
-                                                </Form.Select>
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Hábitos</Card.Header>
+                                    <Card.Body className="px-4">
+                                        <FloatingLabel className="my-3" controlId="comidaDiaria" label="¿Cuántas comidas por día ingerís?">
+                                            <Form.Control type="number" name="comidaDiaria" placeholder="¿Cuántas comidas por día ingerís?" value={comidasDiarias} onChange={(ev) => setComidasDiarias(ev.target.value)}/>
+                                        </FloatingLabel>
+                                        <FloatingLabel className="my-3" controlId="dieta" label="¿Seguís alguna dieta?">
+                                            <Form.Control as="textarea" rows={3} name="dieta" placeholder="¿Seguís alguna dieta?" value={dieta} onChange={(ev) => setDieta(ev.target.value)}/>
+                                        </FloatingLabel>
+                                        <FloatingLabel className="my-3" controlId="habitosSuenio" label="¿Cómo son tus hábitos de sueño?">
+                                            <Form.Control as="textarea" rows={3} name="habitosSuenio" placeholder="¿Cómo son tus hábitos de sueño?" value={habitosSuenio} onChange={(ev) => setHabitosSuenio(ev.target.value)}/>
+                                        </FloatingLabel>
+                                    </Card.Body>
+                                </Card>
 
-                                    <Accordion.Item eventKey="6" className='shadow my-4'>
-                                        <Accordion.Header>¿Cuántas comidas por día ingerís?</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="comidaDiaria">
-                                                <Form.Label className="visually-hidden">¿Cuántas comidas por día ingerís?</Form.Label>
-                                                <Form.Control type="number" name="comidaDiaria" value={comidasDiarias} onChange={(ev) => setComidasDiarias(ev.target.value)}/>
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Antecedentes familiares</Card.Header>
+                                    <Card.Body className="px-4">
+                                        <FloatingLabel className="my-3" controlId="antecedentesFamiliares" label="Indicá tus antecedentes familiares">
+                                            <Form.Control as="textarea" rows={3} name="antecedentesFamiliares" placeholder="Indicá tus antecedentes familiares" value={antecedentesFamiliares} onChange={(ev) => setAntecedentesFamiliares(ev.target.value)}/>
+                                        </FloatingLabel>
+                                    </Card.Body>
+                                </Card>
 
-                                    <Accordion.Item eventKey="7" className='shadow my-4'>
-                                        <Accordion.Header>¿Seguís alguna dieta?</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="dieta">
-                                                <Form.Label className="visually-hidden">¿Seguís alguna dieta?</Form.Label>
-                                                <Form.Control as="textarea" rows={3} name="dieta" placeholder="..." value={dieta} onChange={(ev) => setDieta(ev.target.value)}/>
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-
-                                    <Accordion.Item eventKey="8" className='shadow my-4'>
-                                        <Accordion.Header>¿Cómo son tus hábitos de sueño?</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="habitosSuenio">
-                                                <Form.Label className="visually-hidden">¿Cómo son tus hábitos de sueño?</Form.Label>
-                                                <Form.Control as="textarea" rows={3} name="habitosSuenio" placeholder="..." value={habitosSuenio} onChange={(ev) => setHabitosSuenio(ev.target.value)}/>
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-
-                                    <Accordion.Item eventKey="9" className='shadow my-4'>
-                                        <Accordion.Header>Indicá tus antecedentes familiares</Accordion.Header>
-                                        <Accordion.Body>
-                                            <Form.Group className="my-3" controlId="antecedentesFamiliares">
-                                                <Form.Label className="visually-hidden">Indicá tus antecedentes familiares</Form.Label>
-                                                <Form.Control as="textarea" rows={3} name="antecedentesFamiliares" placeholder="..." value={antecedentesFamiliares} onChange={(ev) => setAntecedentesFamiliares(ev.target.value)}/>
-                                            </Form.Group>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-
-
-
-                                   
-                        </Accordion>
-                           
-
-                            <div className='mt-5 mb-3 d-flex justify-content-center'>
-                                <button type="submit" className="btn btn-crear-tratamiento">Guardar mi historial clínico</button>
-                            </div>
-                        </Form>
-                     </Card>
-            
-                 </Col>
-                    </Row>
-                </Container>
-            </section>
+                                <div className='mt-5 mb-3 d-flex justify-content-center'>
+                                    <button type="submit" className="btn btn-crear-tratamiento">Guardar mi historial clínico</button>
+                                </div>
+                            </Form>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        </section>
         </main>
     )
 }

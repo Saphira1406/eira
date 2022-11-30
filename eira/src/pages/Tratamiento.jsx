@@ -10,8 +10,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import * as PacientesService from '../services/pacientes.service.js'
-import Accordion from 'react-bootstrap/Accordion'
 import { UsuarioContext } from '../context/UsuarioContext.jsx'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function Tratamiento() {
     const [comidas, setComidas] = useState([])
@@ -84,30 +84,31 @@ console.log("lol",usuarioLogueado.nombre)
                                 <Form.Control type="hidden" name="profesional_apellido" value={usuarioLogueado.apellido} controlid="profesional_apellido"/>
                                 <Form.Control type="hidden" name="id_paciente" value={id} controlid="id_paciente"/>
 
-                                <Form.Group className="my-3" controlid="diagnostico">
+                                <FloatingLabel className="my-3" controlid="diagnostico" label="Diagnóstico">
                                     <Form.Control type="text" placeholder="Diagnóstico" name="diagnostico"/>
-                                </Form.Group>
+                                </FloatingLabel>
 
-                                <Accordion alwaysOpen className='mt-4'>
-                                    <Accordion.Item eventKey="0" className='shadow'>
-                                        <Accordion.Header>Comidas restringidas</Accordion.Header>
-                                        <Accordion.Body>
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Comidas Restringidas</Card.Header>
+                                    <Card.Body className="px-4">
                                         <FormComida guardarComidas={guardarComidas} />
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                    <Accordion.Item eventKey="1" className='shadow my-4'>
-                                        <Accordion.Header>Medicamentos</Accordion.Header>
-                                        <Accordion.Body>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Medicamentos</Card.Header>
+                                    <Card.Body className="px-4">
                                         <FormMedicamentos guardarMedicamentos={guardarMedicamentos} />
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                    <Accordion.Item eventKey="2" className='shadow'>
-                                        <Accordion.Header>Ejercicios</Accordion.Header>
-                                        <Accordion.Body>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Ejercicios</Card.Header>
+                                    <Card.Body className="px-4">
                                         <FormEjercicios guardarEjercicios={guardarEjercicios} />
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
+                                    </Card.Body>
+                                </Card>
+
                                 <div className='mt-5 mb-3 d-flex justify-content-center'>
                                     <button type="submit" className="btn btn-crear-tratamiento">Crear tratamiento</button>
                                 </div>
