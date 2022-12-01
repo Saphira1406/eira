@@ -19,6 +19,7 @@ function FormHistorialClinico () {
     const [dieta, setDieta] = useState("")
     const [habitosSuenio, setHabitosSuenio] = useState("")
     const [antecedentesFamiliares, setAntecedentesFamiliares] = useState("")
+
     //const [antecendentesFamiliares, setAntecendentesFamiliares] = useState("") para fotos?
     let navigate = useNavigate();
     function agregarMedicamento(ev) {
@@ -111,8 +112,8 @@ function FormHistorialClinico () {
                                             <Col>
                                                 <FloatingLabel className="my-3" controlId="fumador" label="¿Sos fumador?">
                                                     <Form.Select aria-label="¿Sos fumador?" value={fumador} onChange={(ev) => setFumador(ev.target.value)}>
-                                                        <option value="Si">Si</option>
                                                         <option value="No">No</option>
+                                                        <option value="Si">Si</option>
                                                         <option value="Ocasionalmente">Ocasionalmente</option>
                                                     </Form.Select>
                                                 </FloatingLabel>
@@ -120,8 +121,8 @@ function FormHistorialClinico () {
                                             <Col>
                                                 <FloatingLabel className="my-3" controlId="alcohol" label="¿Consumís alcohol?">
                                                     <Form.Select aria-label="Elige una opcion" value={alcohol} onChange={(ev) => setAlcohol(ev.target.value)}>
-                                                        <option value="Si">Si</option>
                                                         <option value="No">No</option>
+                                                        <option value="Si">Si</option>
                                                         <option value="Ocasionalmente">Ocasionalmente</option>
                                                     </Form.Select>
                                                 </FloatingLabel>

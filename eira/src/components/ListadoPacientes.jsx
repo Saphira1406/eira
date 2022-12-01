@@ -126,29 +126,29 @@ console.log("ggg",resultados)
                                         <td>{paciente.apellido}</td>
                                         <td>{paciente.email}</td>
                                         <td className='d-flex'>
-                                            <OverlayTrigger key="top" placement="top" overlay={
-                                                <Tooltip id="tooltip-top">
+                                            <OverlayTrigger placement="top" overlay={
+                                                <Tooltip id="tooltip-top1">
                                                     Crear historia clínica
                                                 </Tooltip>
                                             }>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
                                             </OverlayTrigger>
-                                            <OverlayTrigger key="top" placement="top" overlay={
-                                                <Tooltip id="tooltip-top">
+                                            <OverlayTrigger placement="top" overlay={
+                                                <Tooltip id="tooltip-top2">
                                                     Ver tratamiento
                                                 </Tooltip>
                                             }>
                                             <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
                                             </OverlayTrigger>
-                                            <OverlayTrigger key="top" placement="top" overlay={
-                                                <Tooltip id="tooltip-top">
+                                            <OverlayTrigger placement="top" overlay={
+                                                <Tooltip id="tooltip-top3">
                                                     Ver historia clínica
                                                 </Tooltip>
                                             }>
                                             <Link to={`/historia-clinica/${paciente._id}`} className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
                                             </OverlayTrigger>
-                                            <OverlayTrigger key="top" placement="top" overlay={
-                                                <Tooltip id="tooltip-top">
+                                            <OverlayTrigger placement="top" overlay={
+                                                <Tooltip id="tooltip-top4">
                                                     Eliminar paciente
                                                 </Tooltip>
                                             }>
