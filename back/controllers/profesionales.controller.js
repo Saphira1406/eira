@@ -27,7 +27,6 @@ function traerPorId (req ,res) {
     })
 }
 
-
 function editar (req, res) {
     const id = req.params.id
     const usuario = req.body
@@ -43,7 +42,6 @@ function editar (req, res) {
 }
 
 function eliminar (req, res) {
-    
     ProfesionalesServices.eliminar(req.params.id)
     .then((usuarioEliminado) => {
         usuarioEliminado ?
@@ -68,5 +66,4 @@ export {
     eliminar,
     traerPacientes,
     eliminarPaciente
-    
 }

@@ -4,31 +4,21 @@ import { useNavigate, useParams } from 'react-router-dom'
 import FormComida from '../components/FormComida'
 import FormMedicamentos from '../components/FormMedicamentos'
 import FormEjercicios from '../components/FormEjercicios'
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
+import { Card, Container, Row, Col, Form, FloatingLabel } from 'react-bootstrap'
 import * as PacientesService from '../services/pacientes.service.js'
 import { UsuarioContext } from '../context/UsuarioContext.jsx'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function Tratamiento() {
     const [comidas, setComidas] = useState([])
-
     const [medicamentos, setMedicamentos] = useState([])
-
     const [ejercicios, setEjercicios] = useState([])
-
     const [paciente, setPaciente] = useState({})
     const {usuarioLogueado} = useContext(UsuarioContext)
-
     const { id } = useParams()
     let navigate = useNavigate();
 
     /** boton subir form */
     function handleSubmit(ev) {
-
         ev.preventDefault()
         const id_medico = ev.target.id_medico.value
         const id_paciente = ev.target.id_paciente.value
@@ -43,7 +33,6 @@ function Tratamiento() {
         })
         setComidas([])
         setMedicamentos([])
-
     }
 
     function guardarComidas(listaComidas) {
@@ -65,7 +54,9 @@ function Tratamiento() {
         .then(resp => setPaciente(resp))
         console.log(medicamentos)
     }, [medicamentos])
-console.log("lol",usuarioLogueado.nombre)
+
+    console.log("lol",usuarioLogueado.nombre)
+    
     return (
         <main>
             <section>

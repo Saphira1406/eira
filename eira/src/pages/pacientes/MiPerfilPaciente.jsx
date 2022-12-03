@@ -1,10 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import * as PacienteService from "../../services/pacientes.service.js"
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { Card, Container, Row, Col } from 'react-bootstrap'
 import IconoUsuario from '../../imgs/icono-usuario-perfil.png'
 import IconoEmail from '../../imgs/icono-email.png'
 import IconoTelefono from '../../imgs/icono-telefono.png'
@@ -41,23 +38,21 @@ function MiPerfilPaciente () {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
-          }).then((result) => {
+        })
+        .then((result) => {
             if (result.isConfirmed) {
                 PacienteService.eliminar(usuarioLogueado._id)
                 .then(() =>   Swal.fire(
                     'Se borró correctamente',
                     '',
                     'success'
-                  ))
+                ))
                 localStorage.removeItem('usuario')
-            
             }
-          })
-        
+        })
     }
 
-
-    return( 
+    return(
         <main>
             <section>
                 <Container className="py-5">

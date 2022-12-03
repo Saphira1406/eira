@@ -39,7 +39,6 @@ async function traerHistoriaClinica(idpaciente) {
     .catch(function (err) {
         console.log(err)
     })
-
 }
 
 async function editar (id, usuario) {
@@ -73,14 +72,11 @@ async function crearHistoriaClinica(historia) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-
         const historiaNueva = await db.collection('historias-clinicas').insertOne({...historia, paciente: new ObjectId(historia.paciente)})
         return historiaNueva
-        
     })
     .catch(err => console.log(err))
 }
-
 
 export {
     traerTodos,

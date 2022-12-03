@@ -35,7 +35,6 @@ async function eliminar(idUsuario) {
         }
     })
     .then(response => {
-      
         window.location.replace('/')
         return response.json()
     })
