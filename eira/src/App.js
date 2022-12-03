@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
+import * as PacientesService from './services/pacientes.service.js'
 
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { getToken, onMessage } from 'firebase/messaging'
@@ -41,11 +42,7 @@ function App() {
     }, [])
     
   function onLogin({usuario, token}) {
-    // #####################################
-      signInAnonymously(getAuth())
-      .then(user => console.log("Auth de firebase",user))
-    
-    //######################################
+
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
@@ -54,23 +51,36 @@ function App() {
     } else {
       navigate(`/profesional/pacientes`, { replace: true })
     }
+        // #####################################
+        signInAnonymously(getAuth())
+        .then(user => console.log("Auth de firebase",user))
+        activarMensajes(usuario)
+      //######################################
     // socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
   }
 
-    const activarMensajes = async () => {
+    const activarMensajes = async (usuario) => {
       const token = await getToken(messaging, { 
         vapidKey: "BPplatmpPbXXLUc_fijIyClE1YncaoMQ8ivkU2zTBG14aqv0DhuI3WoFxPLXG6_kVeEc_yxQMHaX5yr6ElwrCmE"
        })
+       
        .catch( error => console.log("Hubo un error al generar el token.,") )
 
-       token ? console.log("tu token es:", token) : console.log("no tenes token..")
+       if(token) {
+        console.log("tu token es:", token)
+        PacientesService.editar(usuario._id, { "fb-notification":  token})
+       console.log("ñññññ",usuario)
+       } else {
+        console.log("no tenes token..")
+       }
+
     }
 
     useEffect( () => {
       onMessage(messaging, message => {
         console.log("tu mensaje", message)
       })
-      activarMensajes()
+      
     }, [])
 
   return (
