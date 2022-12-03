@@ -5,5 +5,5 @@ async function traer(nombre) {
 
 
 export {
-    traer
+    traer,
 }

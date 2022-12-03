@@ -1,6 +1,6 @@
 import ListadoPacientes from '../components/ListadoPacientes'
 
-function ListaPacientes() {
+function ListaPacientes({activarMensajes}) {
     return (
         <main>
             <ListadoPacientes />

@@ -41,12 +41,6 @@ function FormMedicamentos(props) {
         .then((data) => setListaMedicamentos(data.resultados))
     }, [busqueda])
 
-    const loadOptions = (searchValue, callback) => {
-        const abc = apiMedicamentos.traer(searchValue)
-        .then((data) => setListaMedicamentos(data.resultados))
-        callback(abc)
-    }
-    console.log(medicamento)
 
     return(
         <div className="mt-3">
