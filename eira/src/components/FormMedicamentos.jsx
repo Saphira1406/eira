@@ -44,11 +44,8 @@ function FormMedicamentos(props) {
         .then((data) => setListaMedicamentos(data.resultados))
     }, [busqueda])
 
-   const loadOptions = (searchValue, callback) => {
-    const abc = apiMedicamentos.traer(searchValue)
-    .then((data) => setListaMedicamentos(data.resultados))
-    callback(abc)
-   }
+
+
    //console.log(listaMedicamentos)
    console.log(medicamento)
 
@@ -66,9 +63,6 @@ function FormMedicamentos(props) {
                     isSearchable
                   
                 />
-
-               
-              
             </div>
            
 

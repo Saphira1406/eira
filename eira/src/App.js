@@ -22,6 +22,9 @@ import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
 
+import { getAuth, signInAnonymously } from 'firebase/auth'
+import { getToken, onMessage } from 'firebase/messaging'
+import { messaging } from './firebase/firebase.js'
 
 function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(JSON.parse(localStorage.getItem('usuario')))
@@ -36,9 +39,13 @@ function App() {
       }
       // eslint-disable-next-line
     }, [])
-
+    
   function onLogin({usuario, token}) {
-
+    // #####################################
+      signInAnonymously(getAuth())
+      .then(user => console.log("Auth de firebase",user))
+    
+    //######################################
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
@@ -50,6 +57,21 @@ function App() {
     // socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
   }
 
+    const activarMensajes = async () => {
+      const token = await getToken(messaging, { 
+        vapidKey: "BPplatmpPbXXLUc_fijIyClE1YncaoMQ8ivkU2zTBG14aqv0DhuI3WoFxPLXG6_kVeEc_yxQMHaX5yr6ElwrCmE"
+       })
+       .catch( error => console.log("Hubo un error al generar el token.,") )
+
+       token ? console.log("tu token es:", token) : console.log("no tenes token..")
+    }
+
+    useEffect( () => {
+      onMessage(messaging, message => {
+        console.log("tu mensaje", message)
+      })
+      activarMensajes()
+    }, [])
 
   return (
     <UsuarioContext.Provider value={{usuarioLogueado, setUsuarioLogueado}} >
@@ -58,7 +80,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login onLogin={onLogin}/>} />
-        <Route path='/profesional/pacientes' element={<ListaPacientes />} />
+        <Route path='/profesional/pacientes' element={<ListaPacientes activarMensajes={activarMensajes} />} />
         <Route path='/historia-clinica/:id' element={<VerHistoriaClinica />} />
         <Route path='/tratamiento/:id' element={<Tratamiento />} />
         <Route path='/ver-tratamiento/:id' element={<VerTratamiento />} />

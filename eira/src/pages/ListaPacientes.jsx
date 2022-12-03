@@ -2,10 +2,11 @@ import {  useState } from 'react'
 
 import ListadoPacientes from '../components/ListadoPacientes'
 
-function ListaPacientes() {
+function ListaPacientes({activarMensajes}) {
     return (
         <main>
-        <ListadoPacientes />
+            <button onClick={() => activarMensajes()}>token</button>
+            <ListadoPacientes />
         </main>
     )
 }
