@@ -1,12 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import * as ProfesionalesService from '../services/profesionales.service.js'
 import { Link, useNavigate } from 'react-router-dom'
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Table from 'react-bootstrap/Table'
+import { Card, Container, Row, Col, Form, Table, Tooltip } from 'react-bootstrap'
 import IconoCrear from '../imgs/icono-crear.png'
 import IconoVer from '../imgs/icono-ver.png'
 import IconoEliminar from '../imgs/icono-eliminar.png'
@@ -15,7 +10,6 @@ import Paginador from './Paginador.jsx'
 import { UsuarioContext } from '../context/UsuarioContext'
 import Swal from 'sweetalert2'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip'
 
 function ListadoPacientes() {
     const [pacientes, setPacientes] = useState([])
@@ -55,19 +49,11 @@ function ListadoPacientes() {
     //const resultados = !busqueda ? pacientes : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
     const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
 
-console.log("ggg",resultados)
+    console.log("ggg",resultados)
 
     function handleSubmitEliminarPaciente(ev) {
         ev.preventDefault()
         console.log(ev.target.idPaciente.value)
-
-        /*if(window.confirm("¿Eliminar paciente de tu lista?")) { 
-            ProfesionalesService.eliminarPaciente(usuarioLogueado._id,ev.target.idPaciente.value)
-            .then( (resp) => {
-            ProfesionalesService.traerPacientes(usuarioLogueado._id)
-            .then( (resp) => setPacientes(resp))
-            })
-        }*/
 
         Swal.fire({
             title: '¿Seguro que quiere eliminar el paciente de su lista?',
@@ -78,12 +64,13 @@ console.log("ggg",resultados)
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
-        }).then((result) => {
+        })
+        .then((result) => {
             if (result.isConfirmed) {
                 ProfesionalesService.eliminarPaciente(usuarioLogueado._id,ev.target.idPaciente.value)
                 .then( (resp) => {
-                ProfesionalesService.traerPacientes(usuarioLogueado._id)
-                .then( (resp) => setPacientes(resp))
+                    ProfesionalesService.traerPacientes(usuarioLogueado._id)
+                    .then( (resp) => setPacientes(resp))
                 })
             Swal.fire(
                 'Se borró correctamente',
@@ -162,15 +149,14 @@ console.log("ggg",resultados)
                                 )}
                                 </tbody>
                             </Table>
-                            
+
                             {resultados.length !== 0 &&
-                               <Paginador
-                               elementosPorPagina={pacientesPorPagina}
-                               totalElementos={pacientes.length}
-                               setPaginaActual={setPaginaActual}
-                               paginaActual={paginaActual} />
-                               }
-                          
+                                <Paginador
+                                elementosPorPagina={pacientesPorPagina}
+                                totalElementos={pacientes.length}
+                                setPaginaActual={setPaginaActual}
+                                paginaActual={paginaActual} />
+                            }
                         </Card>
                     </Col>
                 </Row>

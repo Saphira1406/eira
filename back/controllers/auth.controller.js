@@ -4,7 +4,7 @@ import * as UsuariosServices from '../services/auth.service.js'
 function crear (req, res) {
     const usuario = req.body
     console.log(usuario)
-  
+
     UsuariosServices.crear(usuario)
     .then(function (usuarioNuevo) {
         usuarioNuevo ?

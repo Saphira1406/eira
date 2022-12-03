@@ -6,7 +6,6 @@ dotenv.config({ path: 'variables.env' })
 
 const client = new MongoDB.MongoClient(process.env.DB_URL)
 
-
 async function crear (usuario) {
     return client.connect()
     .then(async function () {
@@ -17,7 +16,7 @@ async function crear (usuario) {
                 const salt = await bcrypt.genSalt(10)
                 const passwordHash = await bcrypt.hash(usuario.password, salt)
                 const usuarioNuevo = await db.collection('pacientes').insertOne({...usuario, password: passwordHash})
-              
+
                 return usuarioNuevo
             } else {
                 throw new Error('Email ya existente...')
@@ -29,12 +28,12 @@ async function crear (usuario) {
                 const passwordHash = await bcrypt.hash(usuario.password, salt)
                 const usuarioNuevo = await db.collection('medicos').insertOne({...usuario, password: passwordHash})
                 await db.collection('conexiones').insertOne({"medico": new ObjectId(usuarioNuevo.insertedId), "pacientes": []})
+
                 return usuarioNuevo
             } else {
                 throw new Error('Email ya existente...')
             }
         }
-      
     })
 }
 
@@ -49,13 +48,6 @@ async function login({email, password}) {
                 return { ...usuario, password: undefined }
             }
         }
-        
-
-        /* if(usuario) {
-            if(usuario.password === password) {
-                return { ...usuario, password: undefined }
-            }
-        }*/
     })
 }
 

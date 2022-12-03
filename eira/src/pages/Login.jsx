@@ -2,14 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from 'react-router-dom'
 import * as authService from "../services/auth.service.js"
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Card from 'react-bootstrap/Card'
+import { Container, Row, Col, Button, Form, Alert, FloatingLabel, Card } from 'react-bootstrap';
 
 function LoginForm({onLogin}) {
     const [email, setEmail] = useState("")
@@ -25,11 +18,10 @@ function LoginForm({onLogin}) {
         .catch(err=>setError(err.message))
     }
 
-
     return (
         <main id="login">
             <section>
-            <Container>
+                <Container>
                     <Row>
                         <Col lg={6} className="mx-auto">
                             <Card className="my-5">

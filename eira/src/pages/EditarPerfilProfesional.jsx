@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import * as ProfesionalService from "../services/profesionales.service.js"
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { Card, Container, Row, Col, Form, Button, FloatingLabel } from 'react-bootstrap'
 
 function EditarPerfilProfesional() {
     const location = useLocation()

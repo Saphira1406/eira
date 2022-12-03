@@ -1,10 +1,7 @@
 import { useEffect, useState, useNavigate } from "react"
 import { Link, useParams } from "react-router-dom"
 import * as ProfesionalService from "../services/profesionales.service.js"
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { Card, Container, Row, Col } from 'react-bootstrap'
 import IconoUsuario from '../imgs/icono-usuario-perfil.png'
 import IconoEmail from '../imgs/icono-email.png'
 import IconoTelefono from '../imgs/icono-telefono.png'

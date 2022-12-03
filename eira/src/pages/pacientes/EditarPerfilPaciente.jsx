@@ -1,13 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import * as PacienteService from "../../services/pacientes.service.js"
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import {Card, Container, Row, Col, Form, Button, FloatingLabel} from 'react-bootstrap'
 
 function EditarPerfilPaciente() {
     const location = useLocation()
@@ -21,19 +15,12 @@ function EditarPerfilPaciente() {
     const { id } = useParams()
     let navigate = useNavigate();
 
-    useEffect(() => {
-        /*ProfesionalService.traerPorId(id)
-        .then( resp => setProfesional(resp) )
-        console.log(location.state.profesional)*/
-    }, [])
-
     function handleSubmit(ev) {
         ev.preventDefault()
         console.log("aca")
         PacienteService.editar(id, {nombre, apellido, telefono, email, dni})
         .then( () =>  navigate(`/home/perfil-paciente/${id}`, { replace: true }) )
     }
-    
 
     return (
         <main>

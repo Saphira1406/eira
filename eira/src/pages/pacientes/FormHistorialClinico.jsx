@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { Accordion, Button, Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import * as PacienteService from "../../services/pacientes.service.js"
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function FormHistorialClinico () {
-
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
     const [condicion, setCondicion] = useState("")
     const [alergia, setAlergia] = useState("")
@@ -28,28 +27,24 @@ function FormHistorialClinico () {
     }
 
     function handleSubmit(ev) {
-
         ev.preventDefault()
-        console.log("holaaaa") 
-
         PacienteService.crearHistoriaClinica(
             usuarioLogueado._id,
             {
-            paciente: usuarioLogueado._id,
-            condicion,
-            alergia,
-            peso,
-            altura,
-            medicamentos,
-            fumador,
-            alcohol,
-            comidasDiarias,
-            dieta,
-            habitosSuenio,
-            antecedentesFamiliares
+                paciente: usuarioLogueado._id,
+                condicion,
+                alergia,
+                peso,
+                altura,
+                medicamentos,
+                fumador,
+                alcohol,
+                comidasDiarias,
+                dieta,
+                habitosSuenio,
+                antecedentesFamiliares
             })
-            .then(resp =>  navigate(`/paciente/historia-clinica`, { replace: true }))
-
+        .then(resp =>  navigate(`/paciente/historia-clinica`, { replace: true }))
     }
 
 

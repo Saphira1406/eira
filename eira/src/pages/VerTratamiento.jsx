@@ -1,17 +1,12 @@
 import * as TratamientosService from '../services/tratamientos.service.js'
-import { useParams, Link, useLocation } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect, useContext } from 'react'
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Accordion from 'react-bootstrap/Accordion'
+import { Card, Container, Row, Col } from 'react-bootstrap'
 import * as PacientesService from '../services/pacientes.service.js'
 import * as ProfesionalesService from '../services/profesionales.service.js'
 import IconoEliminar from '../imgs/icono-cruz-eliminar.png'
 import { UsuarioContext } from '../context/UsuarioContext.jsx'
 import Swal from 'sweetalert2'
-
 
 function VerTratamiento() {
     const { id } = useParams()
@@ -27,7 +22,7 @@ function VerTratamiento() {
         })
         PacientesService.traerPorId(id)
         .then(resp => setPaciente(resp))
-        /* */
+
         TratamientosService.traerPorIdProfesional(id, usuarioLogueado._id)
         .then( resp => setTratamientosDelProfesional(resp) )
     }, [])
@@ -37,17 +32,6 @@ function VerTratamiento() {
     function handleSubmitBorrarTratamiento(ev) {
         ev.preventDefault()
 
-        /* if(window.confirm("¿Eliminar tratamiento?")) {
-            TratamientosService.eliminar(ev.target.idTratamiento.value)
-            .then(() => {
-            TratamientosService.traerPorIdPaciente(id)
-            .then(resp => {
-                setTratamientos(resp)
-            })
-            TratamientosService.traerPorIdProfesional(id, usuarioLogueado._id)
-            .then( resp => setTratamientosDelProfesional(resp) )
-        })
-        }*/
         Swal.fire({
             title: '¿Seguro que quiere eliminar el tratamiento?',
             text: "No podrás volver atrás",
@@ -57,16 +41,16 @@ function VerTratamiento() {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
-        }).then((result) => {
+        })
+        .then((result) => {
             if (result.isConfirmed) {
                 TratamientosService.eliminar(ev.target.idTratamiento.value)
                 .then(() => {
-                TratamientosService.traerPorIdPaciente(id)
-                .then(resp => {
-                    setTratamientos(resp)
-                })
-                TratamientosService.traerPorIdProfesional(id, usuarioLogueado._id)
-                .then( resp => setTratamientosDelProfesional(resp) )
+                    TratamientosService.traerPorIdPaciente(id)
+                    .then(resp => { setTratamientos(resp) })
+
+                    TratamientosService.traerPorIdProfesional(id, usuarioLogueado._id)
+                    .then( resp => setTratamientosDelProfesional(resp) )
                 })
                 Swal.fire(
                     'Se borró correctamente',
@@ -77,7 +61,6 @@ function VerTratamiento() {
         })
     }
 
-console.log("ññ", paciente)
     return (
         <main>
             <section>
