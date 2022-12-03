@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useNavigate } from "react"
 import { Link, useParams } from "react-router-dom"
 import * as ProfesionalService from "../services/profesionales.service.js"
 import Card from 'react-bootstrap/Card'
@@ -14,6 +14,7 @@ import Swal from 'sweetalert2'
 function MiPerfilProfesional () {
     const [profesional, setProfesional] = useState({})
     const { id } = useParams()
+    let navigate = useNavigate();
 
     useEffect(() => {
         ProfesionalService.traerPorId(id)
@@ -39,14 +40,14 @@ function MiPerfilProfesional () {
         }).then((result) => {
             if (result.isConfirmed) {
                 ProfesionalService.eliminar(id)
-                .then(() => alert("Profesional eliminado"))
+                .then(() => navigate('/login', { replace: true }))
                 localStorage.removeItem('usuario')
             }
         })
     }
 
 
-    return( 
+    return(
         <main>
             <section>
                 <Container className="py-5">

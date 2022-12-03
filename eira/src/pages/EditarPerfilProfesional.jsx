@@ -23,19 +23,12 @@ function EditarPerfilProfesional() {
     const { id } = useParams()
     let navigate = useNavigate();
 
-    useEffect(() => {
-        /*ProfesionalService.traerPorId(id)
-        .then( resp => setProfesional(resp) )
-        console.log(location.state.profesional)*/
-    }, [])
-
     function handleSubmit(ev) {
         ev.preventDefault()
         console.log("aca")
         ProfesionalService.editar(id, {nombre, apellido, telefono, especialidad, email, dni, matricula})
         .then( () =>  navigate(`/mi-perfil/${id}`, { replace: true }) )
     }
-    
 
     return (
         <main>

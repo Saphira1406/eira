@@ -116,7 +116,7 @@ function UsuarioRegistro(){
                                         </Row>
                                         }
                                         <FloatingLabel className="mb-4 floating-distance-2" as={Col} controlId="password" label="Contraseña*">
-                                            <Form.Control type="text" placeholder="Contraseña*" name="password" {...register('password', {required: true, minLength: 3})} value={password} onChange={(ev) => setPassword(ev.target.value)}/>
+                                            <Form.Control type="password" placeholder="Contraseña*" name="password" {...register('password', {required: true, minLength: 3})} value={password} onChange={(ev) => setPassword(ev.target.value)}/>
                                             {errors.password?.type === 'required' && <span className="text-danger">Campo obligatorio</span>}
                                             {errors.password?.type === 'minLength' && <span className="text-danger">La contraseña debe tener almenos 3 caracteres</span>}
                                         </FloatingLabel>
