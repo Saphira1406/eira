@@ -37,7 +37,6 @@ async function traerPorId(idProfesional) {
     .catch(function (err) {
         console.log(err)
     })
-
 }
 
 async function editar (id, usuario) {

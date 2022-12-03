@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react"
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-
+import { Form, Button, FloatingLabel } from 'react-bootstrap'
 
 function FormComida(props) {
     const [comida, setComida] = useState("")
@@ -17,7 +14,7 @@ function FormComida(props) {
     useEffect(() => {
         props.guardarComidas(comidas)
     }, [comidas])
-    
+
     return (
         <div>
             <FloatingLabel className="my-3" controlId="comida" label="Nombre de la comida a restringir">

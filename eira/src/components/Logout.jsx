@@ -6,8 +6,8 @@ import { UsuarioContext } from "../context/UsuarioContext";
 function Logout() {
     let navigate = useNavigate();
     //const usuario = JSON.parse(localStorage.getItem('usuario'))
-   // const socket = useContext(SocketContext);
-   const {setUsuarioLogueado} = useContext(UsuarioContext)
+    // const socket = useContext(SocketContext);
+    const {setUsuarioLogueado} = useContext(UsuarioContext)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -16,7 +16,6 @@ function Logout() {
         //localStorage.removeItem('token')
         //socket.emit("logout", socket.id) // cuando me deslogueo, que me saque del array usuarios
         navigate('/login', { replace: true })
-        
     }
 
     return (

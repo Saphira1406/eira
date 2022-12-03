@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import ObjectId from "bson-objectid"
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { Form, Button, FloatingLabel } from 'react-bootstrap'
 
 function FormEjercicios(props) {
     const [ejercicio, setEjercicio] = useState("")

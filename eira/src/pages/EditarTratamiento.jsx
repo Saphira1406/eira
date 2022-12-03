@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react"
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
-import FormMedicamentos from "../components/FormMedicamentos"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import * as TratamientoService from '../services/tratamientos.service'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import {Form, Button, Card, Container, Row, Col, FloatingLabel} from 'react-bootstrap'
 
 function EditarTratamiento(props) {
     const location = useLocation()

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import ObjectId from "bson-objectid"
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { Form, Button, FloatingLabel } from 'react-bootstrap'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 import * as apiMedicamentos from '../services/apiMedicamentos.service.js'
@@ -32,7 +30,6 @@ function FormMedicamentos(props) {
         setHoras("")
         setFecha("")
         setBusqueda("")
-        
     }
 
     useEffect(() => {
@@ -45,26 +42,18 @@ function FormMedicamentos(props) {
     }, [busqueda])
 
 
-
-   //console.log(listaMedicamentos)
-   console.log(medicamento)
-
     return(
         <div className="mt-3">
-
             <div className="mb-4">
-                <Select 
+                <Select
                     defaultValue={ {label:"Nombre medicamento", value:""} }
-                   
                     options={ listaMedicamentos.map(medi => ({ label: medi.nombre, value: medi.nombre}))}
                     onChange={(ev) => ev ? setMedicamento(ev.value):""}
                     onInputChange={(ev) => setBusqueda(ev)}
                     noOptionsMessage={() => "No se encuentra el medicamento que busca..."}
                     isSearchable
-                  
                 />
             </div>
-           
 
             <FloatingLabel className="mb-4" controlId="horas" label="¿Cáda cuánto tiempo debe tomar el medicamento? (Indicar en cant. de horas)">
                 <Form.Control type="number" name="horas" placeholder="¿Cáda cuánto tiempo debe tomar el medicamento? (Indicar en cant. de horas)" value={horas} onChange={(ev) => setHoras(ev.target.value)}/>
@@ -77,7 +66,6 @@ function FormMedicamentos(props) {
                     Agregar
                 </Button>
             </div>
-
 
             <p className="fw-bold text-center mt-4">Lista de medicamentos agregados:</p>
             <ul className="lista-agregada-meds">

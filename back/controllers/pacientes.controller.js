@@ -29,7 +29,6 @@ function traerHistoriaClinica (req ,res) {
 }
 
 function eliminar (req, res) {
-    
     PacientesServices.eliminar(req.params.id)
     .then((usuarioEliminado) => {
         usuarioEliminado ?
@@ -39,19 +38,18 @@ function eliminar (req, res) {
 }
 
 function crearHistoriaClinica(req, res) {
-   
     console.log(req.body)
-   PacientesServices.crearHistoriaClinica(req.body)
+    PacientesServices.crearHistoriaClinica(req.body)
     .then(function (tratamiento) {
         tratamiento ?
         res.status(201).json({
             success: true,
             mensaje: "Se guardó tu historia clinica con éxito"
-         }) :
+        }) :
         res.status(500).json({
             success: false,
             mensaje: "Hubo un error al guardar, intente de nuevo"
-         })
+        })
     })
 }
 
@@ -60,12 +58,10 @@ function editar (req, res) {
     const usuario = req.body
 
     console.log(id, usuario)
-    
     PacientesServices.editar(id, usuario)
     .then(function (usuarioEditado) {
         res.status(200).json(usuarioEditado)
     })
-
 }
 
 export {
