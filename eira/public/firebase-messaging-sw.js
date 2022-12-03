@@ -22,7 +22,7 @@ messaging.onBackgroundMessage(payload => {
         icon: "/manifest/images/icon-72x72.png"
     }
 
-    return self.registration.showNotificaction(
+    return self.registration.showNotification(
         notificationTitle,
         notificationOptions
     )
