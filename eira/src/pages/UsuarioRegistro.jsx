@@ -21,12 +21,14 @@ function UsuarioRegistro(){
     const [error, setError] = useState("")
     const [matricula, setMatricula] = useState("")
     const [especialidad, setEspecialidad] = useState("")
+    const [obraSocial, setObraSocial] = useState("")
+    const [afiliado, setAfiliado] = useState("")
     const [registroPaciente, setRegistroPaciente] = useState(true)
 
     const { register, formState: { errors }, handleSubmit } = useForm()
     let usuario = null
     if(!matricula && !especialidad) {
-        usuario = {nombre, apellido, email, telefono, dni, password}
+        usuario = {nombre, apellido, email, telefono, dni, password, obraSocial, afiliado}
     } else {
         usuario = {nombre, apellido, email, telefono, dni, password, matricula, especialidad}
     }
@@ -102,6 +104,18 @@ function UsuarioRegistro(){
                                                 <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="matricula" label="Matrícula*">
                                                     <Form.Control type="text" placeholder="Matrícula*" name="matricula" {...register('matricula', {required: true})} value={matricula}  onChange={(ev) => setMatricula(ev.target.value)}/>
                                                     {errors.matricula && <span className="text-danger">Campo requerido</span>}
+                                                </FloatingLabel>
+                                            </Row>
+                                            }
+                                            {registroPaciente &&
+                                            <Row>
+                                                <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="obraSocial" label="Obra Social">
+                                                    <Form.Control type="text" placeholder="Obra Social*" name="obraSocial" value={obraSocial} onChange={(ev) => setObraSocial(ev.target.value)}/>
+                                                    {errors.obraSocial && <span className="text-danger">Campo requerido</span>}
+                                                </FloatingLabel>
+                                                <FloatingLabel className="mb-4 floating-distance" as={Col} controlId="afiliado" label="N° de afiliado">
+                                                    <Form.Control type="text" placeholder="N° de afiliado" name="afiliado" value={afiliado}  onChange={(ev) => setAfiliado(ev.target.value)}/>
+                                                    {errors.afiliado && <span className="text-danger">Campo requerido</span>}
                                                 </FloatingLabel>
                                             </Row>
                                             }

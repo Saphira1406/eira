@@ -237,7 +237,7 @@ textarea.form-control {
     padding: 0.6rem 0.75rem !important;
 }
 
-#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password {
+#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password, #obraSocial, #afiliado {
     background-position: 10px center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -272,7 +272,7 @@ textarea.form-control {
     background-image: url('../imgs/icono-email-gris.png');
 }
 
-#dni {
+#dni, #afiliado {
     background-image: url('../imgs/icono-identificacion-gris.png');
 }
 
@@ -282,6 +282,10 @@ textarea.form-control {
 
 #matricula {
     background-image: url('../imgs/icono-matricula.png');
+}
+
+#obraSocial {
+    background-image: url('../imgs/icono-obra-social.png');
 }
 
 .form-control, .form-control:focus {
