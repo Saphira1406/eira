@@ -79,8 +79,36 @@ async function contrasenaRecuperada(email) {
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }
 
+async function avisoValidarMatricula(medico) {
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    auth: {
+      user: "eirainformacion@gmail.com",
+      pass: "czmfsdekgazgnvln",
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+  });
+
+  let info = await transporter.sendMail({
+      from: '"Eira" <eirainformacion@gmail.com>', // sender address
+      to: 'eirainformacion@gmail.com', // list of receivers
+      subject: "Se registró un nuevo médico - Validar matrícula", // Subject line
+      html: `Se registró el médico <b>${medico.nombre} ${medico.apellido}</b> con número de matrícula: <b>${medico.matricula}</b>.<br>Validar matrícula para que el médico pueda hacer uso de la app.`, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+}
+
 export {
     enviarNotificacionMail,
     enviarToken,
-    contrasenaRecuperada
+    contrasenaRecuperada,
+    avisoValidarMatricula
 }

@@ -1,4 +1,4 @@
-import * as NotificacionMail from '../services/mail.services.js'
+import * as NotificacionMail from '../services/mail.service.js'
 
 function enviarNotificacionMail(req, res) {
 

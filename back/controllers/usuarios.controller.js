@@ -1,6 +1,6 @@
-import * as UsuariosServices from '../services/usuarios.services.js'
+import * as UsuariosServices from '../services/usuarios.service.js'
 import { ObjectId } from 'mongodb'
-import * as MailServices from '../services/mail.services.js'
+import * as MailServices from '../services/mail.service.js'
 
 function olvideContrasena (req ,res) {
     const email = req.body.email
