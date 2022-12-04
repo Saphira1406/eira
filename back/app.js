@@ -5,6 +5,7 @@ import PacientesRoutes from './routes/pacientes.route.js'
 import ProfesionalesRoutes from './routes/profesionales.route.js'
 import AuthRoutes from './routes/auth.route.js'
 import NotificacionRoutes from './routes/notificaciones.routes.js'
+import UsuariosRoutes from './routes/usuarios.route.js'
 
 const app = express()
 app.use(cors())
@@ -16,6 +17,7 @@ app.use('/', PacientesRoutes)
 app.use('/', ProfesionalesRoutes)
 app.use('/', AuthRoutes)
 app.use('/', NotificacionRoutes)
+app.use('/', UsuariosRoutes)
 
 const host = process.env.HOST || '0.0.0.0'
 const puerto = process.env.PORT || 2020

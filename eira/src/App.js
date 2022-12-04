@@ -17,11 +17,12 @@ import FormHistorialClinico from './pages/pacientes/FormHistorialClinico'
 import DashboardPaciente from './pages/pacientes/Dashboard'
 import Login from './pages/Login'
 import UsuarioRegistro from './pages/UsuarioRegistro'
+import OlvideContrasena from './pages/OlvideContrasena'
+import RecuperarContrasena from './pages/RecuperarContrasena'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
-
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { getToken, onMessage } from 'firebase/messaging'
 import { messaging } from './firebase/firebase.js'
@@ -80,6 +81,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login onLogin={onLogin}/>} />
+        <Route path='/olvideCntrasena' element={<OlvideContrasena />} />
+        <Route path='/recuperarContrasena/:token/:email' element={<RecuperarContrasena />} />
         <Route path='/profesional/pacientes' element={<ListaPacientes activarMensajes={activarMensajes} />} />
         <Route path='/historia-clinica/:id' element={<VerHistoriaClinica />} />
         <Route path='/tratamiento/:id' element={<Tratamiento />} />
