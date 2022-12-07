@@ -19,6 +19,8 @@ import Login from './pages/Login'
 import UsuarioRegistro from './pages/UsuarioRegistro'
 import OlvideContrasena from './pages/OlvideContrasena'
 import RecuperarContrasena from './pages/RecuperarContrasena'
+import ListadoMedicos from './pages/admin/ListadoMedicos'
+import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
@@ -40,12 +42,12 @@ function App() {
       }
       // eslint-disable-next-line
     }, [])
-    
+
   function onLogin({usuario, token}) {
     // #####################################
       signInAnonymously(getAuth())
       .then(user => console.log("Auth de firebase",user))
-    
+
     //######################################
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
@@ -59,12 +61,12 @@ function App() {
   }
 
     const activarMensajes = async () => {
-      const token = await getToken(messaging, { 
+      const token = await getToken(messaging, {
         vapidKey: "BPplatmpPbXXLUc_fijIyClE1YncaoMQ8ivkU2zTBG14aqv0DhuI3WoFxPLXG6_kVeEc_yxQMHaX5yr6ElwrCmE"
-       })
-       .catch( error => console.log("Hubo un error al generar el token.,") )
+      })
+      .catch( error => console.log("Hubo un error al generar el token.,") )
 
-       token ? console.log("tu token es:", token) : console.log("no tenes token..")
+      token ? console.log("tu token es:", token) : console.log("no tenes token..")
     }
 
     useEffect( () => {
@@ -96,6 +98,8 @@ function App() {
         <Route path='/paciente/editar-perfil/:id' element={<EditarPerfilPaciente />} />
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
+        <Route path='/admin/medicos' element={<ListadoMedicos />} />
+        <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />
