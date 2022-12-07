@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import Tratamiento from '../../imgs/tratamiento.png'
-import Historia from '../../imgs/historia-clinica.png'
-import Recetas from '../../imgs/medicamentos.png'
-import ImgPerfil from '../../imgs/perfil.png'
-import { UsuarioContext } from "../../context/UsuarioContext";
+import Pacientes from '../imgs/pacientes.png'
+import Recetas from '../imgs/medicamentos.png'
+import ImgPerfil from '../imgs/perfil.png'
+import { UsuarioContext } from "../context/UsuarioContext";
 
 function Dashboard() {
     const {usuarioLogueado} = useContext(UsuarioContext)
@@ -14,8 +13,8 @@ function Dashboard() {
 
     useEffect(
         () => {
-            if(usuarioLogueado.matricula) {
-                navigate('/medico', { replace: true })
+            if(!usuarioLogueado.matricula) {
+                navigate('/paciente', { replace: true })
             }
           // eslint-disable-next-line
         }, [])
@@ -23,25 +22,15 @@ function Dashboard() {
     return (
         <main id="dashboard" className="pt-5">
             <section className="pt-5">
-                <h1 className="visually-hidden">Dashboard Pacientes</h1>
+                <h1 className="visually-hidden">Dashboard Médicos</h1>
                 <Container fluid className="pt-5 px-5">
                     <Row className="g-5">
                         <Col>
-                            <Link to={`/ver-tratamiento/${usuarioLogueado._id}`} className="text-decoration-none">
+                            <Link to={`/profesional/pacientes`} className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
-                                        <img src={Tratamiento} alt="icono tratamiento médico" className="img-fluid mb-2"/>
-                                        <p className="mb-0 title-dashboard text-azul">Mis tratamientos</p>
-                                    </Card.Body>
-                                </Card>
-                            </Link>
-                        </Col>
-                        <Col>
-                            <Link to={`/paciente/historia-clinica`} className="text-decoration-none">
-                                <Card className="shadow border-0 py-3">
-                                    <Card.Body className="text-center">
-                                        <img src={Historia} alt="icono tratamiento médico" className="img-fluid mb-2"/>
-                                        <p className="mb-0 title-dashboard text-verde">Mis historia clínica</p>
+                                        <img src={Pacientes} alt="icono tratamiento médico" className="img-fluid mb-2"/>
+                                        <p className="mb-0 title-dashboard text-verde">Mis pacientes</p>
                                     </Card.Body>
                                 </Card>
                             </Link>
@@ -57,7 +46,7 @@ function Dashboard() {
                             </Link>
                         </Col>
                         <Col>
-                            <Link to={`/home/perfil-paciente/${usuarioLogueado._id}`} className="text-decoration-none">
+                            <Link to={`/mi-perfil/${usuarioLogueado._id}`} className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
                                         <img src={ImgPerfil} alt="icono tratamiento médico" className="img-fluid mb-2"/>

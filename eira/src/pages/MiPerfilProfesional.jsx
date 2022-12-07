@@ -1,5 +1,5 @@
-import { useEffect, useState, useNavigate } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link, useParams, useNavigate } from "react-router-dom"
 import * as ProfesionalService from "../services/profesionales.service.js"
 import { Card, Container, Row, Col } from 'react-bootstrap'
 import IconoUsuario from '../imgs/icono-usuario-perfil.png'

@@ -21,6 +21,7 @@ import OlvideContrasena from './pages/OlvideContrasena'
 import RecuperarContrasena from './pages/RecuperarContrasena'
 import ListadoMedicos from './pages/admin/ListadoMedicos'
 import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
+import DashboardMedico from './pages/DashboardMedico'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
@@ -55,7 +56,7 @@ function App() {
     if(!usuario.matricula) {
       navigate(`/paciente`, { replace: true })
     } else {
-      navigate(`/profesional/pacientes`, { replace: true })
+      navigate(`/medico`, { replace: true })
     }
     // socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
   }
@@ -100,6 +101,7 @@ function App() {
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
         <Route path='/admin/medicos' element={<ListadoMedicos />} />
         <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
+        <Route path='/medico' element={<DashboardMedico />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />
