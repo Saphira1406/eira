@@ -22,6 +22,7 @@ import RecuperarContrasena from './pages/RecuperarContrasena'
 import ListadoMedicos from './pages/admin/ListadoMedicos'
 import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
 import DashboardMedico from './pages/DashboardMedico'
+import DashboardAdmin from './pages/admin/Dashboard'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
@@ -53,7 +54,10 @@ function App() {
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
-    if(!usuario.matricula) {
+
+    if(usuario.admin) {
+      navigate(`/admin`, { replace: true })
+    } else if(!usuario.matricula) {
       navigate(`/paciente`, { replace: true })
     } else {
       navigate(`/medico`, { replace: true })
@@ -99,6 +103,7 @@ function App() {
         <Route path='/paciente/editar-perfil/:id' element={<EditarPerfilPaciente />} />
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
+        <Route path='/admin' element={<DashboardAdmin />} />
         <Route path='/admin/medicos' element={<ListadoMedicos />} />
         <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
         <Route path='/medico' element={<DashboardMedico />} />
