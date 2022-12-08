@@ -59,11 +59,22 @@ function eliminarPaciente (req, res) {
     })
 }
 
+function verificarMedico(req, res) {
+    console.log(req.params.id)
+    ProfesionalesServices.verificarMedico(req.params.id)
+    .then(function (usuarioEditado) {
+        usuarioEditado ?
+        res.status(200).json(usuarioEditado) :
+        res.status(404).json({mensaje: "No existe el profesional que quieres para verificar" })
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
     editar,
     eliminar,
     traerPacientes,
-    eliminarPaciente
+    eliminarPaciente,
+    verificarMedico
 }

@@ -73,39 +73,26 @@ function ListadoMedicos() {
                                         <td>{medico.apellido}</td>
                                         <td>{medico.email}</td>
                                         <td>{medico.verificado ? <Badge className='fw-semibold bg-verde'>Verificado</Badge> : <Badge className='fw-semibold bg-naranja'>Falta Verificar</Badge>}</td>
-                                        {/* <td className='d-flex'>
+                                        <td className='d-flex'>
+                                            {!medico.verificado &&
                                             <OverlayTrigger placement="top" overlay={
                                                 <Tooltip id="tooltip-top1">
-                                                    Crear historia clínica
+                                                    Verificar médico
                                                 </Tooltip>
                                             }>
-                                            <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
+                                            <Link to={`/tratamiento/id`} className="btn btn-crear me-2 text-white fw-bold">✓</Link>
                                             </OverlayTrigger>
+                                            }
+                                            {medico.verificado &&
                                             <OverlayTrigger placement="top" overlay={
                                                 <Tooltip id="tooltip-top2">
-                                                    Ver tratamiento
+                                                    Quitar verificación
                                                 </Tooltip>
                                             }>
-                                            <Link to={`/ver-tratamiento/${paciente._id}`} className="btn btn-ver me-2"><img src={IconoVer} alt="Icono ver"/></Link>
+                                            <Link to={`/ver-tratamiento/id`} className="btn btn-eliminar text-white fw-bold">X</Link>
                                             </OverlayTrigger>
-                                            <OverlayTrigger placement="top" overlay={
-                                                <Tooltip id="tooltip-top3">
-                                                    Ver historia clínica
-                                                </Tooltip>
-                                            }>
-                                            <Link to={`/historia-clinica/${paciente._id}`} className="btn btn-ver-historia me-2"><img src={IconoHistoriaClinica} alt="Icono crear"/></Link>
-                                            </OverlayTrigger>
-                                            <OverlayTrigger placement="top" overlay={
-                                                <Tooltip id="tooltip-top4">
-                                                    Eliminar paciente
-                                                </Tooltip>
-                                            }>
-                                            <form onSubmit={handleSubmitEliminarPaciente} >
-                                                <button type="submit" className="btn btn-eliminar"><img src={IconoEliminar} alt="Icono eliminar"/></button>
-                                                <input type="hidden" name="idPaciente" value={paciente._id}/>
-                                            </form>
-                                            </OverlayTrigger>
-                                        </td> */}
+                                            }
+                                        </td>
                                     </tr>
                                 )}
                                 </tbody>
