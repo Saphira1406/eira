@@ -63,8 +63,14 @@ function App() {
     } else {
       navigate(`/medico`, { replace: true })
     }
+        // #####################################
+        signInAnonymously(getAuth())
+        .then(user => console.log("Auth de firebase",user))
+        activarMensajes(usuario)
+      //######################################
     // socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
   }
+
 
     const activarMensajes = async () => {
       const token = await getToken(messaging, {
@@ -79,7 +85,7 @@ function App() {
       onMessage(messaging, message => {
         console.log("tu mensaje", message)
       })
-      activarMensajes()
+      
     }, [])
 
   return (
