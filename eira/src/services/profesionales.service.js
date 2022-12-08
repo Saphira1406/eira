@@ -52,6 +52,16 @@ async function eliminarPaciente(idProfesional, idPaciente) {
     })
 }
 
+async function verificar(idUsuario) {
+    return fetch(`http://localhost:2020/api/profesionales/verificacion/${idUsuario}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+}
+
 
 export {
     traer,
@@ -59,5 +69,6 @@ export {
     editar,
     eliminar,
     traerPacientes,
-    eliminarPaciente
+    eliminarPaciente,
+    verificar
 }

@@ -18,6 +18,19 @@ function EditarTratamiento(props) {
 
     let navigate = useNavigate();
 
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
+
+    useEffect(
+        () => {
+            if(!usuarioLogueado.matricula) {
+                navigate('/', { replace: true })
+            }
+            if(!usuarioLogueado.verificado) {
+                navigate('/falta-verificacion', {replace: true})
+            }
+          // eslint-disable-next-line
+        }, [])
+
     useEffect(() => {
         TratamientoService.traerPorId(id)
         .then( (resp) => {

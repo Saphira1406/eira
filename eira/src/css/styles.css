@@ -9,6 +9,10 @@ html, body, #root{
     scroll-behavior: smooth;
 }
 
+body {
+    overflow: hidden;
+}
+
 main {
     min-height: 87vh;
 }
@@ -479,6 +483,14 @@ form-control::placeholder {
 
 .text-naranja {
     color: #f3944d;
+}
+
+.bg-verde {
+    background-color: #42b7ad !important;
+}
+
+.bg-naranja {
+    background-color: #f3944d !important;
 }
 
 footer {

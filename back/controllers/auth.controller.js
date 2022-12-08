@@ -1,12 +1,20 @@
 import jwt from 'jsonwebtoken'
 import * as UsuariosServices from '../services/auth.service.js'
+import * as MailServices from '../services/mail.service.js'
 
 function crear (req, res) {
-    const usuario = req.body
+    let usuario = null
+    if(req.body.matricula) {
+        usuario = {...req.body, verificado: false}
+    } else {
+        usuario = req.body
+    }
     console.log(usuario)
-
     UsuariosServices.crear(usuario)
     .then(function (usuarioNuevo) {
+        if(usuario.matricula) {
+            MailServices.avisoValidarMatricula(usuario)
+        }
         usuarioNuevo ?
         res.status(200).json({
             response: true,

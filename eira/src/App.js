@@ -17,12 +17,17 @@ import FormHistorialClinico from './pages/pacientes/FormHistorialClinico'
 import DashboardPaciente from './pages/pacientes/Dashboard'
 import Login from './pages/Login'
 import UsuarioRegistro from './pages/UsuarioRegistro'
+import OlvideContrasena from './pages/OlvideContrasena'
+import RecuperarContrasena from './pages/RecuperarContrasena'
+import ListadoMedicos from './pages/admin/ListadoMedicos'
+import ListadoPacientesAdmin from './pages/admin/ListadoPacientes'
+import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
+import DashboardMedico from './pages/DashboardMedico'
+import DashboardAdmin from './pages/admin/Dashboard'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
-import * as PacientesService from './services/pacientes.service.js'
-
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { getToken, onMessage } from 'firebase/messaging'
 import { messaging } from './firebase/firebase.js'
@@ -40,16 +45,23 @@ function App() {
       }
       // eslint-disable-next-line
     }, [])
-    
-  function onLogin({usuario, token}) {
 
+  function onLogin({usuario, token}) {
+    // #####################################
+      signInAnonymously(getAuth())
+      .then(user => console.log("Auth de firebase",user))
+
+    //######################################
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
-    if(!usuario.matricula) {
+
+    if(usuario.admin) {
+      navigate(`/admin`, { replace: true })
+    } else if(!usuario.matricula) {
       navigate(`/paciente`, { replace: true })
     } else {
-      navigate(`/profesional/pacientes`, { replace: true })
+      navigate(`/medico`, { replace: true })
     }
         // #####################################
         signInAnonymously(getAuth())
@@ -59,21 +71,14 @@ function App() {
     // socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
   }
 
-    const activarMensajes = async (usuario) => {
-      const token = await getToken(messaging, { 
+
+    const activarMensajes = async () => {
+      const token = await getToken(messaging, {
         vapidKey: "BPplatmpPbXXLUc_fijIyClE1YncaoMQ8ivkU2zTBG14aqv0DhuI3WoFxPLXG6_kVeEc_yxQMHaX5yr6ElwrCmE"
-       })
-       
-       .catch( error => console.log("Hubo un error al generar el token.,") )
+      })
+      .catch( error => console.log("Hubo un error al generar el token.,") )
 
-       if(token) {
-        console.log("tu token es:", token)
-        PacientesService.editar(usuario._id, { "fb-notification":  token})
-       console.log("ñññññ",usuario)
-       } else {
-        console.log("no tenes token..")
-       }
-
+      token ? console.log("tu token es:", token) : console.log("no tenes token..")
     }
 
     useEffect( () => {
@@ -90,6 +95,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login onLogin={onLogin}/>} />
+        <Route path='/olvideCntrasena' element={<OlvideContrasena />} />
+        <Route path='/recuperarContrasena/:token/:email' element={<RecuperarContrasena />} />
         <Route path='/profesional/pacientes' element={<ListaPacientes activarMensajes={activarMensajes} />} />
         <Route path='/historia-clinica/:id' element={<VerHistoriaClinica />} />
         <Route path='/tratamiento/:id' element={<Tratamiento />} />
@@ -103,6 +110,11 @@ function App() {
         <Route path='/paciente/editar-perfil/:id' element={<EditarPerfilPaciente />} />
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
+        <Route path='/admin' element={<DashboardAdmin />} />
+        <Route path='/admin/medicos' element={<ListadoMedicos />} />
+        <Route path='/admin/Pacientes' element={<ListadoPacientesAdmin />} />
+        <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
+        <Route path='/medico' element={<DashboardMedico />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />

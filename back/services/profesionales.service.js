@@ -84,11 +84,27 @@ async function eliminarPaciente (idProfesional, idPaciente) {
     })
 }
 
+async function verificarMedico(id) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        let verificar = null
+        const profesional = await db.collection('medicos').findOne({"_id": ObjectId(id)})
+        profesional.verificado ? verificar = false : verificar = true
+        const usuarioEditado = await db.collection('medicos').updateOne({"_id": new ObjectId(id)}, {$set: {verificado: verificar}})
+        return usuarioEditado
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
     editar,
     eliminar,
     traerPacientes,
-    eliminarPaciente
+    eliminarPaciente,
+    verificarMedico
 }
