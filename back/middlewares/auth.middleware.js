@@ -21,5 +21,6 @@ function medicoVerificado(req, res, next) {
 }
 
 export {
-    autenticacion
+    autenticacion,
+    medicoVerificado
 }
