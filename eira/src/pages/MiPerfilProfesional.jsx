@@ -34,6 +34,18 @@ function MiPerfilProfesional () {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
+            input: 'text',
+            inputLabel: `Para eliminar el perfil ingresa tu email: ${profesional.email}`,
+            didOpen: () =>{
+                Swal.getConfirmButton().disabled = true
+                Swal.getInput().addEventListener('input', function(e) {
+                    if(e.target.value === profesional.email) {
+                        Swal.getConfirmButton().disabled = false
+                    } else {
+                        Swal.getConfirmButton().disabled = true
+                    }
+                })
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 ProfesionalService.eliminar(id)

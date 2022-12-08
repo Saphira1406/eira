@@ -26,6 +26,7 @@ async function crearHistoriaClinica(idPaciente, historia) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         },
         body: JSON.stringify(historia)
     })
@@ -38,6 +39,7 @@ async function eliminar(idUsuario) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         }
     })
     .then(response => {
@@ -51,6 +53,7 @@ async function editar (idUsuario, usuario) {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         },
         body: JSON.stringify(usuario)
     })
