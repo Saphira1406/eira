@@ -3,6 +3,7 @@ async function crear(tratamiento) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         },
         body: JSON.stringify(tratamiento)
     })
@@ -15,6 +16,7 @@ async function editarMedicamento(id, tratamiento, tipo) {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         },
         body: JSON.stringify({tratamiento, tipo})
     })
@@ -27,6 +29,7 @@ async function editarComida(id, comidaAntigua, comidaNueva) {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         },
         body: JSON.stringify({comidaAntigua, comidaNueva})
     })
@@ -35,17 +38,29 @@ async function editarComida(id, comidaAntigua, comidaNueva) {
 }
 
 async function traerPorIdPaciente(id) {
-    return fetch(`http://localhost:2020/api/tratamientos/paciente/${id}`)
+    return fetch(`http://localhost:2020/api/tratamientos/paciente/${id}`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        }
+    })
     .then(response => response.json())
 }
 
 async function traerPorIdProfesional(idPaciente, idProfesional) {
-    return fetch(`http://localhost:2020/api/tratamientos/profesional/${idProfesional}/paciente/${idPaciente}`)
+    return fetch(`http://localhost:2020/api/tratamientos/profesional/${idProfesional}/paciente/${idPaciente}`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        }
+    })
     .then(response => response.json())
 }
 
 async function traerPorId(id) {
-    return fetch(`http://localhost:2020/api/tratamientos/${id}`)
+    return fetch(`http://localhost:2020/api/tratamientos/${id}`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        }
+    })
     .then(response => response.json())
 }
 
@@ -53,7 +68,8 @@ async function eliminar(id) {
     return fetch(`http://localhost:2020/api/tratamientos/${id}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         }
     })
     .then(response => response.json())
