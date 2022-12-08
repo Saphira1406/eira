@@ -485,6 +485,14 @@ form-control::placeholder {
     color: #f3944d;
 }
 
+.bg-verde {
+    background-color: #42b7ad !important;
+}
+
+.bg-naranja {
+    background-color: #f3944d !important;
+}
+
 footer {
     background-color: #014035;
     padding: 20px 0px;

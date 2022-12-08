@@ -60,7 +60,7 @@ function ListadoPacientes() {
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Email</th>
-                                        <th>Acciones</th>
+                                        {/* <th>Acciones</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>

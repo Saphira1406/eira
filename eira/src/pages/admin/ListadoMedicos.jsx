@@ -72,7 +72,7 @@ function ListadoMedicos() {
                                         <td>{medico.nombre}</td>
                                         <td>{medico.apellido}</td>
                                         <td>{medico.email}</td>
-                                        <td>{medico.verificado ? `SI` : `NO`}</td>
+                                        <td>{medico.verificado ? <Badge className='fw-semibold bg-verde'>Verificado</Badge> : <Badge className='fw-semibold bg-naranja'>Falta Verificar</Badge>}</td>
                                         {/* <td className='d-flex'>
                                             <OverlayTrigger placement="top" overlay={
                                                 <Tooltip id="tooltip-top1">
