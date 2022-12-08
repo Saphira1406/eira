@@ -20,6 +20,7 @@ import UsuarioRegistro from './pages/UsuarioRegistro'
 import OlvideContrasena from './pages/OlvideContrasena'
 import RecuperarContrasena from './pages/RecuperarContrasena'
 import ListadoMedicos from './pages/admin/ListadoMedicos'
+import ListadoPacientesAdmin from './pages/admin/ListadoPacientes'
 import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
 import DashboardMedico from './pages/DashboardMedico'
 import DashboardAdmin from './pages/admin/Dashboard'
@@ -105,6 +106,7 @@ function App() {
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
         <Route path='/admin' element={<DashboardAdmin />} />
         <Route path='/admin/medicos' element={<ListadoMedicos />} />
+        <Route path='/admin/Pacientes' element={<ListadoPacientesAdmin />} />
         <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
         <Route path='/medico' element={<DashboardMedico />} />
         <Route path='*' element={<Error404 />} />

@@ -2,14 +2,14 @@ import { useState, useEffect, useContext } from 'react'
 import { Card, Container, Row, Col, Form, Table, Tooltip, OverlayTrigger, Badge } from 'react-bootstrap'
 import Paginador from '../../components/Paginador.jsx'
 import { Link, useNavigate } from 'react-router-dom'
-import * as ProfesionalesService from '../../services/profesionales.service.js'
+import * as PacientesService from '../../services/pacientes.service.js'
 
-function ListadoMedicos() {
-    const [medicos, setMedicos] = useState([])
+function ListadoPacientes() {
+    const [pacientes, setPacientes] = useState([])
     const [busqueda, setBusqueda] = useState("")
     const [paginaActual, setPaginaActual] = useState(1)
     // eslint-disable-next-line no-unused-vars
-    const [medicosPorPagina, setMedicosPorPagina] = useState(5)
+    const [pacientesPorPagina, setPacientesPorPagina] = useState(5)
 
     let navigate = useNavigate();
 
@@ -24,19 +24,19 @@ function ListadoMedicos() {
         }, [])
 
     useEffect(() => {
-        ProfesionalesService.traer()
-        .then( (resp) => setMedicos(resp))
+        PacientesService.traer()
+        .then( (resp) => setPacientes(resp))
             // eslint-disable-next-line no-unused-vars
     }, [])
 
-    const indexUltimoPaciente = paginaActual * medicosPorPagina
-    const indexPrimerPaciente = indexUltimoPaciente - medicosPorPagina
-    let medicosActuales = []
-    if(medicos.length > 0) {
-        medicosActuales = medicos.slice(indexPrimerPaciente, indexUltimoPaciente)
+    const indexUltimoPaciente = paginaActual * pacientesPorPagina
+    const indexPrimerPaciente = indexUltimoPaciente - pacientesPorPagina
+    let pacientesActuales = []
+    if(pacientes.length > 0) {
+        pacientesActuales = pacientes.slice(indexPrimerPaciente, indexUltimoPaciente)
     }
 
-    const resultados = !busqueda ? medicosActuales : medicos.filter( (medico) => medico.nombre.toLowerCase().includes(busqueda.toLowerCase()) || medico.matricula.includes(busqueda) || medico.dni.includes(busqueda))
+    const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.matricula.includes(busqueda) || paciente.dni.includes(busqueda))
 
 
     return (
@@ -46,10 +46,10 @@ function ListadoMedicos() {
                     <Col>
                         <Card body className='shadow'>
                             <div className="d-flex justify-content-between align-items-center">
-                                <h1 className="titulo">Médicos</h1>
+                                <h1 className="titulo">Pacientes</h1>
                                 <Form>
                                     <Form.Group controlId="buscador">
-                                        <Form.Control type="search" placeholder="Buscar médico" value={busqueda} onChange={(ev) => setBusqueda(ev.target.value)}/>
+                                        <Form.Control type="search" placeholder="Buscar paciente" value={busqueda} onChange={(ev) => setBusqueda(ev.target.value)}/>
                                     </Form.Group>
                                 </Form>
                             </div>
@@ -60,19 +60,21 @@ function ListadoMedicos() {
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Email</th>
-                                        <th>Verificado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado médicos</td></tr>}
-                                {resultados.map((medico, i) =>
+                                {resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado pacientes</td></tr>}
+                                {resultados.map((paciente, i) =>
                                     <tr key={i}>
-                                        <td>{medico.dni}</td>
-                                        <td>{medico.nombre}</td>
-                                        <td>{medico.apellido}</td>
-                                        <td>{medico.email}</td>
-                                        <td>{medico.verificado ? `SI` : `NO`}</td>
+                                        {!paciente.admin &&
+                                        <>
+                                            <td>{paciente.dni}</td>
+                                            <td>{paciente.nombre}</td>
+                                            <td>{paciente.apellido}</td>
+                                            <td>{paciente.email}</td>
+                                        </>
+                                        }
                                         {/* <td className='d-flex'>
                                             <OverlayTrigger placement="top" overlay={
                                                 <Tooltip id="tooltip-top1">
@@ -113,8 +115,8 @@ function ListadoMedicos() {
 
                             {resultados.length !== 0 &&
                                 <Paginador
-                                elementosPorPagina={medicosPorPagina}
-                                totalElementos={medicos.length}
+                                elementosPorPagina={pacientesPorPagina}
+                                totalElementos={pacientes.length}
                                 setPaginaActual={setPaginaActual}
                                 paginaActual={paginaActual} />
                             }
@@ -126,4 +128,4 @@ function ListadoMedicos() {
     )
 }
 
-export default ListadoMedicos
+export default ListadoPacientes
