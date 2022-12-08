@@ -2,12 +2,14 @@ import {useContext} from "react";
 import { useNavigate } from 'react-router-dom'
 import { UsuarioContext } from "../context/UsuarioContext";
 //import { SocketContext } from '../context/SocketContext'
+import * as PacientesService from '../services/pacientes.service.js'
 
 function Logout() {
     let navigate = useNavigate();
     //const usuario = JSON.parse(localStorage.getItem('usuario'))
-    // const socket = useContext(SocketContext);
-    const {setUsuarioLogueado} = useContext(UsuarioContext)
+    const {setUsuarioLogueado, usuarioLogueado} = useContext(UsuarioContext)
+
+    PacientesService.editar(usuarioLogueado._id, { "fb-notification":  null})
 
     function handleSubmit(e) {
         e.preventDefault()
