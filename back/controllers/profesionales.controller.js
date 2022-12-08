@@ -1,4 +1,5 @@
 import * as ProfesionalesServices from '../services/profesionales.service.js'
+import * as MailServices from '../services/mail.service.js'
 
 function traerTodos (req ,res) {
     ProfesionalesServices.traerTodos()
@@ -60,12 +61,17 @@ function eliminarPaciente (req, res) {
 }
 
 function verificarMedico(req, res) {
-    console.log(req.params.id)
     ProfesionalesServices.verificarMedico(req.params.id)
     .then(function (usuarioEditado) {
-        usuarioEditado ?
-        res.status(200).json(usuarioEditado) :
-        res.status(404).json({mensaje: "No existe el profesional que quieres para verificar" })
+        if(usuarioEditado) {
+            ProfesionalesServices.traerPorId(req.params.id)
+            .then(medico => {
+                MailServices.avisoMedicoVerificacion(medico)
+                res.status(200).json(usuarioEditado)
+            })
+        } else {
+            res.status(404).json({mensaje: "No existe el profesional que quieres para verificar" })
+        }
     })
 }
 
