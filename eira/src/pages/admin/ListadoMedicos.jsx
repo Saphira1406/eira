@@ -27,7 +27,7 @@ function ListadoMedicos() {
         ProfesionalesService.traer()
         .then( (resp) => setMedicos(resp))
             // eslint-disable-next-line no-unused-vars
-    }, [])
+    }, [medicos])
 
     const indexUltimoPaciente = paginaActual * medicosPorPagina
     const indexPrimerPaciente = indexUltimoPaciente - medicosPorPagina
@@ -37,6 +37,11 @@ function ListadoMedicos() {
     }
 
     const resultados = !busqueda ? medicosActuales : medicos.filter( (medico) => medico.nombre.toLowerCase().includes(busqueda.toLowerCase()) || medico.matricula.includes(busqueda) || medico.dni.includes(busqueda))
+
+    function verificacion(id) {
+        ProfesionalesService.verificar(id)
+        .then((resp => console.log('se hizo el cambio en la verificacion')))
+    }
 
 
     return (
@@ -80,7 +85,7 @@ function ListadoMedicos() {
                                                     Verificar médico
                                                 </Tooltip>
                                             }>
-                                            <Link to={`/tratamiento/id`} className="btn btn-crear me-2 text-white fw-bold">✓</Link>
+                                            <button className="btn btn-crear me-2 text-white fw-bold" onClick={() => verificacion(medico._id)}>✓</button>
                                             </OverlayTrigger>
                                             }
                                             {medico.verificado &&
@@ -89,7 +94,7 @@ function ListadoMedicos() {
                                                     Quitar verificación
                                                 </Tooltip>
                                             }>
-                                            <Link to={`/ver-tratamiento/id`} className="btn btn-eliminar text-white fw-bold">X</Link>
+                                            <button className="btn btn-eliminar text-white fw-bold" onClick={() => verificacion(medico._id)}>X</button>
                                             </OverlayTrigger>
                                             }
                                         </td>
