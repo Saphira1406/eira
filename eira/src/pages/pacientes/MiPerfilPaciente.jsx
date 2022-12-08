@@ -31,13 +31,25 @@ function MiPerfilPaciente () {
 
         Swal.fire({
             title: '¿Seguro que quiere eliminar su usuario?',
-            text: "No podrás volver atrás",
+            text: "Al eliminar tu perfil se borrarán tus datos de forma definitiva y no podrán recuperarse.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
+            input: 'text',
+            inputLabel: `Para eliminar el perfil ingresa tu email: ${paciente.email}`,
+            didOpen: () =>{
+                Swal.getConfirmButton().disabled = true
+                Swal.getInput().addEventListener('input', function(e) {
+                    if(e.target.value === paciente.email) {
+                        Swal.getConfirmButton().disabled = false
+                    } else {
+                        Swal.getConfirmButton().disabled = true
+                    }
+                })
+            }
         })
         .then((result) => {
             if (result.isConfirmed) {
