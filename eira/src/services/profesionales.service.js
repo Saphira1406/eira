@@ -1,17 +1,29 @@
 async function traer() {
-    return fetch('http://localhost:2020/api/profesionales')
+    return fetch('http://localhost:2020/api/profesionales', {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        },
+    })
     .then(response => response.json())
 
 }
 
 async function traerPorId(idProfesional) {
-    return fetch(`http://localhost:2020/api/profesionales/${idProfesional}`)
+    return fetch(`http://localhost:2020/api/profesionales/${idProfesional}`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        },
+    })
     .then(response => response.json())
 
 }
 
 async function traerPacientes(idProfesional) {
-    return fetch(`http://localhost:2020/api/profesionales/${idProfesional}/pacientes`)
+    return fetch(`http://localhost:2020/api/profesionales/${idProfesional}/pacientes`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        },
+    })
     .then(response => response.json())
 }
 
@@ -21,6 +33,7 @@ async function editar (idUsuario, usuario) {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         },
         body: JSON.stringify(usuario)
     })
@@ -32,6 +45,7 @@ async function eliminar(idUsuario) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         }
     })
     .then(response => {
@@ -45,11 +59,22 @@ async function eliminarPaciente(idProfesional, idPaciente) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
         }
     })
     .then(response => {
         return response.json()
     })
+}
+
+async function verificar(idUsuario) {
+    return fetch(`http://localhost:2020/api/profesionales/verificacion/${idUsuario}`, {
+        method: 'PATCH',
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        },
+    })
+    .then(response => response.json())
 }
 
 
@@ -59,5 +84,6 @@ export {
     editar,
     eliminar,
     traerPacientes,
-    eliminarPaciente
+    eliminarPaciente,
+    verificar
 }

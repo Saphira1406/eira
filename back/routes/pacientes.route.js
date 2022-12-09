@@ -17,8 +17,8 @@ const route = express.Router()
 route.get('/api/pacientes', PacientesController.traerTodos)
 route.get('/api/pacientes/:id', [autenticacion], PacientesController.traerPorId)
 route.get('/api/pacientes/:id/historia', [autenticacion], PacientesController.traerHistoriaClinica)
-route.delete('/api/pacientes/:id', PacientesController.eliminar)
-route.post('/api/pacientes/:id/historia-clinica', PacientesController.crearHistoriaClinica)
-route.patch('/api/pacientes/:id', PacientesController.editar)
+route.delete('/api/pacientes/:id', [autenticacion], PacientesController.eliminar)
+route.post('/api/pacientes/:id/historia-clinica', [autenticacion], PacientesController.crearHistoriaClinica)
+route.patch('/api/pacientes/:id', [autenticacion], PacientesController.editar)
 
 export default route

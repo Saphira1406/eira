@@ -1,15 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
-import * as ProfesionalesService from '../services/profesionales.service.js'
+import { Card, Container, Row, Col, Form, Table, Tooltip, OverlayTrigger, Badge } from 'react-bootstrap'
+import Paginador from '../../components/Paginador.jsx'
 import { Link, useNavigate } from 'react-router-dom'
-import { Card, Container, Row, Col, Form, Table, Tooltip } from 'react-bootstrap'
-import IconoCrear from '../imgs/icono-crear.png'
-import IconoVer from '../imgs/icono-ver.png'
-import IconoEliminar from '../imgs/icono-eliminar.png'
-import IconoHistoriaClinica from '../imgs/icono-historia-clinica.png'
-import Paginador from './Paginador.jsx'
-import { UsuarioContext } from '../context/UsuarioContext'
-import Swal from 'sweetalert2'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import * as PacientesService from '../../services/pacientes.service.js'
 
 function ListadoPacientes() {
     const [pacientes, setPacientes] = useState([])
@@ -18,71 +11,33 @@ function ListadoPacientes() {
     // eslint-disable-next-line no-unused-vars
     const [pacientesPorPagina, setPacientesPorPagina] = useState(5)
 
-    //const usuarioLogueado = useContext(UsuarioContext)
-    const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
-    //const idProfesional = "63239b30953ee51e9b52f154"
     let navigate = useNavigate();
+
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
 
     useEffect(
         () => {
-            if(!usuarioLogueado.matricula) {
+            if(!usuarioLogueado.admin) {
                 navigate('/', { replace: true })
-            }
-            if(!usuarioLogueado.verificado) {
-                navigate('/falta-verificacion', {replace: true})
             }
           // eslint-disable-next-line
         }, [])
 
     useEffect(() => {
-            ProfesionalesService.traerPacientes(usuarioLogueado?._id)
-            .then( (resp) => setPacientes(resp))
-        console.log("vvvv", pacientes)
-        // eslint-disable-next-line
+        PacientesService.traer()
+        .then( (resp) => setPacientes(resp))
+            // eslint-disable-next-line no-unused-vars
     }, [])
 
     const indexUltimoPaciente = paginaActual * pacientesPorPagina
     const indexPrimerPaciente = indexUltimoPaciente - pacientesPorPagina
     let pacientesActuales = []
     if(pacientes.length > 0) {
-
         pacientesActuales = pacientes.slice(indexPrimerPaciente, indexUltimoPaciente)
     }
 
-    // busqueda
-    //const resultados = !busqueda ? pacientes : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
-    const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
+    const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.matricula.includes(busqueda) || paciente.dni.includes(busqueda))
 
-    console.log("ggg",resultados)
-
-    function handleSubmitEliminarPaciente(ev) {
-        ev.preventDefault()
-        console.log(ev.target.idPaciente.value)
-
-        Swal.fire({
-            title: '¿Seguro que quiere eliminar el paciente de su lista?',
-            text: "No podrás volver atrás",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminarlo',
-            cancelButtonText: 'Cancelar',
-        })
-        .then((result) => {
-            if (result.isConfirmed) {
-                ProfesionalesService.eliminarPaciente(usuarioLogueado._id,ev.target.idPaciente.value)
-                .then( (resp) => {
-                    ProfesionalesService.traerPacientes(usuarioLogueado._id)
-                    .then( (resp) => setPacientes(resp))
-                })
-            Swal.fire(
-                'Se borró correctamente',
-                '',
-                'success'
-            )}
-        })
-    }
 
     return (
         <section id="listadoPacientes">
@@ -105,18 +60,22 @@ function ListadoPacientes() {
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Email</th>
-                                        <th>Acciones</th>
+                                        {/* <th>Acciones</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado pacientes</td></tr>}
                                 {resultados.map((paciente, i) =>
                                     <tr key={i}>
-                                        <td>{paciente.dni}</td>
-                                        <td>{paciente.nombre}</td>
-                                        <td>{paciente.apellido}</td>
-                                        <td>{paciente.email}</td>
-                                        <td className='d-flex'>
+                                        {!paciente.admin &&
+                                        <>
+                                            <td>{paciente.dni}</td>
+                                            <td>{paciente.nombre}</td>
+                                            <td>{paciente.apellido}</td>
+                                            <td>{paciente.email}</td>
+                                        </>
+                                        }
+                                        {/* <td className='d-flex'>
                                             <OverlayTrigger placement="top" overlay={
                                                 <Tooltip id="tooltip-top1">
                                                     Crear historia clínica
@@ -148,7 +107,7 @@ function ListadoPacientes() {
                                                 <input type="hidden" name="idPaciente" value={paciente._id}/>
                                             </form>
                                             </OverlayTrigger>
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 )}
                                 </tbody>

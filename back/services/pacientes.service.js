@@ -26,7 +26,6 @@ async function traerPorId(idpaciente) {
     .catch(function (err) {
         console.log(err)
     })
-
 }
 
 async function traerHistoriaClinica(idpaciente) {

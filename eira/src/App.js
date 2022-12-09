@@ -17,14 +17,23 @@ import FormHistorialClinico from './pages/pacientes/FormHistorialClinico'
 import DashboardPaciente from './pages/pacientes/Dashboard'
 import Login from './pages/Login'
 import UsuarioRegistro from './pages/UsuarioRegistro'
+import OlvideContrasena from './pages/OlvideContrasena'
+import RecuperarContrasena from './pages/RecuperarContrasena'
+import ListadoMedicos from './pages/admin/ListadoMedicos'
+import ListadoPacientesAdmin from './pages/admin/ListadoPacientes'
+import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
+import DashboardMedico from './pages/DashboardMedico'
+import DashboardAdmin from './pages/admin/Dashboard'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
+
 import * as PacientesService from './services/pacientes.service.js'
 import { Toaster, toast } from 'react-hot-toast';
 import { SocketContext } from './context/SocketContext'
 import Chat from './pages/Chat'
+
 
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { getToken, onMessage } from 'firebase/messaging'
@@ -46,6 +55,7 @@ function App() {
       }
       // eslint-disable-next-line
     }, [])
+
     console.log(tokenFB)
   function onLogin({usuario, token}) {
       // #####################################
@@ -56,10 +66,13 @@ function App() {
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
-    if(!usuario.matricula) {
+
+    if(usuario.admin) {
+      navigate(`/admin`, { replace: true })
+    } else if(!usuario.matricula) {
       navigate(`/paciente`, { replace: true })
     } else {
-      navigate(`/profesional/pacientes`, { replace: true })
+      navigate(`/medico`, { replace: true })
     }
        
      socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
@@ -101,6 +114,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login onLogin={onLogin}/>} />
+        <Route path='/olvideCntrasena' element={<OlvideContrasena />} />
+        <Route path='/recuperarContrasena/:token/:email' element={<RecuperarContrasena />} />
         <Route path='/profesional/pacientes' element={<ListaPacientes activarMensajes={activarMensajes} />} />
         <Route path='/historia-clinica/:id' element={<VerHistoriaClinica />} />
         <Route path='/tratamiento/:id' element={<Tratamiento />} />
@@ -115,6 +130,11 @@ function App() {
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/admin' element={<DashboardAdmin />} />
+        <Route path='/admin/medicos' element={<ListadoMedicos />} />
+        <Route path='/admin/Pacientes' element={<ListadoPacientesAdmin />} />
+        <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
+        <Route path='/medico' element={<DashboardMedico />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />

@@ -78,7 +78,7 @@ function VerTratamiento() {
                 <Container className="py-5">
                     <Row>
                         <Col>
-                            <Card body className='shadow px-2 pt-2'>
+                            <Card body className='shadow px-2 pt-2'>    
                             <h1 className="titulo">Ver tratamiento</h1>
                             <Row>
                                 <Col lg={6}>

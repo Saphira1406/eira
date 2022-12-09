@@ -47,7 +47,7 @@ function LoginForm({onLogin}) {
                                             <Button type="submit" className="btn btn-login">Ingresar</Button>
                                         </div>
                                         <div className="text-center mb-4">
-                                            <Link to="/olvideContrasena">¿Olvidaste tu contraseña?</Link>
+                                            <Link to="/olvideCntrasena">¿Olvidaste tu contraseña?</Link>
                                         </div>
                                     </Form>
                                     <p className="text-center pb-4">¿No tenés cuenta? <Link to="/registro">Registrate acá</Link></p>
