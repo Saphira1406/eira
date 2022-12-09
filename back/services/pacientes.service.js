@@ -41,11 +41,12 @@ async function traerHistoriaClinica(idpaciente) {
 }
 
 async function editar (id, usuario) {
+    console.log("aca",id)
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
         const usuarioEditado = await db.collection('pacientes').updateOne({"_id": new ObjectId(id)}, {$set: {...usuario}})
-        await db.collection('conexiones').updateMany({"pacientes._id": new ObjectId(id)}, {$set: {"pacientes.$": {...usuario, "_id": new ObjectId(id)}}}) // probar con todos los datos en form aver si cambia
+        await db.collection('conexiones').updateMany({"pacientes._id": new ObjectId(id)}, {$set: {"pacientes.$": {...usuario, "_id": new ObjectId(id)}}}) 
         return usuarioEditado
     })
     .catch(function (err) {
