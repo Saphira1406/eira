@@ -9,6 +9,7 @@ function traerTodos(req, res) {
 }
 
 function crear(req, res) {
+    console.log(req.body)
     const tratamiento = {
         ...req.body,
         profesional: {

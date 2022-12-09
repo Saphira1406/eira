@@ -4,6 +4,7 @@ import { Form, Button, FloatingLabel } from 'react-bootstrap'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 import * as apiMedicamentos from '../services/apiMedicamentos.service.js'
+import { DateTime } from 'luxon'
 
 function FormMedicamentos(props) {
     const [medicamento, setMedicamento] = useState("")
@@ -76,7 +77,7 @@ function FormMedicamentos(props) {
                         <span className="fw-bold">Debe tomar el medicamento cada:</span> {medicamento.horas} hs
                     </span>
                     <span>
-                        <span className="fw-bold">Finaliza el:</span> {medicamento.fecha}
+                        <span className="fw-bold">Finaliza el:</span> {DateTime.fromISO(medicamento.fecha, { locale: 'es' }).toFormat('DDDD')}
                     </span>
                 </li>
                 )}

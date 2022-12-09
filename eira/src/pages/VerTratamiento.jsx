@@ -7,6 +7,7 @@ import * as ProfesionalesService from '../services/profesionales.service.js'
 import IconoEliminar from '../imgs/icono-cruz-eliminar.png'
 import { UsuarioContext } from '../context/UsuarioContext.jsx'
 import Swal from 'sweetalert2'
+import * as Notificaciones from '../services/notificacion.service.js'
 
 function VerTratamiento() {
     const { id } = useParams()
@@ -14,6 +15,8 @@ function VerTratamiento() {
     const [tratamientosDelProfesional, setTratamientosDelProfesional] = useState([])
     const [paciente, setPaciente] = useState({})
     const {usuarioLogueado} = useContext(UsuarioContext)
+
+    const tokenFB = localStorage.getItem('tokenFB')
 
     useEffect(() => {
         TratamientosService.traerPorIdPaciente(id)
@@ -61,6 +64,14 @@ function VerTratamiento() {
         })
     }
 
+    function guardarNotificacion() {
+        console.log("TOKENFB",tokenFB)
+        console.log("FECHA QUE FINALIZA",tokenFB)
+        const finalizacion = Date.now()
+        Notificaciones.guardarNotificacion({tokenFB, finalizacion})
+        .then( resp => console.log(resp))
+    }
+
     return (
         <main>
             <section>
@@ -77,6 +88,7 @@ function VerTratamiento() {
                                 <Col lg={12} >
                                     {!tratamientos.length && usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> no tiene un tratamiento asignado, si desea crear uno, <Link to={`/tratamiento/${id}`}>entrá acá</Link></p>}
                                     {!tratamientos.length && !usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> todavía no le asignaron tratamientos...</p>}
+                                    <button onClick={() => guardarNotificacion()}>guardar hora tomada</button>
                                 </Col>
                             </Row>
 

@@ -56,7 +56,7 @@ function crearHistoriaClinica(req, res) {
 function editar (req, res) {
     const id = req.params.id
     const usuario = req.body
-
+    
     console.log(id, usuario)
     PacientesServices.editar(id, usuario)
     .then(function (usuarioEditado) {
