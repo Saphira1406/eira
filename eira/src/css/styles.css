@@ -295,6 +295,18 @@ form-control::placeholder {
     background-color: #42b7ad;
 }
 
+.btn-ver-pswd, .btn-ver-pswd:hover {
+    background-color: #ededed;
+    color: #262626;
+    border-radius: 0 5px 5px 0;
+    padding: 8px 13px;
+    height: 45px;
+}
+
+#login #password, #sign-in #password {
+    border-radius: 5px 0 0 5px;
+}
+
 .btn-ver, .btn-ver:hover {
     background-color: #fbbe49;
 }
