@@ -26,7 +26,7 @@ function Dashboard() {
                 <h1 className="visually-hidden">Dashboard Pacientes</h1>
                 <Container fluid className="pt-5 px-5">
                     <Row className="g-5">
-                        <Col>
+                        <Col md={6} lg={3}>
                             <Link to={`/ver-tratamiento/${usuarioLogueado._id}`} className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
@@ -36,7 +36,7 @@ function Dashboard() {
                                 </Card>
                             </Link>
                         </Col>
-                        <Col>
+                        <Col md={6} lg={3}>
                             <Link to={`/paciente/historia-clinica`} className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
@@ -46,7 +46,7 @@ function Dashboard() {
                                 </Card>
                             </Link>
                         </Col>
-                        <Col>
+                        <Col md={6} lg={3}>
                             <Link to="#"className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
@@ -56,7 +56,7 @@ function Dashboard() {
                                 </Card>
                             </Link>
                         </Col>
-                        <Col>
+                        <Col md={6} lg={3}>
                             <Link to={`/home/perfil-paciente/${usuarioLogueado._id}`} className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">

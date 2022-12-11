@@ -20,11 +20,6 @@ function MiPerfilProfesional () {
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        /* if(window.confirm("¿Eliminar tratamiento?")) {
-            ProfesionalService.eliminar(id)
-            .then(() => alert("Profesional eliminado"))
-        }*/
-
         Swal.fire({
             title: '¿Seguro que quiere eliminar su usuario?',
             text: "No podrás volver atrás",
@@ -55,9 +50,8 @@ function MiPerfilProfesional () {
         })
     }
 
-
     return(
-        <main>
+        <main id="perfil">
             <section>
                 <Container className="py-5">
                     <Row>
@@ -65,7 +59,7 @@ function MiPerfilProfesional () {
                             <Card body className='shadow px-2 pt-2 bt-azul'>
                                 <Container>
                                     <Row>
-                                        <Col lg="8">
+                                        <Col lg="8" className="order-1 order-lg-0">
                                             <h1 className="titulo mb-3">{profesional.nombre} {profesional.apellido}</h1>
                                             <p className="fw-bold mb-1">{profesional.especialidad}</p>
                                             <p className="fw-bold mb-2">Matrícula: {profesional.matricula}</p>
@@ -73,11 +67,11 @@ function MiPerfilProfesional () {
                                             <p className="mb-2"><img src={IconoTelefono} alt="Icono de email"/> {profesional.telefono}</p>
                                             <p><img src={IconoIdentificacion} alt="Icono de email"/> {profesional.dni}</p>
                                         </Col>
-                                        <Col lg="4">
+                                        <Col lg="4" className="order-0 order-lg-1 text-center">
                                             <img src={IconoUsuario} alt="Icono de usuario" className="img-fluid"/>
                                         </Col>
-                                        <Col>
-                                            <div className="d-flex justify-content-center align-items-center mt-2 mb-5">
+                                        <Col className="order-3">
+                                            <div className="d-flex justify-content-center align-items-center mt-2 mb-5 flex-column flex-md-row">
                                                 <Link to={`/editar-perfil/${id}`} state={{profesional}} className="btn me-3 btn-editar-perfil">Editar información</Link>
                                                 <form onSubmit={handleSubmit}>
                                                     <button type="submit" className="btn btn-eliminar-perfil">Eliminar perfil</button>

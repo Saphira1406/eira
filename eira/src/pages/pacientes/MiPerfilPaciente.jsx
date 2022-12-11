@@ -23,12 +23,6 @@ function MiPerfilPaciente () {
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        /*if(window.confirm("¿Querés eliminar tu usuario?")) {
-            PacienteService.eliminar(usuarioLogueado._id)
-            .then(() => alert("Eliminaste tu usuario eliminado"))
-            localStorage.removeItem('usuario')
-        }*/
-
         Swal.fire({
             title: '¿Seguro que quiere eliminar su usuario?',
             text: "Al eliminar tu perfil se borrarán tus datos de forma definitiva y no podrán recuperarse.",
@@ -65,7 +59,7 @@ function MiPerfilPaciente () {
     }
 
     return(
-        <main>
+        <main id="perfil">
             <section>
                 <Container className="py-5">
                     <Row>
@@ -73,18 +67,18 @@ function MiPerfilPaciente () {
                             <Card body className='shadow px-2 pt-2 bt-azul'>
                                 <Container>
                                     <Row>
-                                        <Col lg="8">
+                                        <Col lg="8" className="order-1 order-lg-0">
                                             <h1 className="titulo mb-3">{paciente.nombre} {paciente.apellido}</h1>
                                             <p className="mb-2"><img src={IconoEmail} alt="Icono de email"/> {paciente.email}</p>
                                             <p className="mb-2"><img src={IconoTelefono} alt="Icono de email"/> {paciente.telefono}</p>
                                             <p><img src={IconoIdentificacion} alt="Icono de email"/> {paciente.dni}</p>
                                         </Col>
-                                        <Col lg="4">
+                                        <Col lg="4" className="order-0 order-lg-1 text-center">
                                             <img src={IconoUsuario} alt="Icono de usuario" className="img-fluid"/>
                                         </Col>
-                                        <Col>
-                                            <div className="d-flex justify-content-center align-items-center mt-2 mb-5">
-                                                <Link to={`/paciente/editar-perfil/${id}`} state={{paciente}} className="btn me-3 btn-editar-perfil">Editar información</Link>
+                                        <Col className="order-3">
+                                            <div className="d-flex justify-content-center align-items-center mt-2 mb-5 flex-column flex-md-row">
+                                                <Link to={`/paciente/editar-perfil/${id}`} state={{paciente}} className="btn me-md-3 btn-editar-perfil mb-4 mb-md-0">Editar información</Link>
                                                 <form onSubmit={handleSubmit}>
                                                     <button type="submit" className="btn btn-eliminar-perfil">Eliminar perfil</button>
                                                 </form>

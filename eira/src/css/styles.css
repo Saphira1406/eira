@@ -368,6 +368,11 @@ form-control::placeholder {
     border-radius: 5px;
 }
 
+#ver-tratamiendo, #historia-clinica {
+    background-image: url('../imgs/fondo-generico.jpg');
+    background-repeat: repeat-y;
+}
+
 .accordion-item {
     border: none !important;
     background-color: transparent;
@@ -395,6 +400,14 @@ form-control::placeholder {
     font-size: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.tratamiento-header-paciente {
+    background-color: #42b7ad;
+    color: #ffffff;
+    font-size: 17px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -469,7 +482,7 @@ form-control::placeholder {
     color: #fff;
 }
 
-#dashboard {
+#dashboard, #perfil {
     background-image: url('../imgs/fondo-listado-pacientes.jpg');
     background-position: center;
     background-repeat: no-repeat;
@@ -536,4 +549,16 @@ footer ul li a {
 
 a {
     text-decoration: none;
+}
+
+@media (max-width: 576px) {
+    .btn-login, .btn-login:hover {
+        width: 70%;
+    }
+}
+
+@media (max-width: 375px) {
+    .btn-login, .btn-login:hover {
+        width: 100%;
+    }
 }
