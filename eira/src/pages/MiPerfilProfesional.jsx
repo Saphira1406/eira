@@ -72,7 +72,7 @@ function MiPerfilProfesional () {
                                         </Col>
                                         <Col className="order-3">
                                             <div className="d-flex justify-content-center align-items-center mt-2 mb-5 flex-column flex-md-row">
-                                                <Link to={`/editar-perfil/${id}`} state={{profesional}} className="btn me-3 btn-editar-perfil">Editar información</Link>
+                                                <Link to={`/editar-perfil/${id}`} state={{profesional}} className="btn me-md-3 btn-editar-perfil mb-4 mb-md-0">Editar información</Link>
                                                 <form onSubmit={handleSubmit}>
                                                     <button type="submit" className="btn btn-eliminar-perfil">Eliminar perfil</button>
                                                 </form>

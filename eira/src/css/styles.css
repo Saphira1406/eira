@@ -226,17 +226,17 @@ textarea.form-control {
 #nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password, #obraSocial, #afiliado {
     background-position: 10px center;
     background-repeat: no-repeat;
-    text-indent: 25px;
+    text-indent: 25px ;
     background-color: #ededed;
     border: none;
     border-radius: 10px;
     height: 45px;
 }
 
-#mensaje {
+#mensajeContacto {
     background-position: 10px 10px;
-    text-indent:20px;
     background-repeat: no-repeat;
+    text-indent: 25px ;
     background-color: #ededed;
     border: none;
     border-radius: 10px;
@@ -254,7 +254,7 @@ textarea.form-control {
     background-image: url('../imgs/icono-telefono-gris.png');
 }
 
-#email, #mensaje {
+#email, #mensajeContacto {
     background-image: url('../imgs/icono-email-gris.png');
 }
 
@@ -373,9 +373,13 @@ form-control::placeholder {
     border-radius: 5px;
 }
 
-#ver-tratamiendo, #historia-clinica {
+.fondo-generico {
     background-image: url('../imgs/fondo-generico.jpg');
     background-repeat: repeat-y;
+}
+
+.accordion-header p {
+    margin-bottom: 0px;
 }
 
 .accordion-item {
@@ -429,6 +433,7 @@ form-control::placeholder {
     font-weight: 500;
     width: 23%;
     border-radius: 10px;
+    padding: 3px 10px;
 }
 
 .btn-agregar, .btn-agregar:hover {
@@ -437,6 +442,7 @@ form-control::placeholder {
     font-weight: 500;
     width: 15%;
     border-radius: 10px;
+    padding: 3px 10px;
 }
 
 .btn-editar {
@@ -444,6 +450,8 @@ form-control::placeholder {
     color: #ffffff;
     font-weight: 500;
     border-radius: 10px;
+    padding: 3px 10px;
+    width: 35%;
 }
 
 .lista-agregada, .lista-agregada-meds, .lista-antecedentes, .lista-archivos {
@@ -480,11 +488,15 @@ form-control::placeholder {
 .btn-editar-perfil, .btn-editar-perfil:hover {
     background-color: #4971b7;
     color: #fff;
+    padding: 3px 30px;
+    border-radius: 10px;
 }
 
 .btn-eliminar-perfil, .btn-eliminar-perfil:hover {
     background-color: #f3944f;
     color: #fff;
+    padding: 3px 50px;
+    border-radius: 10px;
 }
 
 #dashboard, #perfil {
@@ -556,6 +568,58 @@ a {
     text-decoration: none;
 }
 
+.acciones button, .acciones button:hover, .acciones button:active, .acciones button:focus, .acciones button:target  {
+    font-size: 14px;
+    background-color: #36beb0;
+    border: none;
+}
+
+.link-eliminar {
+    color: #4971B7;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    font-size: 16px !important;
+    color: #F3944D;
+    background-color: transparent !important;
+    margin-left: 15px;
+}
+
+.swal2-title, .swal2-html-container {
+    color: #262626;
+    font-family: 'Poppins', sans-serif;
+}
+
+.swal2-actions button {
+    border-radius: 10px !important;
+    padding: 3px 50px;
+}
+
+.btn-mensaje-chat, .btn-mensaje-chat:hover, .btn-mensaje-chat:active, .btn-mensaje-chat:focus {
+    background-color: #36beb0;
+    color: #ffffff;
+    border: none;
+    border-radius: 0 10px 10px 0;
+}
+
+#mensaje {
+    border-radius: 10px 0 0 10px;
+}
+
+.mensaje-own {
+    background-color: #5AD1C4;
+    color: #fff;
+}
+
+.mensaje-other {
+    background-color: #688FD6;
+    color: #fff;
+}
+
+.mensaje-own #fecha, .mensaje-other #fecha {
+    font-size: 12px;
+}
+
 @media (max-width: 992px) {
     #header-home, #pacientes, #profesionales {
         text-align: center;
@@ -586,8 +650,23 @@ a {
         margin-bottom: 10px;
     }
 
+    .navbar-mobile a {
+        color: #ffffff8c;
+        font-weight: 500;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
     .navbar-mobile a, .navbar-mobile form{
         margin-left: 38px;
+    }
+
+    .btn-agregar {
+        width: 30%;
+    }
+
+    .btn-crear-tratamiento {
+        width: 35%;
     }
 }
 
@@ -599,6 +678,22 @@ a {
     #profesionales img, #pacientes img {
         width: 100%;
     }
+
+    .btn-agregar {
+        width: 40%;
+    }
+
+    .btn-crear-tratamiento {
+        width: 50%;
+    }
+
+    .swal2-title {
+        font-size: 25px;
+    }
+
+    .btn-editar {
+        width: 70%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -608,6 +703,22 @@ a {
 
     #pacientes a, #profesionales a, #header-home a, #contacto button {
         width: 80%;
+    }
+
+    .titulo {
+        font-size: 28px !important;
+    }
+
+    .btn-agregar {
+        width: 70%;
+    }
+
+    .btn-crear-tratamiento {
+        width: 80%;
+    }
+
+    .btn-editar {
+        width: 100%;
     }
 }
 
@@ -634,5 +745,13 @@ a {
 
     #sign-in p {
         font-size: 14px;
+    }
+
+    .titulo {
+        font-size: 25px !important;
+    }
+
+    .btn-agregar, .btn-crear-tratamiento {
+        width: 100%;
     }
 }

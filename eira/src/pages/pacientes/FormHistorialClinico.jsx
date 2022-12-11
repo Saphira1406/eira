@@ -49,7 +49,7 @@ function FormHistorialClinico () {
 
 
     return (
-        <main>
+        <main className="fondo-generico">
         <section>
             <Container className="py-5">
                 <Row>

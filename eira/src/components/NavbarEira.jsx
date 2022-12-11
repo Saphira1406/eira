@@ -29,12 +29,12 @@ function NavbarEira() {
                                     <img src={IconoUsuarioAzul} alt="Icono de usuario color azul" className="img-fluid"/>
                                     <span className="nombreNavbar">{usuarioLogueado?.nombre}</span>
                                 </div>
-                                <Nav.Link to={`/`} className="nav-link">Inicio</Nav.Link>
-                                {!usuarioLogueado.matricula && <Nav.Link to={`/paciente`} className="dropdown-item">Dashboard</Nav.Link>}
-                                {usuarioLogueado.matricula && <Nav.Link to={`/medico`} className="dropdown-item">Dashboard</Nav.Link>}
-                                {usuarioLogueado?.matricula && <Nav.Link to={`/profesional/pacientes`} className="dropdown-item">Lista mis pacientes</Nav.Link>}
-                                {usuarioLogueado && <Nav.Link to={usuarioLogueado.matricula ? `/mi-perfil/${usuarioLogueado._id}` : `/home/perfil-paciente/${usuarioLogueado._id}`} className="dropdown-item">Mi perfil</Nav.Link>}
-                                {!usuarioLogueado.matricula && <Nav.Link to={`/paciente/historia-clinica`} className="dropdown-item">Mi historia clínica</Nav.Link>}
+                                <Link to={`/`} className="nav-link">Inicio</Link>
+                                {!usuarioLogueado.matricula && <Link to={`/paciente`} className="dropdown-item">Dashboard</Link>}
+                                {usuarioLogueado.matricula && <Link to={`/medico`} className="dropdown-item">Dashboard</Link>}
+                                {usuarioLogueado?.matricula && <Link to={`/profesional/pacientes`} className="dropdown-item">Lista mis pacientes</Link>}
+                                {usuarioLogueado && <Link to={usuarioLogueado.matricula ? `/mi-perfil/${usuarioLogueado._id}` : `/home/perfil-paciente/${usuarioLogueado._id}`} className="dropdown-item">Mi perfil</Link>}
+                                {!usuarioLogueado.matricula && <Link to={`/paciente/historia-clinica`} className="dropdown-item">Mi historia clínica</Link>}
                                 {usuarioLogueado && <Logout />}
                             </div>
                             <NavDropdown className="d-none d-lg-block" title={

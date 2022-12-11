@@ -2,7 +2,7 @@ import { Alert , Container, Row, Col } from 'react-bootstrap'
 
 function MensajeFaltaVerificacion() {
     return (
-        <main>
+        <main className="fondo-generico">
             <section>
                 <Container className='mt-5'>
                     <Row>

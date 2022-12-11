@@ -40,10 +40,11 @@ function VerTratamiento() {
             text: "No podrás volver atrás",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#4971B7',
+            cancelButtonColor: '#F3944D',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
+            grow: 'row'
         })
         .then((result) => {
             if (result.isConfirmed) {
@@ -73,7 +74,7 @@ function VerTratamiento() {
     }
 
     return (
-        <main id="ver-tratamiendo">
+        <main className="fondo-generico">
             <section>
                 <Container className="py-5">
                     <Row>
@@ -88,8 +89,8 @@ function VerTratamiento() {
                                         <p className='text-lg-end'><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
                                     </Col>
                                     <Col lg={12} >
-                                        {!tratamientos.length && usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> no tiene un tratamiento asignado, si desea crear uno, <Link to={`/tratamiento/${id}`}>entrá acá</Link></p>}
-                                        {!tratamientos.length && !usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> todavía no le asignaron tratamientos...</p>}
+                                        {!tratamientos.length && usuarioLogueado.matricula && <p className=" my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> no tiene un tratamiento asignado, si querés crear uno, <Link to={`/tratamiento/${id}`}>entrá acá</Link></p>}
+                                        {!tratamientos.length && !usuarioLogueado.matricula && <p className=" my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> todavía no te asignaron tratamientos...</p>}
                                         <button onClick={() => guardarNotificacion()}>guardar hora tomada</button>
                                     </Col>
                                 </Row>

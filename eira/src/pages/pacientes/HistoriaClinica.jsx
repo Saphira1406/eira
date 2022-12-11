@@ -24,7 +24,7 @@ function VerHistoriaClinica() {
     }, [])
 
     return (
-        <main id="historia-clinica">
+        <main className="fondo-generico">
             <section>
                 <Container className="py-5">
                     <Row>

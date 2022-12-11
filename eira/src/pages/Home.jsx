@@ -118,7 +118,7 @@ function Home() {
                                         </Form.Group>
                                     </Col>
                                 </Row>
-                                <Form.Group className="mb-4" controlId="mensaje">
+                                <Form.Group className="mb-4" controlId="mensajeContacto">
                                     <Form.Control as="textarea" rows={3} placeholder="Tu mensaje" />
                                 </Form.Group>
                                 <div className='d-flex justify-content-center'>
