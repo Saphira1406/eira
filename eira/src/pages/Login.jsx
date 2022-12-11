@@ -24,7 +24,7 @@ function LoginForm({onLogin}) {
             <section>
                 <Container>
                     <Row>
-                        <Col lg={6} className="mx-auto">
+                        <Col lg={6} className="mx-auto mt-5">
                             <Card className="my-5">
                                 <Card.Body>
                                     <h1 className="text-center mb-4 pt-4">Iniciar Sesión</h1>

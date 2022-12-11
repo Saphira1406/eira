@@ -14,11 +14,15 @@ body {
 }
 
 main {
-    min-height: 87vh;
+    min-height: 88vh;
 }
 
 a, a:hover {
     color: #4971b7;
+}
+
+.nav-link {
+    font-weight: 500;
 }
 
 .bgNavbarGreen {
@@ -90,6 +94,7 @@ a, a:hover {
 
 .down-div {
     margin-top: -10px;
+    background-color: transparent;
 }
 
 .down-button {
@@ -543,7 +548,7 @@ footer ul li a {
 }
 
 
-.navbar-toggler-icon {
+#logueado-navbar .navbar-toggler-icon {
     background-image: url("../imgs/icono-usuario-blanco.png") !important;
 }
 
@@ -551,14 +556,68 @@ a {
     text-decoration: none;
 }
 
+@media (max-width: 992px) {
+    #header-home, #pacientes, #profesionales {
+        text-align: center;
+    }
+
+    #header-home h1 {
+        font-size: 30px;
+        margin-top: 30px;
+    }
+
+    #header-home p {
+        font-size: 17px;
+    }
+
+    #header-home img, #profesionales img {
+        width: 60%;
+        margin-bottom: 30px;
+    }
+
+    #pacientes img {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    #header-home img {
+        width: 80%;
+    }
+
+    #profesionales img, #pacientes img {
+        width: 100%;
+    }
+}
+
 @media (max-width: 576px) {
     .btn-login, .btn-login:hover {
         width: 70%;
+    }
+
+    #pacientes a, #profesionales a, #header-home a, #contacto button {
+        width: 80%;
     }
 }
 
 @media (max-width: 375px) {
     .btn-login, .btn-login:hover {
+        width: 100%;
+    }
+
+    #header-home h1 {
+        font-size: 25px;
+    }
+
+    #header-home p {
+        font-size: 16px;
+    }
+
+    #pacientes h2, #profesionales h2, #contacto h2 {
+        font-size: 23px;
+    }
+
+    #pacientes a, #profesionales a, #header-home a, #contacto button {
         width: 100%;
     }
 }

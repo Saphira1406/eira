@@ -17,7 +17,9 @@ function Home() {
                         <Col lg={6}>
                             <h1 className='mb-2'>EIRA TE AYUDA A RECORDAR SIN IMPORTAR DÓNDE ESTÉS</h1>
                             <p className='mb-4'>Ayudamos a los pacientes a recordar sus tratamientos y a los medicos a hacer el seguimiento del mismo.</p>
-                            <Link to={`/registro`} className="nav-link btn btn-primary">Registrate</Link>
+                            <div className='d-flex justify-content-center d-lg-block mb-4 mb-lg-0'>
+                                <Link to={`/registro`} className="nav-link btn btn-primary">Registrate</Link>
+                            </div>
                         </Col>
                         <Col lg={6}>
                             <img src={ImgHeader} alt="Ilustración representando aplicación de salud" className='img-fluid'/>
@@ -31,17 +33,17 @@ function Home() {
 
             <section className='py-5' id='funciones'>
                 <Container className='py-5'>
-                    <Row md={1} lg={3} className="g-5">
-                        <Col>
+                    <Row className="g-5">
+                        <Col md={6} lg={4}>
                             <Card className='border-0 shadow'>
                                 <Card.Body className='text-center py-4'>
                                     <img src={IconoHistorial} alt="Icono historia clínica" className='mb-3 img-fluid'/>
                                     <p className='titulo-item mb-1'>Ver tratamientos</p>
-                                    <p className='texto-item mb-0'>Como paciente podrás ver tus tratamiento médicos y recibir recordatorios. Como profesional de la salud podrás ver la adherencia de tus pacientes a los tratamientos.</p>
+                                    <p className='texto-item mb-0'>Como paciente podrás ver tus tratamientos y recibir recordatorios. Como profesional de la salud podrás ver la adherencia de tus pacientes.</p>
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col>
+                        <Col md={6} lg={4}>
                             <Card className='border-0 shadow'>
                                 <Card.Body className='text-center py-4'>
                                     <img src={IconoNotificacion} alt="Icono historia clínica" className='mb-3 img-fluid'/>
@@ -50,7 +52,7 @@ function Home() {
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col>
+                        <Col lg={4}>
                             <Card className='border-0 shadow'>
                                 <Card.Body className='text-center py-4'>
                                     <img src={IconoCompartir} alt="Icono historia clínica" className='mb-3 img-fluid'/>
@@ -66,14 +68,17 @@ function Home() {
             <section id='pacientes' className='py-5'>
                 <Container className='py-4'>
                     <Row className='align-items-center'>
-                        <Col lg={6} className="text-center">
+                        <Col lg={6} className="text-center d-none d-lg-block">
                             <img src={MockupCelular} alt="Pantallas de celular con vistas de la app Eira" className='img-fluid'/>
                         </Col>
                         <Col lg={6}>
-                            <h2 className='mb-3'><span className='text-verde-claro'>NO</span> TE OLVIDES MÁS</h2>
+                            <h2 className='mb-4 mb-lg-3'><span className='text-verde-claro'>NO</span> TE OLVIDES MÁS</h2>
                             <p>Eira facilita a los pacientes elseguimiento de sus tratamientos médicos prolongados, ayudándoles a recordar qué ejercicios tienen que hacer, qué medicamentos deben tomar y si tienen algún tipo de restricción con respecto a las comidas que pueden ingerir.</p>
+                            <img src={MockupCelular} alt="Pantallas de celular con vistas de la app Eira" className='img-fluid d-inline d-lg-none mb-4'/>
                             <p className='mb-4'>Eira permite tener toda esta información en el celular, para poder aceder desde cualquier lugar y en cualquier momento.</p>
-                            <Link to={`/registro`} className="nav-link btn btn-primary">¡Quiero registrarme como paciente!</Link>
+                            <div className='d-flex justify-content-center d-lg-block'>
+                                <Link to={`/registro`} className="nav-link btn btn-primary">¡Quiero registrarme como paciente!</Link>
+                            </div>
                         </Col>
                     </Row>
                 </Container>
@@ -84,7 +89,9 @@ function Home() {
                         <Col lg={6}>
                             <h2 className='mb-3'>SEGUÍ EL <span className='text-verde-claro'>PROGRESO</span> DE TUS PACIENTES</h2>
                             <p className='mb-4'>Con Eira seguí el progreso de tus pacientes en los tratamientos asignados sin que deban asistir al consultorio y alivianando la agenda de turnos.</p>
-                           <Link to={`/registro`} className="nav-link btn btn-primary">¡Quiero registrarme como paciente!</Link>
+                            <div className='d-flex justify-content-center d-lg-block mb-4 mb-lg-0'>
+                                <Link to={`/registro`} className="nav-link btn btn-primary">¡Quiero registrarme como paciente!</Link>
+                            </div>
                         </Col>
                         <Col lg={6} className="text-center">
                             <img src={ImgProfesionales} alt="Profesionales de la salud" className='img-fluid'/>
@@ -99,13 +106,13 @@ function Home() {
                             <h2 className='text-center'>CONTACTO</h2>
                             <p className='text-center mb-4'>Si querés recibir más información, no dudes en contactarnos</p>
                             <Form>
-                                <Row className='mb-3'>
-                                    <Col>
+                                <Row className='mb-0 mb-md-3'>
+                                    <Col md={6}>
                                         <Form.Group className="mb-3" controlId="nombre">
                                             <Form.Control type="text" placeholder="Nombre" />
                                         </Form.Group>
                                     </Col>
-                                    <Col>
+                                    <Col md={6}>
                                         <Form.Group className="mb-3" controlId="email">
                                             <Form.Control type="email" placeholder="Email" />
                                         </Form.Group>

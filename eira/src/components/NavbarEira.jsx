@@ -18,7 +18,7 @@ function NavbarEira() {
 
     return (
         <header>
-            <Navbar className="bgNavbarGreen fw-bold" expand="lg" variant="dark">
+            <Navbar className="bgNavbarGreen fw-bold" expand="lg" variant="dark" id="logueado-navbar">
                 <Container fluid>
                     <Link to={`/`} ><img src={LogoEiraBlanco} alt="Logo de Eira" /> </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
