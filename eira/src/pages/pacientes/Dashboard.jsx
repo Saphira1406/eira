@@ -21,8 +21,8 @@ function Dashboard() {
         }, [])
 
     return (
-        <main id="dashboard" className="pt-5">
-            <section className="pt-5">
+        <main id="dashboard" className="pt-lg-5 pb-5">
+            <section className="pt-lg-5">
                 <h1 className="visually-hidden">Dashboard Pacientes</h1>
                 <Container fluid className="pt-5 px-5">
                     <Row className="g-5">

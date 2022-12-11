@@ -578,6 +578,17 @@ a {
     #pacientes img {
         width: 70%;
     }
+
+    .logout {
+        color: #ffffff8c;
+        font-weight: 500;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .navbar-mobile a, .navbar-mobile form{
+        margin-left: 38px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -619,5 +630,9 @@ a {
 
     #pacientes a, #profesionales a, #header-home a, #contacto button {
         width: 100%;
+    }
+
+    #sign-in p {
+        font-size: 14px;
     }
 }

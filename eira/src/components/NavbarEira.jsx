@@ -24,7 +24,20 @@ function NavbarEira() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <NavDropdown title={
+                            <div className="d-lg-none navbar-mobile">
+                                <div className="mt-4">
+                                    <img src={IconoUsuarioAzul} alt="Icono de usuario color azul" className="img-fluid"/>
+                                    <span className="nombreNavbar">{usuarioLogueado?.nombre}</span>
+                                </div>
+                                <Nav.Link to={`/`} className="nav-link">Inicio</Nav.Link>
+                                {!usuarioLogueado.matricula && <Nav.Link to={`/paciente`} className="dropdown-item">Dashboard</Nav.Link>}
+                                {usuarioLogueado.matricula && <Nav.Link to={`/medico`} className="dropdown-item">Dashboard</Nav.Link>}
+                                {usuarioLogueado?.matricula && <Nav.Link to={`/profesional/pacientes`} className="dropdown-item">Lista mis pacientes</Nav.Link>}
+                                {usuarioLogueado && <Nav.Link to={usuarioLogueado.matricula ? `/mi-perfil/${usuarioLogueado._id}` : `/home/perfil-paciente/${usuarioLogueado._id}`} className="dropdown-item">Mi perfil</Nav.Link>}
+                                {!usuarioLogueado.matricula && <Nav.Link to={`/paciente/historia-clinica`} className="dropdown-item">Mi historia clínica</Nav.Link>}
+                                {usuarioLogueado && <Logout />}
+                            </div>
+                            <NavDropdown className="d-none d-lg-block" title={
                                     <img src={IconoUsuarioBlanco} alt="Icono de usuario blanco" className="img-fluid"/>
                                 } id="basic-nav-dropdown">
                                 {usuarioLogueado &&
@@ -37,8 +50,6 @@ function NavbarEira() {
                                 <NavDropdown.Divider />
 
                                 <Link to={`/`} className="dropdown-item">Inicio</Link>
-                                {!usuarioLogueado && <Link to={`/login`} className="dropdown-item">Iniciar sesión</Link>}
-                                {!usuarioLogueado && <Link to={`/registro`} className="dropdown-item">Registrarse</Link>}
                                 {!usuarioLogueado.matricula && <Link to={`/paciente`} className="dropdown-item">Dashboard</Link>}
                                 {usuarioLogueado.matricula && <Link to={`/medico`} className="dropdown-item">Dashboard</Link>}
                                 {usuarioLogueado?.matricula && <Link to={`/profesional/pacientes`} className="dropdown-item">Lista mis pacientes</Link>}

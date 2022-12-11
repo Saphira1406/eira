@@ -21,7 +21,7 @@ function NavbarEira() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Link to={`/`} className="nav-link">Inicio</Link>
+                            <Nav.Link to={`/`} className="nav-link">Inicio</Nav.Link>
                             <Nav.Link href="#funciones">Beneficios</Nav.Link>
                             <Nav.Link href="#pacientes">Pacientes</Nav.Link>
                             <Nav.Link href="#profesionales">Profesionales</Nav.Link>
