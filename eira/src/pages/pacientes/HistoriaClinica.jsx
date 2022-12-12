@@ -7,11 +7,11 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 function VerHistoriaClinica() {
-    
     //const usuarioLogueado = useContext(UsuarioContext)
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
     const [historiaClinica, setHistoriaClinica] = useState({})
     let navigate = useNavigate();
+
     useEffect(() => {
         if(!usuarioLogueado.matricula) {
             PacientesService.traerHistoriaClinica(usuarioLogueado._id)
@@ -20,24 +20,20 @@ function VerHistoriaClinica() {
         })
         } else {
             navigate('/profesional/pacientes', { replace: true })
-           
         }
-       
-
     }, [])
-console.log(historiaClinica)
-
 
     return (
-        <main>
+        <main className="fondo-generico">
             <section>
                 <Container className="py-5">
                     <Row>
                         <Col>
                             <Card body className='shadow px-2 pt-2'>
                             <h1 className="titulo">Historia clínica</h1>
-                            {!historiaClinica && <p>Todavía no completaste tu historia clínica. <Link to={`/paciente/formulario-historia-clinica`}>Podes hacerlo acá</Link></p>}
-                            {historiaClinica && 
+                            {!historiaClinica && <p>Todavía no completaste tu historia clínica. <Link to={`/paciente/formulario-historia-clinica`}>Podés hacerlo acá</Link></p>}
+
+                            {historiaClinica &&
                                 <>
                                 <Container className='my-4'>
                                     <Row>
@@ -57,10 +53,10 @@ console.log(historiaClinica)
                                 <Card className="border-0 shadow my-4">
                                     <Card.Header className="tratamiento-header">Medicamentos</Card.Header>
                                     <Card.Body className="px-4">
-                                        <ul className="lista-agregada d-flex justify-content-center mt-3">
-                                            {historiaClinica.medicamentos?.map((medicamento, i) => 
-                                                <li className="shadow mx-2" key={i}>
-                                                <span>{medicamento}</span>
+                                        <ul className="lista-agregada d-md-flex justify-content-center mt-3">
+                                            {historiaClinica.medicamentos?.map((medicamento, i) =>
+                                                <li className="shadow mx-2 mb-3 mb-md-0" key={i}>
+                                                    <span>{medicamento}</span>
                                                 </li>
                                             )}
                                         </ul>
@@ -108,7 +104,7 @@ console.log(historiaClinica)
                                 <Card className="border-0 shadow my-4">
                                     <Card.Header className="tratamiento-header">Exámenes complementarios</Card.Header>
                                     <Card.Body className="px-4">
-                                        <ul className='lista-archivos d-flex'>
+                                        <ul className='lista-archivos d-md-flex text-center'>
                                             <li>
                                                 <img src={IconoArchivo} alt="icono de archivo"/><br/>
                                                 <span>archivo.jpg</span>

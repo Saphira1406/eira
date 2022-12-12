@@ -18,7 +18,7 @@ function VerHistoriaClinica() {
     }, [])
 
     return (
-        <main>
+        <main className="fondo-generico">
             <section>
                 <Container className="py-5">
                     <Row>
@@ -44,22 +44,22 @@ function VerHistoriaClinica() {
                                     </Row>
                                 </Container>
 
-                                <Accordion alwaysOpen className='mt-3 mb-4'>
-                                <Accordion.Item eventKey="0" className='shadow'>
-                                    <Accordion.Header>Medicamentos</Accordion.Header>
-                                    <Accordion.Body>
-                                        <ul className="lista-agregada d-flex justify-content-center mt-3">
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Medicamentos</Card.Header>
+                                    <Card.Body className="px-4">
+                                        <ul className="lista-agregada d-md-flex justify-content-center mt-3">
                                             {historiaClinica.medicamentos?.map((medicamento, i) =>
                                                 <li className="shadow mx-2" key={i}>
                                                     <span>{medicamento}</span>
                                                 </li>
                                             )}
                                         </ul>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <Accordion.Item eventKey="1" className='shadow my-4'>
-                                    <Accordion.Header>Antecedentes personales</Accordion.Header>
-                                    <Accordion.Body>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Antecedentes personales</Card.Header>
+                                    <Card.Body className="px-4">
                                         <ul className="lista-antecedentes mt-3">
                                             <li>
                                                 <span className="fw-bold">Fumador:</span> {historiaClinica.fumador}
@@ -68,11 +68,12 @@ function VerHistoriaClinica() {
                                                 <span className="fw-bold">Consume alcohol:</span> {historiaClinica.alcohol}
                                             </li>
                                         </ul>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <Accordion.Item eventKey="2" className='shadow my-4'>
-                                    <Accordion.Header>Hábitos</Accordion.Header>
-                                    <Accordion.Body>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Hábitos</Card.Header>
+                                    <Card.Body className="px-4">
                                         <ul className="lista-antecedentes mt-3">
                                             <li>
                                                 <span className="fw-bold">cantidad de comidas por día:</span> {historiaClinica.comidasDiarias}
@@ -84,18 +85,20 @@ function VerHistoriaClinica() {
                                                 <span className="fw-bold">Hábitos de sueño:</span> {historiaClinica.habitosSuenio}
                                             </li>
                                         </ul>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <Accordion.Item eventKey="3" className='shadow my-4'>
-                                    <Accordion.Header>Antecedentes familiares</Accordion.Header>
-                                    <Accordion.Body>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Antecedentes familiares</Card.Header>
+                                    <Card.Body className="px-4">
                                         <p className='text-antecedentes'>{historiaClinica.antecedentesFamiliares}</p>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <Accordion.Item eventKey="4" className='shadow my-4'>
-                                    <Accordion.Header>Exámenes complementarios</Accordion.Header>
-                                    <Accordion.Body>
-                                        <ul className='lista-archivos d-flex'>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card className="border-0 shadow my-4">
+                                    <Card.Header className="tratamiento-header">Exámenes complementarios</Card.Header>
+                                    <Card.Body className="px-4">
+                                        <ul className='lista-archivos d-md-flex text-center'>
                                             <li>
                                                 <img src={IconoArchivo} alt="icono de archivo"/><br/>
                                                 <span>archivo.jpg</span>
@@ -113,9 +116,8 @@ function VerHistoriaClinica() {
                                                 <span>archivo.jpg</span>
                                             </li>
                                         </ul>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                            </Accordion>
+                                    </Card.Body>
+                                </Card>
                             </>
                             }
                             </Card>

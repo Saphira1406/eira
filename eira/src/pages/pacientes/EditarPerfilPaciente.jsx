@@ -23,7 +23,7 @@ function EditarPerfilPaciente() {
     }
 
     return (
-        <main>
+        <main id="perfil">
             <section>
                 <Container className="py-5">
                     <Row>
@@ -32,24 +32,24 @@ function EditarPerfilPaciente() {
                             <h1 className="titulo mb-3">Editar mi perfil (paciente)</h1>
                                 <Form onSubmit={handleSubmit}>
                                     <Row>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="nombre" label="Nombre">
                                                 <Form.Control type="text" placeholder="Nombre" name="nombre" value={nombre} onChange={(ev) => setNombre(ev.target.value)}/>
                                             </FloatingLabel>
                                         </Col>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="apellido" label="Aellido">
                                                 <Form.Control type="text" placeholder="Apellido" name="apellido" value={apellido} onChange={(ev) => setApellido(ev.target.value)}/>
                                             </FloatingLabel>
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="telefono" label="Teléfono">
                                                 <Form.Control type="text" placeholder="Teléfono" name="telefono" value={telefono} onChange={(ev) => setTelefono(ev.target.value)}/>
                                             </FloatingLabel>
                                         </Col>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="email" label="Email">
                                                 <Form.Control type="text" placeholder="Email" name="email" value={email} onChange={(ev) => setEmail(ev.target.value)} disabled/>
                                             </FloatingLabel>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import * as ProfesionalesService from '../services/profesionales.service.js'
 import { Link, useNavigate } from 'react-router-dom'
-import { Card, Container, Row, Col, Form, Table, Tooltip } from 'react-bootstrap'
+import { Card, Container, Row, Col, Form, Table, Tooltip, Dropdown } from 'react-bootstrap'
 import IconoCrear from '../imgs/icono-crear.png'
 import IconoVer from '../imgs/icono-ver.png'
 import IconoEliminar from '../imgs/icono-eliminar.png'
@@ -64,10 +64,11 @@ function ListadoPacientes() {
             text: "No podrás volver atrás",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#4971B7',
+            cancelButtonColor: '#F3944D',
             confirmButtonText: 'Sí, eliminarlo',
             cancelButtonText: 'Cancelar',
+            grow: 'row'
         })
         .then((result) => {
             if (result.isConfirmed) {
@@ -104,8 +105,8 @@ function ListadoPacientes() {
                                         <th>DNI</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
-                                        <th>Email</th>
-                                        <th>Acciones</th>
+                                        <th className='d-none d-lg-table-cell'>Email</th>
+                                        <th className='d-none d-md-table-cell'>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -115,11 +116,11 @@ function ListadoPacientes() {
                                         <td>{paciente.dni}</td>
                                         <td>{paciente.nombre}</td>
                                         <td>{paciente.apellido}</td>
-                                        <td>{paciente.email}</td>
-                                        <td className='d-flex'>
+                                        <td className='d-none d-lg-table-cell'>{paciente.email}</td>
+                                        <td className='d-none d-md-flex'>
                                             <OverlayTrigger placement="top" overlay={
                                                 <Tooltip id="tooltip-top1">
-                                                    Crear historia clínica
+                                                    Crear tratamiento
                                                 </Tooltip>
                                             }>
                                             <Link to={`/tratamiento/${paciente._id}`} className="btn btn-crear me-2"><img src={IconoCrear} alt="Icono crear"/></Link>
@@ -148,6 +149,32 @@ function ListadoPacientes() {
                                                 <input type="hidden" name="idPaciente" value={paciente._id}/>
                                             </form>
                                             </OverlayTrigger>
+                                        </td>
+                                        <td className='d-md-none'>
+                                            <Dropdown className="acciones">
+                                                <Dropdown.Toggle id="dropdown-basic">
+                                                    Acciones
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item>
+                                                        <Link to={`/tratamiento/${paciente._id}`} className="link-crear">Crear tratamiento</Link>
+                                                    </Dropdown.Item>
+                                                    <Dropdown.Divider />
+                                                    <Dropdown.Item>
+                                                        <Link to={`/ver-tratamiento/${paciente._id}`} className="link-ver">Ver tratamiento</Link>
+                                                    </Dropdown.Item>
+                                                    <Dropdown.Divider />
+                                                    <Dropdown.Item>
+                                                        <Link to={`/historia-clinica/${paciente._id}`} className="link-historia">Ver historia clínica</Link>
+                                                    </Dropdown.Item>
+                                                    <Dropdown.Divider />
+                                                    <form onSubmit={handleSubmitEliminarPaciente} >
+                                                        <button type="submit" className="link-eliminar">Eliminar paciente</button>
+                                                        <input type="hidden" name="idPaciente" value={paciente._id}/>
+                                                    </form>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
                                         </td>
                                     </tr>
                                 )}

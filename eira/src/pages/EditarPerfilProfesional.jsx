@@ -25,7 +25,7 @@ function EditarPerfilProfesional() {
     }
 
     return (
-        <main>
+        <main id="perfil">
             <section>
                 <Container className="py-5">
                     <Row>
@@ -34,24 +34,24 @@ function EditarPerfilProfesional() {
                             <h1 className="titulo mb-3">Editar perfil</h1>
                                 <Form onSubmit={handleSubmit}>
                                     <Row>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="nombre" label="Nombre">
                                                 <Form.Control type="text" placeholder="Nombre" name="nombre" value={nombre} onChange={(ev) => setNombre(ev.target.value)}/>
                                             </FloatingLabel>
                                         </Col>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="apellido" label="Apellido">
                                                 <Form.Control type="text" placeholder="Apellido" name="apellido" value={apellido} onChange={(ev) => setApellido(ev.target.value)}/>
                                             </FloatingLabel>
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="telefono" label="Teléfono">
                                                 <Form.Control type="text" placeholder="Teléfono" name="telefono" value={telefono} onChange={(ev) => setTelefono(ev.target.value)}/>
                                             </FloatingLabel>
                                         </Col>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="email" label="Email">
                                                 <Form.Control type="text" placeholder="Email" name="email" value={email} onChange={(ev) => setEmail(ev.target.value)} disabled/>
                                             </FloatingLabel>
@@ -63,12 +63,12 @@ function EditarPerfilProfesional() {
                                     </FloatingLabel>
 
                                     <Row>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="especialidad" label="Especialidad">
                                                 <Form.Control type="text" placeholder="Especialidad" name="especialidad" value={especialidad} onChange={(ev) => setEspecialidad(ev.target.value)}/>
                                             </FloatingLabel>
                                         </Col>
-                                        <Col>
+                                        <Col lg={6}>
                                             <FloatingLabel className="my-3 floating-distance-2" controlId="matricula" label="Matrícula">
                                                 <Form.Control type="text" placeholder="N° de matrícula" name="matricula" value={matricula} onChange={(ev) => setMatricula(ev.target.value)} disabled/>
                                             </FloatingLabel>
