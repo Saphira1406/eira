@@ -38,7 +38,7 @@ function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setC
             console.log("TOQUE",chat)
             // actualizo los chats
             ChatService.traer(usuarioLogueadoId)
-            .then( chats => setChats(chats) )
+            .then(chats => setChats(chats) )
         })
     }
 
@@ -47,8 +47,8 @@ function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setC
             {seguidosOnline.map( (online,i) =>
                 <li className="hover" key={online._id} onClick={() => {handleClick(online)}} >
                     <div className="d-flex align-items-center mb-3">
-                    <img src={IconoUsuarioAzul} alt="" className="img-fluid" />
-                    <p><i className="bi bi-circle-fill"></i> {online.nombre}</p>
+                    <img src={IconoUsuarioAzul} alt="" className="img-fluid me-1"/>
+                    <p className='mb-0'><i className="bi bi-circle-fill"></i> {online.nombre}</p>
                     </div>
                 </li>
             )}

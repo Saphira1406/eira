@@ -24,7 +24,7 @@ function Dashboard() {
                 <h1 className="visually-hidden">Dashboard Administrador</h1>
                 <Container fluid className="pt-5 px-5">
                     <Row className="g-5 justify-content-center">
-                        <Col lg={3}>
+                        <Col lg={4}>
                             <Link to={`/admin/medicos`} className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
@@ -34,7 +34,7 @@ function Dashboard() {
                                 </Card>
                             </Link>
                         </Col>
-                        <Col lg={3}>
+                        <Col lg={4}>
                             <Link to={`/admin/pacientes`} className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">

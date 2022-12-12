@@ -620,6 +620,11 @@ a {
     font-size: 12px;
 }
 
+.box-mensajes {
+    height: 55vh;
+	overflow-y: scroll;
+}
+
 @media (max-width: 992px) {
     #header-home, #pacientes, #profesionales {
         text-align: center;

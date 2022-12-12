@@ -51,7 +51,7 @@ function Chat() {
 
     useEffect(() => {
         ChatService.traer(usuarioLogueado._id)
-        .then( chats => setChats(chats) )
+        .then(chats => setChats(chats) )
     }, [usuarioLogueado._id])
     console.log("HOLAa",chats)
 
@@ -97,7 +97,7 @@ function Chat() {
             ChatService.traerMensajes(chatActual?._id)
             .then((mensajes) => setMensajes(mensajes))
             setNuevoMensaje("")
-        } )
+        })
     }
 
     return (
@@ -106,7 +106,7 @@ function Chat() {
                 <Container className='bg-white shadow rounded'>
                     <Row>
                         <h1 className='visually-hidden'>Chats</h1>
-                        <Col sm={3} className="border py-3 ps-3">
+                        <Col md={3} className="border py-3 ps-3">
                             <p>Chats</p>
                             {/* <p>chat actual: {chatActual?.usuarios}</p>*/}
                             <ul className="list-unstyled">
@@ -118,13 +118,13 @@ function Chat() {
                             </ul>
                         </Col>
 
-                        <Col sm={6} className="border py-3">
+                        <Col md={6} className="border py-3">
                             {
                                 chatActual ?
                                 <>
                                     <div className="box-mensajes p-3">
                                         {mensajes.map( (mensaje,i) =>
-                                        <div ref={scrollRef} key={i} >
+                                        <div ref={scrollRef} key={i}>
                                             <Mensajes mensaje={mensaje} own={mensaje.emisor === usuarioLogueado._id} />
                                         </div>
                                         )}
@@ -146,7 +146,7 @@ function Chat() {
                             }
                         </Col>
 
-                        <Col sm={3} className="border py-3 pe-3">
+                        <Col md={3} className="border py-3 pe-3">
                         <p>Online</p>
                             <ul className="list-unstyled">
                                 <UsuariosOnline usuariosOnline={usuariosOnline} usuarioLogueadoId={usuarioLogueado._id} setChatActual={setChatActual} setChats={setChats} />

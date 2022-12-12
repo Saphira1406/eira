@@ -50,11 +50,12 @@ function NavbarEira() {
                                 <NavDropdown.Divider />
 
                                 <Link to={`/`} className="dropdown-item">Inicio</Link>
-                                {!usuarioLogueado.matricula && <Link to={`/paciente`} className="dropdown-item">Dashboard</Link>}
+                                {usuarioLogueado.admin && <Link to={`/admin`} className="dropdown-item">Dashboard</Link>}
+                                {(!usuarioLogueado.matricula && !usuarioLogueado.admin) && <Link to={`/paciente`} className="dropdown-item">Dashboard</Link>}
                                 {usuarioLogueado.matricula && <Link to={`/medico`} className="dropdown-item">Dashboard</Link>}
                                 {usuarioLogueado?.matricula && <Link to={`/profesional/pacientes`} className="dropdown-item">Lista mis pacientes</Link>}
                                 {usuarioLogueado && <Link to={usuarioLogueado.matricula ? `/mi-perfil/${usuarioLogueado._id}` : `/home/perfil-paciente/${usuarioLogueado._id}`} className="dropdown-item">Mi perfil</Link>}
-                                {!usuarioLogueado.matricula && <Link to={`/paciente/historia-clinica`} className="dropdown-item">Mi historia clínica</Link>}
+                                {(!usuarioLogueado.matricula && !usuarioLogueado.admin) && <Link to={`/paciente/historia-clinica`} className="dropdown-item">Mi historia clínica</Link>}
 
                                 <NavDropdown.Divider />
 
