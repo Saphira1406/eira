@@ -5,7 +5,7 @@ import { autenticacion, medicoVerificado, administrador } from '../middlewares/a
 const route = express.Router()
 
 route.get('/api/profesionales', [autenticacion], ProfesionalesController.traerTodos)
-route.get('/api/profesionales/:id', [autenticacion], ProfesionalesController.traerPorId)
+route.get('/api/profesionales/:id', ProfesionalesController.traerPorId)
 route.patch('/api/profesionales/:id', [autenticacion], ProfesionalesController.editar)
 route.delete('/api/profesionales/:id', [autenticacion], ProfesionalesController.eliminar)
 route.get('/api/profesionales/:id/pacientes', [autenticacion, medicoVerificado], ProfesionalesController.traerPacientes)
