@@ -78,11 +78,22 @@ async function crearHistoriaClinica(historia) {
     .catch(err => console.log(err))
 }
 
+async function traerMisMedicos(id) {
+    return client.connect()
+    .then(async function() {
+        const db = client.db('eira')
+        const medicos = await db.collection('conexiones').find({"pacientes._id": ObjectId(id)}, {projection: {'medico': 1, '_id': 0}}).toArray()
+        return medicos
+    })
+    .catch(err => console.log(err))
+}
+
 export {
     traerTodos,
     traerPorId,
     traerHistoriaClinica,
     editar,
     crearHistoriaClinica,
-    eliminar
+    eliminar,
+    traerMisMedicos
 }

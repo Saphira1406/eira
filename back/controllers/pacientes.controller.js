@@ -1,4 +1,5 @@
 import * as PacientesServices from '../services/pacientes.service.js'
+import * as ProfesionalesService from '../services/profesionales.service.js'
 
 function traerTodos (req ,res) {
     PacientesServices.traerTodos()
@@ -56,11 +57,29 @@ function crearHistoriaClinica(req, res) {
 function editar (req, res) {
     const id = req.params.id
     const usuario = req.body
-    
+
     console.log(id, usuario)
     PacientesServices.editar(id, usuario)
     .then(function (usuarioEditado) {
         res.status(200).json(usuarioEditado)
+    })
+}
+
+function traerMisMedicos(req, res) {
+    PacientesServices.traerMisMedicos(req.params.id)
+    .then(async function(medicos) {
+        if(medicos) {
+            let infoMedicos = []
+            for(let medico of medicos) {
+                await ProfesionalesService.traerPorId(medico.medico)
+                .then(function(info) {
+                    infoMedicos.push(info)
+                })
+            }
+            res.status(200).json(infoMedicos)
+        } else {
+            res.status(404).json(medicos)
+        }
     })
 }
 
@@ -70,5 +89,6 @@ export {
     traerHistoriaClinica,
     editar,
     crearHistoriaClinica,
-    eliminar
+    eliminar,
+    traerMisMedicos
 }

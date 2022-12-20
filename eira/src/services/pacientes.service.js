@@ -60,6 +60,10 @@ async function editar (idUsuario, usuario) {
     .then(response => response.json())
 }
 
+async function traerMisMedicos(idUsuario) {
+    return fetch(`http://localhost:2020/api/pacientes/misMedicos/${idUsuario}`)
+    .then(response => response.json())
+}
 
 export {
     traer,
@@ -67,5 +71,6 @@ export {
     traerHistoriaClinica,
     editar,
     crearHistoriaClinica,
-    eliminar
+    eliminar,
+    traerMisMedicos
 }

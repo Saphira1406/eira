@@ -47,7 +47,7 @@ function Dashboard() {
                             </Link>
                         </Col>
                         <Col md={6} lg={3}>
-                            <Link to="#"className="text-decoration-none">
+                            <Link to="/paciente/pedir-recetas"className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
                                         <img src={Recetas} alt="icono tratamiento médico" className="img-fluid mb-2"/>

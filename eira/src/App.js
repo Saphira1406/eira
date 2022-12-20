@@ -24,21 +24,18 @@ import ListadoPacientesAdmin from './pages/admin/ListadoPacientes'
 import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
 import DashboardMedico from './pages/DashboardMedico'
 import DashboardAdmin from './pages/admin/Dashboard'
+import PedirRecetas from './pages/pacientes/PedirRecetas'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
-
 import * as PacientesService from './services/pacientes.service.js'
 import { Toaster, toast } from 'react-hot-toast';
 import { SocketContext } from './context/SocketContext'
 import Chat from './pages/Chat'
-
-
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { getToken, onMessage } from 'firebase/messaging'
 import { messaging } from './firebase/firebase.js'
-
 
 function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(JSON.parse(localStorage.getItem('usuario')))
@@ -74,26 +71,26 @@ function App() {
     } else {
       navigate(`/medico`, { replace: true })
     }
-       
+
      socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
   }
   console.log(socket)
 
     const activarMensajes = async (usuario) => {
 
-      const token = await getToken(messaging, { 
+      const token = await getToken(messaging, {
         vapidKey: "BPplatmpPbXXLUc_fijIyClE1YncaoMQ8ivkU2zTBG14aqv0DhuI3WoFxPLXG6_kVeEc_yxQMHaX5yr6ElwrCmE"
-       })
-       .catch( error => console.log("Hubo un error al generar el token.,") )
-       
-       if(token) {
+      })
+      .catch( error => console.log("Hubo un error al generar el token.,") )
+
+      if(token) {
         console.log("tu token es:", token)
         setTokenFB(token)
         localStorage.setItem('tokenFB', token)
         PacientesService.editar(usuario._id,{nombre: usuario.nombre, apellido: usuario.apellido, telefono: usuario.telefono, email: usuario.email, dni: usuario.dni, "fbNotification": token})
-       } else {
+      } else {
         console.log("no tenes token..")
-       }
+      }
     }
 
     useEffect( () => {
@@ -104,7 +101,6 @@ function App() {
         })
       })
     }, [])
-
 
   return (
     <UsuarioContext.Provider value={{usuarioLogueado, setUsuarioLogueado}} >
@@ -129,6 +125,7 @@ function App() {
         <Route path='/paciente/editar-perfil/:id' element={<EditarPerfilPaciente />} />
         <Route path='/paciente/historia-clinica' element={<HistoriaClinicaPaciente />} />
         <Route path='/paciente/formulario-historia-clinica' element={<FormHistorialClinico />} />
+        <Route path='/paciente/pedir-recetas' element={<PedirRecetas />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/admin' element={<DashboardAdmin />} />
         <Route path='/admin/medicos' element={<ListadoMedicos />} />
