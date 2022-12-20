@@ -46,7 +46,7 @@ async function editar (id, usuario) {
     .then(async function () {
         const db = client.db('eira')
         const usuarioEditado = await db.collection('pacientes').updateOne({"_id": new ObjectId(id)}, {$set: {...usuario}})
-        await db.collection('conexiones').updateMany({"pacientes._id": new ObjectId(id)}, {$set: {"pacientes.$": {...usuario, "_id": new ObjectId(id)}}}) 
+        await db.collection('conexiones').updateMany({"pacientes._id": new ObjectId(id)}, {$set: {"pacientes.$": {...usuario, "_id": new ObjectId(id)}}})
         return usuarioEditado
     })
     .catch(function (err) {
@@ -88,6 +88,15 @@ async function traerMisMedicos(id) {
     .catch(err => console.log(err))
 }
 
+async function pedidoReceta(receta) {
+    return client.connect()
+    .then(async function() {
+        const db = client.db('eira')
+        const pedido = await db.collection('recetas').updateOne({"medico": ObjectId(receta.medico)},{$push: {"recetas": receta.pedido}})
+        return pedido
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
@@ -95,5 +104,6 @@ export {
     editar,
     crearHistoriaClinica,
     eliminar,
-    traerMisMedicos
+    traerMisMedicos,
+    pedidoReceta
 }

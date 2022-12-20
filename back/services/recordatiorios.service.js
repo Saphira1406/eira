@@ -19,6 +19,6 @@ async function traerPorUsuarioId (idUsuario) {
         console.log(err)
     })
 }
- export {
+export {
     traerPorUsuarioId
- }
+}

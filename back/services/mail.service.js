@@ -132,10 +132,35 @@ async function avisoMedicoVerificacion(medico) {
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }
 
+async function pedidoReceta(email, paciente) {
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    auth: {
+      user: "eirainformacion@gmail.com",
+      pass: "czmfsdekgazgnvln",
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+  });
+
+  let info = await transporter.sendMail({
+      from: '"Eira" <eirainformacion@gmail.com>',
+      to: `${email}`,
+      subject: "Pedido de Receta",
+      html: `El paciente <strong>${paciente}</strong> hizo un pedido de receta. Iniciá sesión y visitá la sección de recetas para poder ver el listado de pedidos.`,
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+}
+
 export {
     enviarNotificacionMail,
     enviarToken,
     contrasenaRecuperada,
     avisoValidarMatricula,
-    avisoMedicoVerificacion
+    avisoMedicoVerificacion,
+    pedidoReceta
 }

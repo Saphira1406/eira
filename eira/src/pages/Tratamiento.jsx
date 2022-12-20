@@ -40,7 +40,6 @@ function Tratamiento() {
         TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente, profesional_nombre, profesional_apellido,diagnostico})
         .then(() => {
             navigate(`/profesional/pacientes`, { replace: true })
-            console.log("??")
         })
         setComidas([])
         setMedicamentos([])

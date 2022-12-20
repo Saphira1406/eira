@@ -28,6 +28,7 @@ async function crear (usuario) {
                 const passwordHash = await bcrypt.hash(usuario.password, salt)
                 const usuarioNuevo = await db.collection('medicos').insertOne({...usuario, password: passwordHash})
                 await db.collection('conexiones').insertOne({"medico": new ObjectId(usuarioNuevo.insertedId), "pacientes": []})
+                await db.collection('recetas').insertOne({"medico": new ObjectId(usuarioNuevo.insertedId), "recetas": []})
 
                 return usuarioNuevo
             } else {

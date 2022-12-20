@@ -39,7 +39,6 @@ function traerPorIdPaciente (req, res) {
 
 function traerPorIdProfesional (req, res) {
     console.log(req.params)
-
     TratamientosServices.traerPorIdProfesional(req.params.idPaciente,req.params.idProfesional)
     .then(function (tratamiento) {
         tratamiento ?

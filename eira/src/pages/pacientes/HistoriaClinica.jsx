@@ -16,8 +16,8 @@ function VerHistoriaClinica() {
         if(!usuarioLogueado.matricula) {
             PacientesService.traerHistoriaClinica(usuarioLogueado._id)
             .then((resp) => {
-            return setHistoriaClinica(resp)
-        })
+                return setHistoriaClinica(resp)
+            })
         } else {
             navigate('/profesional/pacientes', { replace: true })
         }
