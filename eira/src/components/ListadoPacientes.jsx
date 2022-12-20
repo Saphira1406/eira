@@ -37,7 +37,7 @@ function ListadoPacientes() {
     useEffect(() => {
             ProfesionalesService.traerPacientes(usuarioLogueado?._id)
             .then( (resp) => setPacientes(resp))
-        console.log("vvvv", pacientes)
+            console.log("vvvv", pacientes)
         // eslint-disable-next-line
     }, [])
 
