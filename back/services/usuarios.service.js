@@ -48,7 +48,49 @@ async function recuperarContrasena(email, token, password) {
     })
 }
 
+async function traerProfesionalesVinculados(idUsuario) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const profesionalesVinculados = await db.collection('conexiones').find({"pacientes._id": new ObjectId(idUsuario)}).toArray()
+
+        return profesionalesVinculados
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
+async function agregarProfesional(idProfesional, paciente) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const existe = await db.collection('conexiones').findOne({"medico": new ObjectId(idProfesional), "pacientes._id": ObjectId(paciente._id)})
+        if(!existe) {
+            const seguir = await db.collection('conexiones').updateOne({"medico": new ObjectId(idProfesional)}, {$push: {"pacientes": paciente}})
+            return seguir
+        } else {
+            return existe
+        }
+        /*const profesionalAgregado = await db.collection('conexiones').updateOne(
+            { "medico": new ObjectId(idProfesional)},
+            { $addToSet: {
+                pacientes: paciente
+            }}
+        )*/
+
+        // return profesionalAgregado
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
+}
+
+
+
 export {
     olvideContrasena,
-    recuperarContrasena
+    recuperarContrasena,
+    traerProfesionalesVinculados,
+    agregarProfesional
 }

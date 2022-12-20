@@ -20,7 +20,19 @@ async function recuperarContrasena(token, email, password) {
     .then(response => response.json())
 }
 
+async function agregarProfesional(idProfesional, paciente) {
+    return fetch(`http://localhost:2020/api/usuarios/profesional/${idProfesional}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paciente)
+    })
+    .then(response => response.json())
+}
+
 export {
     olvideContrasena,
-    recuperarContrasena
+    recuperarContrasena,
+    agregarProfesional
 }

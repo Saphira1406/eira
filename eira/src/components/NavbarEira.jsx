@@ -14,7 +14,7 @@ function NavbarEira() {
 
     const {usuarioLogueado} = useContext(UsuarioContext)
     //const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
-    console.log("aca",usuarioLogueado)
+    //console.log("aca",usuarioLogueado)
 
     return (
         <header>

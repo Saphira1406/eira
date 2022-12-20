@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
-import * as UsuariosService from "../services/pacientes.service.js";
-import IconoUsuarioAzul from "../imgs/icono-usuario-azul.png";
+import { useEffect, useState } from 'react'
+import * as PacientesService from "../services/pacientes.service.js"
+import * as ProfesionalesService from "../services/profesionales.service.js"
+import IconoUsuarioAzul from '../imgs/icono-usuario-azul.png';
 
-function ChatUsuarios({ chat, usuarioLogueado }) {
-  const [usuario, setUsuario] = useState([]);
+function ChatUsuarios({chat, usuarioLogueado}) {
+    const [usuario, setUsuario] = useState([])
+ 
+    useEffect(() => {
+        // id del amigo chat
+        const receptorId = chat?.usuarios.find((usuario) => usuario !== usuarioLogueado._id)
+       !usuarioLogueado.matricula ? 
+          ProfesionalesService.traerPorId(receptorId)
+         .then( usuario => setUsuario(usuario) ) : 
+          PacientesService.traerPorId(receptorId)
+          .then( usuario => setUsuario(usuario) )
+    }, [])
 
-  useEffect(() => {
-    // id del amigo chat
-    const receptorId = chat?.usuarios.find(
-      (usuario) => usuario !== usuarioLogueado._id
-    );
-    UsuariosService.traerPorId(receptorId).then((usuario) =>
-      setUsuario(usuario)
-    );
-  }, []);
 
   return (
     <li className="hover">

@@ -16,7 +16,7 @@ function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setC
 
     // de los seguidos del usuario, filtro cual está online
     useEffect(() => {
-        setSeguidosOnline(seguidos.filter( (seguido) => usuariosOnline.some((u) => u.usuarioId === seguido._id) ))
+        setSeguidosOnline(seguidos.filter( (seguido) => usuariosOnline.some((u) => u.usuarioId === seguido._id) )) // aca debo cambiar por .medico para cuando sea paceinte el q pregunta (Usuario online)
     }, [seguidos, usuariosOnline])
 
     // Cuando hago click en el usuario Online, me setea el chatActual(que lo traigo por traerUno())

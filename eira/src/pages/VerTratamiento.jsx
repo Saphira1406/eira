@@ -8,6 +8,7 @@ import IconoEliminar from '../imgs/icono-cruz-eliminar.png'
 import { UsuarioContext } from '../context/UsuarioContext.jsx'
 import Swal from 'sweetalert2'
 import * as Notificaciones from '../services/notificacion.service.js'
+import { RecordatoriosContext } from '../context/RecordatoriosContext.jsx'
 
 function VerTratamiento() {
     const { id } = useParams()
@@ -15,7 +16,8 @@ function VerTratamiento() {
     const [tratamientosDelProfesional, setTratamientosDelProfesional] = useState([])
     const [paciente, setPaciente] = useState({})
     const {usuarioLogueado} = useContext(UsuarioContext)
-
+    const recordatorios = useContext(RecordatoriosContext)
+  
     const tokenFB = localStorage.getItem('tokenFB')
 
     useEffect(() => {
@@ -65,35 +67,91 @@ function VerTratamiento() {
         })
     }
 
-    function guardarNotificacion() {
-        console.log("TOKENFB",tokenFB)
-        console.log("FECHA QUE FINALIZA",tokenFB)
-        const finalizacion = Date.now()
-        Notificaciones.guardarNotificacion({tokenFB, finalizacion})
-        .then( resp => console.log(resp))
-    }
+    /*const recordatorios = {
+       /* "01:00": [
+          { nombre:"ibuprofeno", descripcion:"No te olvides de tomar" },
+          { nombre:"tafirol", descripcion:"No te olvides de tomar", idUsuario:"ererer334afafadfaf3" },
+        ],
+        /*"11:24": [
+          { nombre:"test", descripcion:"tomar medicamento" },
+        ]
+      }*/
+      let misRecordatorios = {};
+     
+      
+    function empezarTomaMedicamento (frecuencia, medicamento){
+       const date = new Date()
+        //const time = `${date.getHours()}:${date.getMinutes()}`
+       
+        const horaC = date.getHours() < 10 ?  `0${date.getHours()}` : date.getHours()
+        const minutosC = date.getMinutes() < 10 ?  `0${date.getMinutes()}` : date.getMinutes()
+        
+        let horaComienzo = `${horaC}:${minutosC}`
+        console.log("EMPIEZO TOMA:", horaComienzo)
 
+        let horaCom = parseInt(horaComienzo.split(":")[0]);
+        let minutosCom = parseInt(horaComienzo.split(":")[1]);
+        let horaComienzo24 = horaCom + minutosCom / 60; // 24hs
+
+        let numHoras = Math.floor(24 / parseInt(frecuencia))
+        let horaActual = horaComienzo24
+
+        for(let i=0; i< numHoras; i++) {
+            let hora = Math.floor(horaActual) // 14.35 -> 14
+            let minutos = Math.round((horaActual % 1) * 60) // 35
+
+            if(hora < 10) {
+                hora = "0" + hora
+            }
+            if(minutos < 10) {
+                minutos = "0" + minutos
+            }
+            if (!recordatorios[hora + ":" + minutos]) {
+                recordatorios[hora + ":" + minutos] = [];
+            }
+
+            recordatorios[hora+":"+ minutos].push({ nombre:medicamento, descripcion:"tomar medicamento", idUsuario: usuarioLogueado._id })
+
+            horaActual = (horaActual + parseInt(frecuencia)) % 24 // como el formato es de 24hs, sirve para q no se pase de ese horario
+        }
+
+        console.log("recordatorios DE TODOS",recordatorios)
+        let record = recordatorios; 
+        for (let hora in record) {
+            for (let i = 0; i < record[hora].length; i++) {
+                if (record[hora][i].idUsuario === usuarioLogueado._id) {
+                    // Añadimos el medicamento al objeto de medicamentos del usuario
+                    if (!misRecordatorios[hora]) misRecordatorios[hora] = [];
+                    misRecordatorios[hora].push(record[hora][i]);
+                  }
+              }
+        }
+        console.log("recordatorios DEL USUARIO",misRecordatorios)
+        localStorage.setItem("misRecordatorios", JSON.stringify(misRecordatorios))
+    }
+   
+    //console.log("recordatorioss",recordatorios)
     return (
         <main className="fondo-generico">
             <section>
                 <Container className="py-5">
                     <Row>
                         <Col>
-                            <Card body className='shadow px-2 pt-2'>
-                                <h1 className="titulo">Ver tratamiento</h1>
-                                <Row>
-                                    <Col lg={6} className="">
-                                        <p><span className="fw-bold">Paciente:</span> {paciente.nombre} {paciente.apellido}</p>
-                                    </Col>
-                                    <Col lg={6}>
-                                        <p className='text-lg-end'><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
-                                    </Col>
-                                    <Col lg={12} >
-                                        {!tratamientos.length && usuarioLogueado.matricula && <p className=" my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> no tiene un tratamiento asignado, si querés crear uno, <Link to={`/tratamiento/${id}`}>entrá acá</Link></p>}
-                                        {!tratamientos.length && !usuarioLogueado.matricula && <p className=" my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> todavía no te asignaron tratamientos...</p>}
-                                        <button onClick={() => guardarNotificacion()}>guardar hora tomada</button>
-                                    </Col>
-                                </Row>
+
+                            <Card body className='shadow px-2 pt-2'>    
+                            <h1 className="titulo">Ver tratamiento</h1>
+                            <Row>
+                                <Col lg={6}>
+                                    <p><span className="fw-bold">Paciente:</span> {paciente.nombre} {paciente.apellido}</p>
+                                    <p><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
+                                </Col>
+                                <Col lg={12} >
+                                    {!tratamientos.length && usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> no tiene un tratamiento asignado, si desea crear uno, <Link to={`/tratamiento/${id}`}>entrá acá</Link></p>}
+                                    {!tratamientos.length && !usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> todavía no le asignaron tratamientos...</p>}
+                                
+                                </Col>
+                            </Row>
+
 
                                 {usuarioLogueado.matricula && tratamientosDelProfesional.map((tratamiento, j) =>
 
@@ -184,7 +242,6 @@ function VerTratamiento() {
                                 )}
 
                                 {!usuarioLogueado.matricula && tratamientos.map((tratamiento, j) =>
-
                                 <Accordion defaultActiveKey={tratamiento._id} className='shadow my-3' key={j}>
                                     <Accordion.Item eventKey={tratamiento._id}>
                                         <Accordion.Header><p>Diagnóstico:&nbsp;<b>{tratamiento.diagnostico}</b></p></Accordion.Header>

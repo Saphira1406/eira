@@ -1,6 +1,4 @@
-import SocketIO from
-
-'socket.io-client'
+import SocketIO from 'socket.io-client'
 import { createContext } from "react"
 
 export const socket = SocketIO('http://localhost:2020', {
