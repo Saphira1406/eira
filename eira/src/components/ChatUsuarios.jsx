@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import * as PacientesService from "../services/pacientes.service.js"
 import * as ProfesionalesService from "../services/profesionales.service.js"
-import IconoUsuarioBlanco from '../imgs/icono-usuario-azul.png';
+import IconoUsuarioAzul from '../imgs/icono-usuario-azul.png';
 
 function ChatUsuarios({chat, usuarioLogueado}) {
     const [usuario, setUsuario] = useState([])
@@ -16,14 +16,15 @@ function ChatUsuarios({chat, usuarioLogueado}) {
           .then( usuario => setUsuario(usuario) )
     }, [])
 
+
   return (
     <li className="hover">
-        <div className="d-flex align-items-center mb-3">
-        <img src={IconoUsuarioBlanco} alt="" className="img-fluid w-25" />
-         <p>{usuario.nombre} {usuario.apellido}</p>
-         </div>
+      <div className="d-flex align-items-center mb-3">
+        <img src={IconoUsuarioAzul} alt="" className="img-fluid me-1"/>
+        <p className="mb-0">{usuario.nombre} {usuario.apellido}</p>
+      </div>
     </li>
-  )
+  );
 }
 
-export default ChatUsuarios
+export default ChatUsuarios;

@@ -1,6 +1,6 @@
-import * as NotificacionMail from '../services/mail.service.js'
 import fetch from 'node-fetch'
 import { DateTime } from 'luxon'
+import * as NotificacionMail from '../services/mail.service.js'
 
 function enviarNotificacionMail(req, res) {
 

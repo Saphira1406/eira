@@ -11,7 +11,9 @@ import ChatRoutes from './routes/chat.routes.js'
 import MensajesRoutes from './routes/mensajes.routes.js'
 import * as SocketIO from 'socket.io'
 import UsuariosRoutes from './routes/usuarios.route.js'
+
 import RecordatoriosRoutes from './routes/recordatorios.route.js'
+
 
 
 const app = express()
@@ -88,6 +90,7 @@ app.use('/', ChatRoutes)
 app.use('/', MensajesRoutes)
 app.use('/', UsuariosRoutes)
 app.use('/', RecordatoriosRoutes)
+
 
 
 const host = process.env.HOST || '0.0.0.0'

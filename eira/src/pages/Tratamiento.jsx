@@ -67,16 +67,16 @@ function Tratamiento() {
     }, [medicamentos])
 
     console.log("lol",usuarioLogueado.nombre)
-    
+
     return (
-        <main>
+        <main className="fondo-generico">
             <section>
                 <Container className="py-5">
                     <Row>
                         <Col>
                             <Card body className='shadow px-2 pt-2'>
                             <h1 className="titulo">Crear tratamiento</h1>
-                            <div className='d-flex justify-content-between mt-4'>
+                            <div className='d-md-flex justify-content-between mt-4'>
                                 <p><span className="fw-bold">Paciente:</span> {paciente.nombre} {paciente.apellido}</p>
                                 <p><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
                             </div>

@@ -22,19 +22,17 @@ function Logout() {
             fbNotification: null
         }
         socket.emit("logout", socket.id) // cuando me deslogueo, que me saque del array usuarios
-       PacientesService.editar(usuarioLogueado._id, usuario)
+        PacientesService.editar(usuarioLogueado._id, usuario)
         setUsuarioLogueado(null)
         localStorage.removeItem('usuario')
         localStorage.removeItem('token')
-
-       
 
         navigate('/login', { replace: true })
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <button type="submit" className="dropdown-item">Cerrar Sesión</button>
+            <button type="submit" className="dropdown-item logout">Cerrar Sesión</button>
         </form>
     )
 }

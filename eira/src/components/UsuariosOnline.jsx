@@ -1,13 +1,11 @@
 import { useState, useEffect} from 'react'
 import * as SeguidoresService from "../services/seguidores.service.js"
 import * as ChatService from "../services/chat.service"
-import IconoUsuarioBlanco from '../imgs/icono-usuario-azul.png';
+import IconoUsuarioAzul from '../imgs/icono-usuario-azul.png';
 
 function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setChats}) {
     const [seguidos, setSeguidos] = useState([])
     const [seguidosOnline, setSeguidosOnline] = useState([])
-
-
 
     useEffect(() => {
         SeguidoresService.traerSeguidores(usuarioLogueadoId)
@@ -21,14 +19,12 @@ function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setC
         setSeguidosOnline(seguidos.filter( (seguido) => usuariosOnline.some((u) => u.usuarioId === seguido._id) )) // aca debo cambiar por .medico para cuando sea paceinte el q pregunta (Usuario online)
     }, [seguidos, usuariosOnline])
 
-
     // Cuando hago click en el usuario Online, me setea el chatActual(que lo traigo por traerUno())
     async function handleClick(usuario) {
         console.log("emisor", usuarioLogueadoId)
         console.log("receptor", usuario._id)
         ChatService.traerUno(usuarioLogueadoId, usuario._id)
         .then(async (chat) => {
-            
             if(!chat){
                 const usuarios = {
                     emisor: usuarioLogueadoId,
@@ -42,23 +38,21 @@ function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setC
             console.log("TOQUE",chat)
             // actualizo los chats
             ChatService.traer(usuarioLogueadoId)
-            .then( chats => setChats(chats) )
+            .then(chats => setChats(chats) )
         })
     }
 
-    
     return (
         <>
-            {seguidosOnline.map( (online,i) => 
+            {seguidosOnline.map( (online,i) =>
                 <li className="hover" key={online._id} onClick={() => {handleClick(online)}} >
                     <div className="d-flex align-items-center mb-3">
-                    <img src={IconoUsuarioBlanco} alt="" className="img-fluid w-25" />
-                    <p><i className="bi bi-circle-fill"></i> {online.nombre}</p>
+                    <img src={IconoUsuarioAzul} alt="" className="img-fluid me-1"/>
+                    <p className='mb-0'><i className="bi bi-circle-fill"></i> {online.nombre}</p>
                     </div>
-                </li>   
-                )}
+                </li>
+            )}
         </>
-        
     )
 }
 
