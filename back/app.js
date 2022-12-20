@@ -6,14 +6,13 @@ import PacientesRoutes from './routes/pacientes.route.js'
 import ProfesionalesRoutes from './routes/profesionales.route.js'
 import AuthRoutes from './routes/auth.route.js'
 import NotificacionRoutes from './routes/notificaciones.routes.js'
-<<<<<<< HEAD
 import ConexionesRoutes from './routes/seguidores.routes.js'
 import ChatRoutes from './routes/chat.routes.js'
 import MensajesRoutes from './routes/mensajes.routes.js'
 import * as SocketIO from 'socket.io'
-=======
 import UsuariosRoutes from './routes/usuarios.route.js'
->>>>>>> 3e3481e6587e282a6aa189109ba23f266321bba4
+import RecordatoriosRoutes from './routes/recordatorios.route.js'
+
 
 const app = express()
 app.use(cors())
@@ -84,13 +83,12 @@ app.use('/', PacientesRoutes)
 app.use('/', ProfesionalesRoutes)
 app.use('/', AuthRoutes)
 app.use('/', NotificacionRoutes)
-<<<<<<< HEAD
 app.use('/', ConexionesRoutes)
 app.use('/', ChatRoutes)
 app.use('/', MensajesRoutes)
-=======
 app.use('/', UsuariosRoutes)
->>>>>>> 3e3481e6587e282a6aa189109ba23f266321bba4
+app.use('/', RecordatoriosRoutes)
+
 
 const host = process.env.HOST || '0.0.0.0'
 const puerto = process.env.PORT || 2020

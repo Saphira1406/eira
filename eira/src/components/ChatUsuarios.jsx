@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import * as UsuariosService from "../services/pacientes.service.js"
+import * as PacientesService from "../services/pacientes.service.js"
+import * as ProfesionalesService from "../services/profesionales.service.js"
 import IconoUsuarioBlanco from '../imgs/icono-usuario-azul.png';
 
 function ChatUsuarios({chat, usuarioLogueado}) {
@@ -8,9 +9,11 @@ function ChatUsuarios({chat, usuarioLogueado}) {
     useEffect(() => {
         // id del amigo chat
         const receptorId = chat?.usuarios.find((usuario) => usuario !== usuarioLogueado._id)
-        UsuariosService.traerPorId(receptorId)
-        .then( usuario => setUsuario(usuario) )
-       
+       !usuarioLogueado.matricula ? 
+          ProfesionalesService.traerPorId(receptorId)
+         .then( usuario => setUsuario(usuario) ) : 
+          PacientesService.traerPorId(receptorId)
+          .then( usuario => setUsuario(usuario) )
     }, [])
 
   return (

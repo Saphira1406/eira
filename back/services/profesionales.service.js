@@ -32,7 +32,7 @@ async function traerPorId(idProfesional) {
     .then( async function () {
         const db = client.db('eira')
         const profesional = await db.collection('medicos').findOne({"_id": ObjectId(idProfesional)})
-        return profesional
+        return { ...profesional, password: undefined }
     } )
     .catch(function (err) {
         console.log(err)

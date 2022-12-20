@@ -21,7 +21,7 @@ async function traerPorId(idpaciente) {
     .then( async function () {
         const db = client.db('eira')
         const paciente = await db.collection('pacientes').findOne({"_id": ObjectId(idpaciente)})
-        return paciente
+        return { ...paciente, password: undefined }
     } )
     .catch(function (err) {
         console.log(err)

@@ -40,7 +40,45 @@ function recuperarContrasena(req, res) {
     })
 }
 
+function traerProfesionalesVinculados(req, res) {
+    UsuariosServices.traerProfesionalesVinculados(req.params.idUsuario)
+    .then((profesionalesVinculados) => {
+        if(profesionalesVinculados) {
+            res.status(200).send(profesionalesVinculados)
+        } else {
+            res.status(204).send({response: false, message: "No tiene ningún profesional vinculado"})
+        }
+    })
+    .catch(err => {
+        res.status(500).send({message: "Ocurrió un error...", err})
+    })
+}
+
+
+function agregarProfesional(req, res) {
+
+    const paciente = {
+        ...req.body,
+        _id: new ObjectId(req.body._id)
+    }
+    
+    UsuariosServices.agregarProfesional(req.params.idProfesional, paciente)
+    .then((agregado) => {
+        if(agregado) {
+            console.log(agregado)
+            res.status(200).send(agregado)
+        } else {
+            res.status(204).send({response: false, message: "No se pudo agregar al proofesional..."})
+        }
+    })
+    .catch(err => {
+        res.status(500).send({message: "Ocurrió un error...", err})
+    })
+}
+
 export {
     olvideContrasena,
-    recuperarContrasena
+    recuperarContrasena,
+    traerProfesionalesVinculados,
+    agregarProfesional
 }
