@@ -57,12 +57,13 @@ function traerProfesionalesVinculados(req, res) {
 
 function agregarProfesional(req, res) {
 
+    
     const paciente = {
-        ...req.body,
-        _id: new ObjectId(req.body._id)
+        ...req.body.paciente,
+        _id: new ObjectId(req.body.paciente._id)
     }
     
-    UsuariosServices.agregarProfesional(req.params.idProfesional, paciente)
+    UsuariosServices.agregarProfesional(req.body.idProfesional, paciente)
     .then((agregado) => {
         if(agregado) {
             console.log(agregado)

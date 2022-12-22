@@ -21,7 +21,7 @@ function VerTratamiento() {
     const tokenFB = localStorage.getItem('tokenFB')
 
     useEffect(() => {
-        TratamientosService.traerPorIdPaciente(id)
+        TratamientosService.traerPorIdPaciente(id, usuarioLogueado._id)
         .then(resp => {
             setTratamientos(resp)
         })
@@ -32,8 +32,8 @@ function VerTratamiento() {
         .then( resp => setTratamientosDelProfesional(resp) )
     }, [])
 
-    console.log("###",tratamientosDelProfesional)
-    console.log(tratamientos)
+    //console.log("###",tratamientosDelProfesional)
+    console.log("ACA",tratamientos)
     function handleSubmitBorrarTratamiento(ev) {
         ev.preventDefault()
 
@@ -146,6 +146,7 @@ function VerTratamiento() {
                                     <p><span className="fw-bold">N° de Documento: </span> {paciente.dni}</p>
                                 </Col>
                                 <Col lg={12} >
+                                    
                                     {!tratamientos.length && usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> no tiene un tratamiento asignado, si desea crear uno, <Link to={`/tratamiento/${id}`}>entrá acá</Link></p>}
                                     {!tratamientos.length && !usuarioLogueado.matricula && <p className="h4 my-3"><span className="fw-bold">{paciente.nombre} {paciente.apellido}</span> todavía no le asignaron tratamientos...</p>}
                                 

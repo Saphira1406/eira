@@ -61,25 +61,19 @@ async function traerProfesionalesVinculados(idUsuario) {
     })
 }
 
+//enviar solicitud, la crea
 async function agregarProfesional(idProfesional, paciente) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-        const existe = await db.collection('conexiones').findOne({"medico": new ObjectId(idProfesional), "pacientes._id": ObjectId(paciente._id)})
+        const existe = await db.collection('solicitudes').findOne({"emisor._id": new ObjectId(paciente._id), "receptor": new ObjectId(idProfesional)})
         if(!existe) {
-            const seguir = await db.collection('conexiones').updateOne({"medico": new ObjectId(idProfesional)}, {$push: {"pacientes": paciente}})
-            return seguir
+            const solicitud = await db.collection('solicitudes').insertOne({emisor: paciente, receptor: new ObjectId(idProfesional), aceptado: false})
+            return solicitud
         } else {
             return existe
         }
-        /*const profesionalAgregado = await db.collection('conexiones').updateOne(
-            { "medico": new ObjectId(idProfesional)},
-            { $addToSet: {
-                pacientes: paciente
-            }}
-        )*/
-
-        // return profesionalAgregado
+    
     })
     .catch(function (err) {
         console.log(err)

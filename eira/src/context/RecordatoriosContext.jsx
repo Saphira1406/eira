@@ -6,4 +6,4 @@ export const usuario = JSON.parse(localStorage.getItem('usuario'))
 export const UsuarioContext = createContext(usuario)*/
 
 
-export const RecordatoriosContext = createContext(JSON.parse(localStorage.getItem('misRecordatorios') || {}) )
+export const RecordatoriosContext = createContext({})

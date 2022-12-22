@@ -37,11 +37,11 @@ async function crear(tratamiento) {
     .catch(err => console.log(err))
 }
 
-async function traerPorIdPaciente(idPaciente) {
+async function traerPorIdPaciente(idPaciente, idProfesional) {
     return client.connect()
     .then(async function() {
         const db = client.db('eira')
-        const tratamientos = await db.collection('tratamientos').find({"id_paciente": ObjectId(idPaciente)}).toArray()
+        const tratamientos = await db.collection('tratamientos').find({"id_paciente": new ObjectId(idPaciente), "profesional.id_medico": new ObjectId(idProfesional)}).toArray()
         return tratamientos
     })
     .catch(err => console.log(err))
