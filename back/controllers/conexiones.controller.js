@@ -1,4 +1,4 @@
-import * as ConexionesServices from '../services/seguidores.services.js'
+import * as ConexionesServices from '../services/conexiones.services.js'
 import { ObjectId } from 'mongodb'
 
 function traerPorUsuario (req, res) {
@@ -36,7 +36,5 @@ function traerTodos(req, res) {
 }
 */
 export {
-    traerPorUsuario,
-    //seguir,
-    //traerTodos
+    traerPorUsuario
 }

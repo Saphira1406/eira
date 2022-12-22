@@ -1,5 +1,5 @@
 async function traerSeguidores (idUsuario) {
-    return fetch(`http://localhost:2020/api/${idUsuario}/pacientes`, {
+    return fetch(`http://localhost:2020/api/conexiones/${idUsuario}`, {
         headers: {
             'autenticacion': localStorage.getItem('token')
         }

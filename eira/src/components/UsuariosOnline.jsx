@@ -1,9 +1,9 @@
 import { useState, useEffect} from 'react'
-import * as SeguidoresService from "../services/seguidores.service.js"
+import * as SeguidoresService from "../services/conexiones.service.js"
 import * as ChatService from "../services/chat.service"
 import IconoUsuarioAzul from '../imgs/icono-usuario-azul.png';
 
-function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setChats}) {
+function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setChats, chats}) {
     const [seguidos, setSeguidos] = useState([])
     const [seguidosOnline, setSeguidosOnline] = useState([])
 
@@ -13,10 +13,11 @@ function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setC
             setSeguidos(data)
         })
     }, [usuarioLogueadoId])
+    console.log("chats", seguidos)
 
     // de los seguidos del usuario, filtro cual está online
-    useEffect(() => {
-        setSeguidosOnline(seguidos.filter( (seguido) => usuariosOnline.some((u) => u.usuarioId === seguido._id) )) // aca debo cambiar por .medico para cuando sea paceinte el q pregunta (Usuario online)
+   useEffect(() => {
+        setSeguidosOnline(seguidos.filter( (seguido) => usuariosOnline.some((u) => u.usuarioId === seguido.medico) )) // aca debo cambiar por .medico para cuando sea paceinte el q pregunta (Usuario online)
     }, [seguidos, usuariosOnline])
 
     // Cuando hago click en el usuario Online, me setea el chatActual(que lo traigo por traerUno())
