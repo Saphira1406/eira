@@ -99,6 +99,18 @@ async function verificarMedico(id) {
     })
 }
 
+async function traerPedidosRecetas(id) {
+    return client.connect()
+    .then(async function() {
+        const db = client.db('eira')
+        const pedidos = await db.collection('recetas').findOne({'medico': ObjectId(id)}, {projection: {'recetas': 1, '_id': 0}})
+        return pedidos
+    })
+    .catch(function(err) {
+        console.log(err)
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
@@ -106,5 +118,6 @@ export {
     eliminar,
     traerPacientes,
     eliminarPaciente,
-    verificarMedico
+    verificarMedico,
+    traerPedidosRecetas
 }

@@ -1,6 +1,5 @@
 import * as RecordatorioService from '../services/recordatiorios.service.js'
 
-
 function traerPorUsuarioId (req, res) {
     RecordatorioService.traerPorUsuarioId(req.params.idUsuario)
     .then(function (recordatorios) {

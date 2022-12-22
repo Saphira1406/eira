@@ -10,11 +10,7 @@ import { UsuarioContext } from '../context/UsuarioContext'
 
 function NavbarEira() {
     const [idProfesional, setIdProfesional] = useState("63239b30953ee51e9b52f154")
-    //const [user , setUser] = useState({})
-
     const {usuarioLogueado} = useContext(UsuarioContext)
-    //const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
-    //console.log("aca",usuarioLogueado)
 
     return (
         <header>

@@ -1,9 +1,10 @@
-import { Alert , Container, Row, Col, Card, Form, Button, FloatingLabel } from 'react-bootstrap'
+import { Alert , Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import Select from 'react-select'
 import { useState, useEffect, useContext } from 'react'
 import { UsuarioContext } from "../../context/UsuarioContext";
 import * as PacientesService from '../../services/pacientes.service.js'
 import * as apiMedicamentos from '../../services/apiMedicamentos.service.js'
+import { useNavigate } from 'react-router-dom'
 
 function PedirRecetas() {
     const [medicos, setMedicos] = useState([])
@@ -13,6 +14,9 @@ function PedirRecetas() {
     const [listaMedicamentos, setListaMedicamentos] = useState([])
     const [busquedaMedicamentos, setBusquedaMedicamentos] = useState("")
     const {usuarioLogueado} = useContext(UsuarioContext)
+    let navigate = useNavigate();
+    let [success, setSuccess] = useState(false)
+    let [error, setError] = useState(false)
 
     useEffect(() => {
         PacientesService.traerMisMedicos(usuarioLogueado._id)
@@ -24,13 +28,25 @@ function PedirRecetas() {
         .then((resp) => setListaMedicamentos(resp.resultados))
     }, [busquedaMedicamentos])
 
+    function handleSubmit(ev) {
+        ev.preventDefault()
+        PacientesService.pedidoReceta({profesional, medicamento, usuarioLogueado})
+        .then(resp => {
+            if(resp === 'creado') {
+                setSuccess(true)
+            } else {
+                setError(true)
+            }
+        })
+    }
+
     return(
         <main className="fondo-generico">
             <section>
-                <Container className='mt-5'>
+                <Container className='my-5'>
                     <Row>
                         <Col sm={12}>
-                            <Alert key="info"variant='info' className='shadow py-5'>
+                            <Alert key="info" variant='info' className='shadow py-5'>
                                 <h1 className='fs-4 text-center mb-3'>Pedido de Recetas</h1>
                                 <p className='px-4'>Los pasos que tenés que seguir para poder pedir recetas son:</p>
                                 <ol className='px-5'>
@@ -40,9 +56,19 @@ function PedirRecetas() {
                             </Alert>
                         </Col>
                         <Col sm={12}>
-                            <Card className='shadow mb-5 border-0'>
+                            <Card className='shadow mb-2 border-0'>
+                                {success &&
+                                    <Alert key="success" variant='success'  onClose={() => setSuccess(false)} dismissible>
+                                        <p className='px-4 mb-0'>Se envío el pedido de receta. La vas a recibir por mail.</p>
+                                    </Alert>
+                                }
+                                {error &&
+                                    <Alert key="danger" variant='danger'  onClose={() => setError(false)} dismissible>
+                                        <p className='px-4 mb-0'>Ocurrió un problema. Por favor intenta de nuevo más tarde.</p>
+                                    </Alert>
+                                }
                                 <Card.Body className='px-5 py-5'>
-                                    <Form>
+                                    <Form onSubmit={handleSubmit}>
                                         <Form.Group className="mb-3" controlId="profesional">
                                             <Form.Label>Elegí el médico</Form.Label>
                                             <Select
@@ -68,7 +94,7 @@ function PedirRecetas() {
                                         </Form.Group>
 
                                         <div className="d-flex justify-content-center">
-                                            <Button type="button" className="btn btn-agregar">
+                                            <Button type="submit" className="btn btn-agregar">
                                                 Pedir Receta
                                             </Button>
                                         </div>

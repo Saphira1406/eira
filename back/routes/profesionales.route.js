@@ -11,6 +11,7 @@ route.delete('/api/profesionales/:id', [autenticacion], ProfesionalesController.
 route.get('/api/profesionales/:id/pacientes', [autenticacion, medicoVerificado], ProfesionalesController.traerPacientes)
 route.delete('/api/profesionales/:idProfesional/pacientes/:idPaciente', [autenticacion, medicoVerificado], ProfesionalesController.eliminarPaciente)
 route.patch('/api/profesionales/verificacion/:id', [autenticacion, administrador], ProfesionalesController.verificarMedico)
+route.get('/api/recetas/:id', [autenticacion, medicoVerificado], ProfesionalesController.traerPedidosRecetas)
 
 
 export default route

@@ -1,5 +1,6 @@
 import * as PacientesServices from '../services/pacientes.service.js'
 import * as ProfesionalesService from '../services/profesionales.service.js'
+import * as MailServices from '../services/mail.service.js'
 
 function traerTodos (req ,res) {
     PacientesServices.traerTodos()
@@ -18,7 +19,6 @@ function traerPorId (req ,res) {
         res.status(404).json({mensaje: "No existe el paciente que busca" })
     })
 }
-
 
 function traerHistoriaClinica (req ,res) {
     PacientesServices.traerHistoriaClinica(req.params.id)
@@ -57,7 +57,6 @@ function crearHistoriaClinica(req, res) {
 function editar (req, res) {
     const id = req.params.id
     const usuario = req.body
-
     console.log(id, usuario)
     PacientesServices.editar(id, usuario)
     .then(function (usuarioEditado) {
@@ -83,6 +82,32 @@ function traerMisMedicos(req, res) {
     })
 }
 
+function pedidoReceta(req, res) {
+    const receta = {
+        ...req.body,
+        medico: req.body.profesional,
+        pedido: {
+            paciente: req.body.usuarioLogueado.nombre + ' ' + req.body.usuarioLogueado.apellido,
+            obraSocial: req.body.usuarioLogueado.obraSocial,
+            afiliado: req.body.usuarioLogueado.afiliado,
+            medicamento: req.body.medicamento,
+            enviado: null
+        }
+    }
+    PacientesServices.pedidoReceta(receta)
+    .then(function(pedido) {
+        if(pedido) {
+            ProfesionalesService.traerPorId(receta.medico)
+            .then(medico => {
+                MailServices.pedidoReceta(medico.email, receta.pedido.paciente)
+                res.status(201).json("creado")
+            })
+        } else {
+            res.status(500).json("Ocurrió un error al crear el pedido.")
+        }
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
@@ -90,5 +115,6 @@ export {
     editar,
     crearHistoriaClinica,
     eliminar,
-    traerMisMedicos
+    traerMisMedicos,
+    pedidoReceta
 }

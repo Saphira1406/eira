@@ -53,8 +53,6 @@ function UsuariosOnline({ usuariosOnline, usuarioLogueadoId, setChatActual, setC
                     </div>
                 </li>
             )}
-
-           
         </>
     )
 }

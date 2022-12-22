@@ -16,7 +16,6 @@ async function traerPorUsuario(idUsuarioReceptor) {
     })
 }
 
-
 // acepta la solicitud
 async function aceptarSolicitud(emisor, receptor) {
     return client.connect()
@@ -32,7 +31,6 @@ async function aceptarSolicitud(emisor, receptor) {
             await db.collection('solicitudes').updateOne({"emisor._id": new ObjectId(emisor._id), "receptor._id": new ObjectId(receptor._id)}, {$set: {"aceptado": true}})
             return agregado
         }
-       
     })
 }
 

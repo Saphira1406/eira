@@ -12,10 +12,7 @@ import MensajesRoutes from './routes/mensajes.routes.js'
 import SolicitudesRoutes from './routes/solicitudes.route.js'
 import * as SocketIO from 'socket.io'
 import UsuariosRoutes from './routes/usuarios.route.js'
-
 import RecordatoriosRoutes from './routes/recordatorios.route.js'
-
-
 
 const app = express()
 app.use(cors())
@@ -32,7 +29,7 @@ const serverSocket = new SocketIO.Server(server, {
 let usuarios = []
 
 const agregarUsuario = (usuarioId, socketId) => {
-    !usuarios.some((usuario) => usuario.usuarioId === usuarioId) && 
+    !usuarios.some((usuario) => usuario.usuarioId === usuarioId) &&
         usuarios.push({usuarioId, socketId})
 }
 
@@ -45,42 +42,35 @@ const getUsuario = (usuarioId) => {
 }
 
 serverSocket.on('connection', (socket) => {
-    console.log("usuario coenctado", socket.id)
-   
+    socket.on("agregarUsuario", (usuarioId) => {
+        agregarUsuario(usuarioId, socket.id)
+        serverSocket.emit("getUsuarios", usuarios)
+    })
 
-  socket.on("agregarUsuario", (usuarioId) => {
-      agregarUsuario(usuarioId, socket.id)
-      serverSocket.emit("getUsuarios", usuarios)
-  })
+    socket.on("logout", (socket) => {
+        eliminarUsuario(socket)
+        serverSocket.emit("getUsuarios", usuarios)
+        console.log("se fue uno")
+    })
 
-  socket.on("logout", (socket) => {
-      eliminarUsuario(socket)
-      serverSocket.emit("getUsuarios", usuarios)
-      console.log("se fue uno")
-  })
+    //mandar mensaje y obtener
+    socket.on("enviarMensaje", ({emisorId, receptorId, mensaje}) => {
+        const usuario = getUsuario(receptorId)
+        usuario ? serverSocket.to(usuario.socketId).emit("getMensaje", { //entonces porque como no esta coenctado e otro user tira error de socketid
+            emisorId,
+            mensaje
+        }) : null
+    })
 
-  //mandar mensaje y obtener
-  socket.on("enviarMensaje", ({emisorId, receptorId, mensaje}) => {
-      const usuario = getUsuario(receptorId)
-      usuario ? serverSocket.to(usuario.socketId).emit("getMensaje", { //entonces porque como no esta coenctado e otro user tira error de socketid
-          emisorId, 
-          mensaje
-      }) : null
-  })
-
-  socket.on('disconnect', () => {
-      console.log("usuario desconectado", socket.id)
-      eliminarUsuario(socket.id)
-      serverSocket.emit("getUsuarios", usuarios)
-      
-  })
-  
+    socket.on('disconnect', () => {
+        console.log("usuario desconectado", socket.id)
+        eliminarUsuario(socket.id)
+        serverSocket.emit("getUsuarios", usuarios)
+    })
 })
-
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
-
 app.use('/', TratamientosRoutes)
 app.use('/', PacientesRoutes)
 app.use('/', ProfesionalesRoutes)
@@ -92,8 +82,6 @@ app.use('/', MensajesRoutes)
 app.use('/', UsuariosRoutes)
 app.use('/', RecordatoriosRoutes)
 app.use('/', SolicitudesRoutes)
-
-
 
 const host = process.env.HOST || '0.0.0.0'
 const puerto = process.env.PORT || 2020

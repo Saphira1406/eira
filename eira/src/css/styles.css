@@ -171,9 +171,10 @@ a, a:hover {
     color: #42B7AD;
 }
 
-.btn-verde {
+.btn-verde, .btn-verde:hover {
     background-color: #42B7AD;
     color: #fff;
+    border: none;
 }
 
 .titulo {
@@ -527,6 +528,10 @@ form-control::placeholder {
     color: #f3944d;
 }
 
+.text-verde-oscuro {
+    color: #014035
+}
+
 .bg-verde {
     background-color: #42b7ad !important;
 }
@@ -623,6 +628,16 @@ a {
 .box-mensajes {
     height: 55vh;
 	overflow-y: scroll;
+}
+
+.btn-azul {
+    background-color: #688FD6;
+    color: #fff;
+    border: none;
+}
+
+#error-404 {
+    background-color: #fff
 }
 
 @media (max-width: 992px) {

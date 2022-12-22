@@ -29,7 +29,7 @@ function OlvideContrasena() {
     }
 
     return (
-        <main>
+        <main className="fondo-generico">
             <section>
                 <Container>
                     <Row>

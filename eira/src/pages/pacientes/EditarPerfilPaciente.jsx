@@ -11,7 +11,6 @@ function EditarPerfilPaciente() {
     const [telefono, setTelefono] = useState(location.state.paciente?.telefono || "")
     const [email, setEmail] = useState(location.state.paciente?.email || "")
     const [dni, setDni] = useState(location.state.paciente?.dni || "")
-
     const { id } = useParams()
     let navigate = useNavigate();
 

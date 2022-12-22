@@ -77,6 +77,15 @@ async function verificar(idUsuario) {
     .then(response => response.json())
 }
 
+async function traerPedidosRecetas(id) {
+    return fetch(`http://localhost:2020/api/recetas/${id}`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        },
+    })
+    .then(response => response.json())
+
+}
 
 export {
     traer,
@@ -85,5 +94,6 @@ export {
     eliminar,
     traerPacientes,
     eliminarPaciente,
-    verificar
+    verificar,
+    traerPedidosRecetas
 }

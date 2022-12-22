@@ -29,6 +29,7 @@ import SolicitudesPacientes from './pages/pacientes/Solicitudes'
 import Solicitudes from './pages/Solicitudes'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
+import PedidosRecetas from './pages/PedidosRecetas'
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
 import * as NotificacionFB from './services/notificacion.service.js'
@@ -38,7 +39,6 @@ import * as PacientesService from './services/pacientes.service.js'
 import { Toaster, toast } from 'react-hot-toast';
 import { SocketContext } from './context/SocketContext'
 import Chat from './pages/Chat'
-
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { getToken, onMessage } from 'firebase/messaging'
 import { messaging } from './firebase/firebase.js'
@@ -51,9 +51,9 @@ function App() {
   let navigate = useNavigate();
   const socket = useContext(SocketContext)
   const recordatorios = useContext(RecordatoriosContext)
-  
+
   //localStorage.setItem("misRecordatorios", JSON.stringify(recordatorios))
- 
+
   useEffect(
     () => {
       const token = localStorage.getItem('token')
@@ -65,11 +65,11 @@ function App() {
 
     //console.log(tokenFB)
   function onLogin({usuario, token}) {
-      // #####################################
-      signInAnonymously(getAuth())
-      .then(user => console.log("Auth de firebase",user))
-      activarMensajes(usuario)
-      //######################################
+    // #####################################
+    signInAnonymously(getAuth())
+    .then(user => console.log("Auth de firebase",user))
+    activarMensajes(usuario)
+    //######################################
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
@@ -77,7 +77,6 @@ function App() {
     .then(resp => {
       setMisRecordatorios(resp)
       localStorage.setItem("misRecordatorios", JSON.stringify(resp))
-      
     })
     if(usuario.admin) {
       navigate(`/admin`, { replace: true })
@@ -86,20 +85,16 @@ function App() {
     } else {
       navigate(`/medico`, { replace: true })
     }
-
      socket.emit("agregarUsuario", usuario._id) // cuando me logueo, comunico al socket
-
- 
   }
 
     const activarMensajes = async (usuario) => {
-
       const token = await getToken(messaging, {
         vapidKey: "BPplatmpPbXXLUc_fijIyClE1YncaoMQ8ivkU2zTBG14aqv0DhuI3WoFxPLXG6_kVeEc_yxQMHaX5yr6ElwrCmE"
-       })
-       .catch( error => console.log("Hubo un error al generar el token.,") )
-       
-       if(token) {
+      })
+      .catch( error => console.log("Hubo un error al generar el token.,") )
+
+      if(token) {
         //console.log("tu token es:", token)
         setTokenFB(token)
         localStorage.setItem('tokenFB', token)
@@ -119,7 +114,7 @@ function App() {
       })
     }, [])
 
-   /* const recordatorios = {
+    /* const recordatorios = {
       "01:00": [
         { nombre:"ibuprofeno", descripcion:"No te olvides de tomar" },
         { nombre:"tafirol", descripcion:"No te olvides de tomar" },
@@ -128,14 +123,13 @@ function App() {
         { nombre:"test", descripcion:"tomar medicamento" },
       ]
     }*/
-    
-    const test = localStorage.getItem('tokenFB') 
+    const test = localStorage.getItem('tokenFB')
     const horas = 1
     const horaComienzo = "11:45"
     console.log("CONTEXCT RECOR",recordatorios)
     function agregarRecordatorio(horaComienzo, frecuencia) {
 
-       /* let horarioToma = "11:30"
+        /* let horarioToma = "11:30"
         recordatorios[horarioToma] = []
         recordatorios[horarioToma].push({ nombre:"test22", descripcion:"tomar medicamento" })*/
         //recordatorios["11:24"].push({ nombre:"test", descripcion:"tomar medicamento" },)
@@ -143,7 +137,6 @@ function App() {
         let horaCom = parseInt(horaComienzo.split(":")[0]);
         let minutosCom = parseInt(horaComienzo.split(":")[1]);
         let horaComienzo24 = horaCom + minutosCom / 60; // 24hs
-
         let numHoras = Math.floor(24 / frecuencia)
         let horaActual = horaComienzo24
 
@@ -166,13 +159,12 @@ function App() {
 
           horaActual = (horaActual + frecuencia) % 24 // como el formato es de 24hs, sirve para q no se pase de ese horario
         }
-    }
+      }
    //agregarRecordatorio("12:10",6)
    // console.log("-->",recordatorios)
 
     const date = new Date()
     const time = `${date.getHours()}:${date.getMinutes()}`
-
     console.log("TU TOKEN",tokenFB)
 
     if(!recordatorios[time]) {
@@ -180,7 +172,7 @@ function App() {
     } else {
       console.log("LANZO NOTIFICACION")
       //NotificacionFB.enviarNotificacion({tokenFB})
-     /* for(let i=0; i<recordatorios.length; i++) {
+      /* for(let i=0; i<recordatorios.length; i++) {
         console.log("a")
       }*/
       for(let clave of recordatorios[time]) {
@@ -190,8 +182,7 @@ function App() {
     }
     //console.log("RECOR",recordatorios[time])
 
-
-   /* setInterval(() => {
+    /* setInterval(() => {
       const date = new Date()
     const time = `${date.getHours()}:${date.getMinutes()}`
 
@@ -202,7 +193,7 @@ function App() {
     } else {
       console.log("LANZO NOTIFICACION")
       //NotificacionFB.enviarNotificacion({tokenFB})
-     /* for(let i=0; i<recordatorios.length; i++) {
+      /* for(let i=0; i<recordatorios.length; i++) {
         console.log("a")
       }*/
       /*for(let clave of recordatorios[time]) {
@@ -217,14 +208,12 @@ function App() {
       //console.log("holaa")
     //  NotificacionFB.enviarNotificacion({tokenFB, nombre: "porbando", descripcion: "testeansd"})
     }, 5000)
-  
-   useEffect( () => {
+    useEffect( () => {
     /*if(usuarioLogueado) {
       RecordatoriosService.traerPorIdUsuario(usuarioLogueado._id)
       .then(resp => console.log("MONGO",resp))
     }*/
-    
-   }, [])
+    }, [])
 
   return (
     <UsuarioContext.Provider value={{usuarioLogueado, setUsuarioLogueado}} >
@@ -257,8 +246,10 @@ function App() {
         <Route path='/admin/Pacientes' element={<ListadoPacientesAdmin />} />
         <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
         <Route path='/medico' element={<DashboardMedico />} />
+        {/* <Route path='/buscar-profesionales' element={<ProfesionalesVinculados />} /> */}
         <Route path='/solicitudes' element={<Solicitudes />} />
         <Route path='/paciente/solicitudes' element={<SolicitudesPacientes />} />
+        <Route path='/medico/pedidos-recetas' element={<PedidosRecetas />}/>
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />

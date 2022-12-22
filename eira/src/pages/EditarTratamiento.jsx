@@ -15,9 +15,7 @@ function EditarTratamiento(props) {
     const [ejercicio, setEjercicio] = useState(location.state.ejercicio?.ejercicio || "")
     const [video, setVideo] = useState(location.state.ejercicio?.video || "")
     const [repeticiones, setRepeticiones] = useState(location.state.ejercicio?.repeticiones || "")
-
     let navigate = useNavigate();
-
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
 
     useEffect(

@@ -17,7 +17,6 @@ function ListadoPacientes() {
     const [paginaActual, setPaginaActual] = useState(1)
     // eslint-disable-next-line no-unused-vars
     const [pacientesPorPagina, setPacientesPorPagina] = useState(5)
-
     //const usuarioLogueado = useContext(UsuarioContext)
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
     //const idProfesional = "63239b30953ee51e9b52f154"
@@ -45,7 +44,6 @@ function ListadoPacientes() {
     const indexPrimerPaciente = indexUltimoPaciente - pacientesPorPagina
     let pacientesActuales = []
     if(pacientes.length > 0) {
-
         pacientesActuales = pacientes.slice(indexPrimerPaciente, indexUltimoPaciente)
     }
 
@@ -53,12 +51,8 @@ function ListadoPacientes() {
     //const resultados = !busqueda ? pacientes : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
     const resultados = !busqueda ? pacientesActuales : pacientes.filter( (paciente) => paciente.nombre.toLowerCase().includes(busqueda.toLowerCase()) || paciente.dni.includes(busqueda))
 
-    console.log("ggg",resultados)
-
     function handleSubmitEliminarPaciente(ev) {
         ev.preventDefault()
-        console.log(ev.target.idPaciente.value)
-
         Swal.fire({
             title: '¿Seguro que quiere eliminar el paciente de su lista?',
             text: "No podrás volver atrás",

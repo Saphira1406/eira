@@ -31,7 +31,6 @@ async function crearHistoriaClinica(idPaciente, historia) {
         body: JSON.stringify(historia)
     })
     .then(response => response.json())
-
 }
 
 async function eliminar(idUsuario) {
@@ -61,7 +60,23 @@ async function editar (idUsuario, usuario) {
 }
 
 async function traerMisMedicos(idUsuario) {
-    return fetch(`http://localhost:2020/api/pacientes/misMedicos/${idUsuario}`)
+    return fetch(`http://localhost:2020/api/pacientes/misMedicos/${idUsuario}`, {
+        headers: {
+            'autenticacion': localStorage.getItem('token')
+        }
+    })
+    .then(response => response.json())
+}
+
+async function pedidoReceta(receta) {
+    return fetch(`http://localhost:2020/api/pacientes/pedidoReceta`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'autenticacion': localStorage.getItem('token')
+        },
+        body: JSON.stringify(receta)
+    })
     .then(response => response.json())
 }
 
@@ -72,5 +87,6 @@ export {
     editar,
     crearHistoriaClinica,
     eliminar,
-    traerMisMedicos
+    traerMisMedicos,
+    pedidoReceta
 }

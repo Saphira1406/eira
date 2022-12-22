@@ -3,7 +3,6 @@ async function traer(nombre) {
     .then(response => response.json())
 }
 
-
 export {
     traer,
 }
