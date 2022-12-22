@@ -20,7 +20,7 @@ function VerTratamiento() {
     const tokenFB = localStorage.getItem('tokenFB')
 
     useEffect(() => {
-        TratamientosService.traerPorIdPaciente(id, usuarioLogueado._id)
+        TratamientosService.traerPorIdPaciente(usuarioLogueado._id)
         .then(resp => {setTratamientos(resp)})
 
         PacientesService.traerPorId(id)

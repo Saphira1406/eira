@@ -21,6 +21,6 @@ route.delete('/api/pacientes/:id', [autenticacion], PacientesController.eliminar
 route.post('/api/pacientes/:id/historia-clinica', [autenticacion], PacientesController.crearHistoriaClinica)
 route.patch('/api/pacientes/:id', [autenticacion], PacientesController.editar)
 route.get('/api/pacientes/misMedicos/:id', [autenticacion], PacientesController.traerMisMedicos)
-route.post('/api/pacientes/pedidoReceta', PacientesController.pedidoReceta)
+route.post('/api/pacientes/pedidoReceta', [autenticacion], PacientesController.pedidoReceta)
 
 export default route

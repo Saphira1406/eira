@@ -2,10 +2,23 @@ import { Card, Container, Row, Col, Table } from 'react-bootstrap'
 import * as ProfesionalesService from '../services/profesionales.service.js'
 import { useState, useEffect, useContext } from 'react'
 import { UsuarioContext } from "../context/UsuarioContext";
+import { Link, useNavigate } from 'react-router-dom'
 
 function PedidosRecetas() {
     const [pedidos, setPedidos] = useState({})
     const {usuarioLogueado} = useContext(UsuarioContext)
+    let navigate = useNavigate();
+
+    useEffect(
+        () => {
+            if(!usuarioLogueado.matricula) {
+                navigate('/', { replace: true })
+            }
+            if(!usuarioLogueado.verificado) {
+                navigate('/falta-verificacion', {replace: true})
+            }
+          // eslint-disable-next-line
+        }, [])
 
     useEffect(() => {
         ProfesionalesService.traerPedidosRecetas(usuarioLogueado._id)

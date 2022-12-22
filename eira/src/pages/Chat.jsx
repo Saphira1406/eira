@@ -103,7 +103,7 @@ function Chat() {
                 <Container className='bg-white shadow rounded'>
                     <Row>
                         <h1 className='visually-hidden'>Chats</h1>
-                        <Col md={3} className="border py-3 ps-3">
+                        <Col md={4} className="border py-3 ps-3">
                             <p>Chats</p>
                             {/* <p>chat actual: {chatActual?.usuarios}</p>*/}
                             <ul className="list-unstyled">
@@ -115,7 +115,7 @@ function Chat() {
                             </ul>
                         </Col>
 
-                        <Col md={6} className="border py-3">
+                        <Col md={8} className="border py-3">
                             {
                                 chatActual ?
                                 <>
@@ -145,7 +145,7 @@ function Chat() {
 
                         {/*<Col md={3} className="border py-3 pe-3">
                         <p>Online</p>
-                          <ul className="list-unstyled">
+                            <ul className="list-unstyled">
                                     <UsuariosOnline usuariosOnline={usuariosOnline} usuarioLogueadoId={usuarioLogueado._id} setChatActual={setChatActual} setChats={setChats} chats={chats} />
                                 </ul>
                         </Col>*/}

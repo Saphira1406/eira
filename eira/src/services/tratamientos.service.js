@@ -34,8 +34,8 @@ async function editarComida(id, comidaAntigua, comidaNueva) {
     .then(response => response.json())
 }
 
-async function traerPorIdPaciente(idPaciente, idProfesional) {
-    return fetch(`http://localhost:2020/api/tratamientos/paciente/${idPaciente}/${idProfesional}`, {
+async function traerPorIdPaciente(idPaciente) {
+    return fetch(`http://localhost:2020/api/tratamientos/paciente/${idPaciente}`, {
         headers: {
             'autenticacion': localStorage.getItem('token')
         }

@@ -28,7 +28,7 @@ function crear(req, res) {
 }
 
 function traerPorIdPaciente (req, res) {
-    TratamientosServices.traerPorIdPaciente(req.params.idPaciente, req.params.idProfesional)
+    TratamientosServices.traerPorIdPaciente(req.params.idPaciente)
     .then(function (tratamiento) {
         tratamiento ?
         res.status(200).json(tratamiento) :

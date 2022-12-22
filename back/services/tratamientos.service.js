@@ -40,7 +40,7 @@ async function traerPorIdPaciente(idPaciente, idProfesional) {
     return client.connect()
     .then(async function() {
         const db = client.db('eira')
-        const tratamientos = await db.collection('tratamientos').find({"id_paciente": new ObjectId(idPaciente), "profesional.id_medico": new ObjectId(idProfesional)}).toArray()
+        const tratamientos = await db.collection('tratamientos').find({"id_paciente": new ObjectId(idPaciente)}).toArray()
         return tratamientos
     })
     .catch(err => console.log(err))

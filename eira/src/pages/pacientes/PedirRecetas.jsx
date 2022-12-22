@@ -43,7 +43,7 @@ function PedirRecetas() {
     return(
         <main className="fondo-generico">
             <section>
-                <Container className='mt-5'>
+                <Container className='my-5'>
                     <Row>
                         <Col sm={12}>
                             <Alert key="info" variant='info' className='shadow py-5'>
