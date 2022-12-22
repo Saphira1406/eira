@@ -5,6 +5,7 @@ import Tratamiento from '../../imgs/tratamiento.png'
 import Historia from '../../imgs/historia-clinica.png'
 import Recetas from '../../imgs/medicamentos.png'
 import ImgPerfil from '../../imgs/perfil.png'
+import BuscarProf from '../../imgs/icono-buscar-verde.png'
 import { UsuarioContext } from "../../context/UsuarioContext";
 
 function Dashboard() {
@@ -52,6 +53,16 @@ function Dashboard() {
                                     <Card.Body className="text-center">
                                         <img src={Recetas} alt="icono tratamiento médico" className="img-fluid mb-2"/>
                                         <p className="mb-0 title-dashboard text-amarillo">Recetas médicas</p>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
+                        </Col>
+                        <Col md={6} lg={3}>
+                            <Link to="/buscar-profesionales"className="text-decoration-none">
+                                <Card className="shadow border-0 py-3">
+                                    <Card.Body className="text-center">
+                                        <img src={BuscarProf} alt="icono tratamiento médico" className="img-fluid mb-2"/>
+                                        <p className="mb-0 title-dashboard text-verde-oscuro">Agregar profesionales</p>
                                     </Card.Body>
                                 </Card>
                             </Link>

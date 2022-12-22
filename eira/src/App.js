@@ -251,7 +251,7 @@ function App() {
         <Route path='/admin/Pacientes' element={<ListadoPacientesAdmin />} />
         <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
         <Route path='/medico' element={<DashboardMedico />} />
-        <Route path='/profesionales-vinculados' element={<ProfesionalesVinculados />} />
+        <Route path='/buscar-profesionales' element={<ProfesionalesVinculados />} />
         <Route path='/solicitudes' element={<Solicitudes />} />
         <Route path='/paciente/solicitudes' element={<SolicitudesPacientes />} />
         <Route path='*' element={<Error404 />} />
