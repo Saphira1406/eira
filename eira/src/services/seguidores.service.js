@@ -6,7 +6,7 @@ async function traerSeguidores (idUsuario) {
     })
     .then(response => response.json())
 }
-////
+
 async function seguir(seguir) {
     return fetch(`http://localhost:2020/api/seguir`,{
         method: 'POST',

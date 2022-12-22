@@ -7,9 +7,6 @@ async function traerPorIdUsuario(idUsuario) {
     .then(response => response.json())
 }
 
-
-
-
 export {
     traerPorIdUsuario
 }

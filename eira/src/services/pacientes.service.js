@@ -78,7 +78,6 @@ async function pedidoReceta(receta) {
         body: JSON.stringify(receta)
     })
     .then(response => response.json())
-
 }
 
 export {

@@ -7,7 +7,6 @@ async function traerPorUsuario(idUsuario) {
     .then(response => response.json())
 }
 
-
 async function agregarUsuario(emisor, receptor) {
     return fetch(`http://localhost:2020/api/solicitudes`, {
         method: "POST",
@@ -19,8 +18,6 @@ async function agregarUsuario(emisor, receptor) {
     })
     .then(response => response.json())
 }
-
-
 
 async function enviarSolicitud(emisor, receptor) {
     return fetch(`http://localhost:2020/api/solicitud`, {

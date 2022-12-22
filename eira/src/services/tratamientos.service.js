@@ -8,7 +8,6 @@ async function crear(tratamiento) {
         body: JSON.stringify(tratamiento)
     })
     .then(response => response.json())
-
 }
 
 async function editarMedicamento(id, tratamiento, tipo) {
@@ -21,7 +20,6 @@ async function editarMedicamento(id, tratamiento, tipo) {
         body: JSON.stringify({tratamiento, tipo})
     })
     .then(response => response.json())
-
 }
 
 async function editarComida(id, comidaAntigua, comidaNueva) {
@@ -34,7 +32,6 @@ async function editarComida(id, comidaAntigua, comidaNueva) {
         body: JSON.stringify({comidaAntigua, comidaNueva})
     })
     .then(response => response.json())
-
 }
 
 async function traerPorIdPaciente(idPaciente, idProfesional) {
@@ -74,7 +71,6 @@ async function eliminar(id) {
     })
     .then(response => response.json())
 }
-
 
 export {
     crear,

@@ -7,7 +7,6 @@ async function guardarNotificacion({tokenFB, finalizacion}) {
         body: JSON.stringify({tokenFB, finalizacion})
     })
     .then(response => response.json())
-
 }
 
 async function enviarNotificacion(tokenFB, nombre) {
@@ -19,7 +18,7 @@ async function enviarNotificacion(tokenFB, nombre) {
             "icon": "https://i.imgur.com/5zO5cce.png"
         },
         "to": `${tokenFB}`
-    } 
+    }
     fetch('https://fcm.googleapis.com/fcm/send', {
         method: 'POST',
         headers: {
@@ -27,7 +26,7 @@ async function enviarNotificacion(tokenFB, nombre) {
             'Authorization': 'key=AAAA2OF-olk:APA91bEY5U2cYyMYfkBpaeO4aptN05ZQW8wMLZ004OYWI6-rwrizW2mruy0aMMdkpyUcVCfopWps-ThdhCrD1Z71uunXjNQFUfTadYiUQwoVIZpVjkRGysexOych9DnMOAU5a2PqQhOP'
         },
         body: JSON.stringify(body)
-    })    
+    })
     .then( res => res.json())
 }
 

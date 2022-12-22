@@ -20,9 +20,7 @@ async function traer(idUsuario) {
 
 async function traerMensajes(chatId) {
     return fetch(`http://localhost:2020/api/mensajes/${chatId}`, {
-        headers: {
-
-        }
+        headers: {}
     })
     .then(response => response.json())
 }

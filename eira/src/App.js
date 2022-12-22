@@ -30,6 +30,7 @@ import SolicitudesPacientes from './pages/pacientes/Solicitudes'
 import Solicitudes from './pages/Solicitudes'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
+import PedidosRecetas from './pages/PedidosRecetas'
 import { UsuarioContext } from './context/UsuarioContext'
 import { useContext } from 'react'
 import * as NotificacionFB from './services/notificacion.service.js'
@@ -249,6 +250,7 @@ function App() {
         <Route path='/buscar-profesionales' element={<ProfesionalesVinculados />} />
         <Route path='/solicitudes' element={<Solicitudes />} />
         <Route path='/paciente/solicitudes' element={<SolicitudesPacientes />} />
+        <Route path='/medico/pedidos-recetas' element={<PedidosRecetas />}/>
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />
