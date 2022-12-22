@@ -24,7 +24,6 @@ import ListadoPacientesAdmin from './pages/admin/ListadoPacientes'
 import MensajeFaltaVerificacion from './pages/MensajeFaltaVerificación'
 import DashboardMedico from './pages/DashboardMedico'
 import DashboardAdmin from './pages/admin/Dashboard'
-import ProfesionalesVinculados from './pages/pacientes/ProfesionalesVinculados'
 import PedirRecetas from './pages/pacientes/PedirRecetas'
 import SolicitudesPacientes from './pages/pacientes/Solicitudes'
 import Solicitudes from './pages/Solicitudes'
@@ -258,7 +257,6 @@ function App() {
         <Route path='/admin/Pacientes' element={<ListadoPacientesAdmin />} />
         <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
         <Route path='/medico' element={<DashboardMedico />} />
-        <Route path='/profesionales-vinculados' element={<ProfesionalesVinculados />} />
         <Route path='/solicitudes' element={<Solicitudes />} />
         <Route path='/paciente/solicitudes' element={<SolicitudesPacientes />} />
         <Route path='*' element={<Error404 />} />

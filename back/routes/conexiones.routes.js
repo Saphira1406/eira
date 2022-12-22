@@ -1,6 +1,6 @@
 import express from 'express'
 import { autenticacion } from '../middlewares/auth.middleware.js'
-import * as SeguidoresController from '../controllers/seguidores.controller.js'
+import * as ConexionesController from '../controllers/conexiones.controller.js'
 
 const route = express.Router()
 
@@ -10,7 +10,7 @@ const route = express.Router()
  *
  */
 
-route.get('/api/:idUsuario/pacientes', SeguidoresController.traerPorUsuario)
+route.get('/api/conexiones/:idUsuario', ConexionesController.traerPorUsuario)
 //route.post('/api/seguir',[autenticacion], SeguidoresController.seguir)
 //route.get('/api/seguidores', [autenticacion],SeguidoresController.traerTodos)
 

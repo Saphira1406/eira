@@ -6,7 +6,7 @@ import ChatUsuarios from '../components/ChatUsuarios'
 import Mensajes from '../components/Mensajes'
 import SocketIO from 'socket.io-client'
 import UsuariosOnline from '../components/UsuariosOnline'
-import * as SeguidoresService from "../services/seguidores.service.js"
+import * as SeguidoresService from "../services/conexiones.service.js"
 import { SocketContext } from '../context/SocketContext'
 import { Container, Row, Col, Form, FloatingLabel, Button } from 'react-bootstrap'
 
@@ -95,7 +95,7 @@ function Chat() {
         ChatService.enviarMensaje(mensaje)
         .then( () => {
             ChatService.traerMensajes(chatActual?._id)
-            .then((mensajes) => setMensajes(mensajes))
+            .then((mensajes) => {setMensajes(mensajes)})
             setNuevoMensaje("")
         })
     }
@@ -146,12 +146,12 @@ function Chat() {
                             }
                         </Col>
 
-                        <Col md={3} className="border py-3 pe-3">
+                        {/*<Col md={3} className="border py-3 pe-3">
                         <p>Online</p>
-                            <ul className="list-unstyled">
-                                <UsuariosOnline usuariosOnline={usuariosOnline} usuarioLogueadoId={usuarioLogueado._id} setChatActual={setChatActual} setChats={setChats} />
-                            </ul>
-                        </Col>
+                          <ul className="list-unstyled">
+                                    <UsuariosOnline usuariosOnline={usuariosOnline} usuarioLogueadoId={usuarioLogueado._id} setChatActual={setChatActual} setChats={setChats} chats={chats} />
+                                </ul>
+                        </Col>*/}
                     </Row>
                 </Container>
             </section>

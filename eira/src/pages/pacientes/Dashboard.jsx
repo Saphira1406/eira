@@ -66,6 +66,17 @@ function Dashboard() {
                                 </Card>
                             </Link>
                         </Col>
+
+                        <Col md={6} lg={3}>
+                            <Link to={`/paciente/solicitudes`} className="text-decoration-none">
+                                <Card className="shadow border-0 py-3">
+                                    <Card.Body className="text-center">
+                                        <img src={ImgPerfil} alt="icono tratamiento médico" className="img-fluid mb-2"/>
+                                        <p className="mb-0 title-dashboard text-naranja">Solicitudes</p>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
+                        </Col>
                     </Row>
                 </Container>
             </section>
