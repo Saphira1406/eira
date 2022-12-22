@@ -75,6 +75,15 @@ function verificarMedico(req, res) {
     })
 }
 
+function traerPedidosRecetas(req, res) {
+    ProfesionalesServices.traerPedidosRecetas(req.params.id)
+    .then(function(pedidos) {
+        pedidos ?
+        res.status(200).json(pedidos) :
+        res.status(404).json({mensaje: "No existe los pedidos que buscás" })
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
@@ -82,5 +91,6 @@ export {
     eliminar,
     traerPacientes,
     eliminarPaciente,
-    verificarMedico
+    verificarMedico,
+    traerPedidosRecetas
 }
