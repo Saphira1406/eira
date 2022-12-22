@@ -26,6 +26,8 @@ import DashboardMedico from './pages/DashboardMedico'
 import DashboardAdmin from './pages/admin/Dashboard'
 import ProfesionalesVinculados from './pages/pacientes/ProfesionalesVinculados'
 import PedirRecetas from './pages/pacientes/PedirRecetas'
+import SolicitudesPacientes from './pages/pacientes/Solicitudes'
+import Solicitudes from './pages/Solicitudes'
 import { useEffect, useState } from 'react'
 import Error404 from './pages/Error404';
 import { UsuarioContext } from './context/UsuarioContext'
@@ -52,6 +54,7 @@ function App() {
   const recordatorios = useContext(RecordatoriosContext)
   
   //localStorage.setItem("misRecordatorios", JSON.stringify(recordatorios))
+ 
   useEffect(
     () => {
       const token = localStorage.getItem('token')
@@ -256,6 +259,8 @@ function App() {
         <Route path='/falta-verificacion' element={<MensajeFaltaVerificacion />} />
         <Route path='/medico' element={<DashboardMedico />} />
         <Route path='/profesionales-vinculados' element={<ProfesionalesVinculados />} />
+        <Route path='/solicitudes' element={<Solicitudes />} />
+        <Route path='/paciente/solicitudes' element={<SolicitudesPacientes />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />

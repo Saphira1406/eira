@@ -19,7 +19,7 @@ async function traerPacientes (idProfesional) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-        const pacientes = await db.collection('conexiones').findOne({"medico": ObjectId(idProfesional)})
+        const pacientes = await db.collection('conexiones').findOne({"medico": new ObjectId(idProfesional)})
         return pacientes.pacientes
     })
     .catch(function (err) {
@@ -31,7 +31,7 @@ async function traerPorId(idProfesional) {
     return client.connect()
     .then( async function () {
         const db = client.db('eira')
-        const profesional = await db.collection('medicos').findOne({"_id": ObjectId(idProfesional)})
+        const profesional = await db.collection('medicos').findOne({"_id": new ObjectId(idProfesional)})
         return { ...profesional, password: undefined }
     } )
     .catch(function (err) {

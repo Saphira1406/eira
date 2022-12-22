@@ -26,6 +26,8 @@ function Logout() {
         setUsuarioLogueado(null)
         localStorage.removeItem('usuario')
         localStorage.removeItem('token')
+        localStorage.removeItem('tokenFB')
+        localStorage.removeItem('misRecordatorios')
 
         navigate('/login', { replace: true })
     }

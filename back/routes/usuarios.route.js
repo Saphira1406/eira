@@ -7,6 +7,7 @@ route.patch('/api/usuarios/olvideContrasena', UsuariosController.olvideContrasen
 route.patch('/api/usuarios/:token/:email', UsuariosController.recuperarContrasena)
 route.patch('/api/usuarios/:token/:email', UsuariosController.recuperarContrasena)
 route.get('/api/usuarios/:idUsuario', UsuariosController.traerProfesionalesVinculados)
-route.post('/api/usuarios/profesional/:idProfesional', UsuariosController.agregarProfesional)
+route.post('/api/usuarios/profesional', UsuariosController.agregarProfesional)
+route.post('/api/usuarios/paciente', UsuariosController.agregarProfesional)
 
 export default route
