@@ -3,6 +3,7 @@ import { UsuarioContext } from "../context/UsuarioContext.jsx"
 import * as SolicitudesService from '../services/solicitudes.service.js'
 import * as PacientesService from '../services/pacientes.service.js'
 import * as ProfesionalesService from '../services/profesionales.service.js'
+import * as ChatService from "../services/chat.service"
 
 function Solicitudes() {
     const [solicitudes, setSolicitudes] = useState([])
@@ -35,7 +36,13 @@ function Solicitudes() {
             .then(resp => setSolicitudes(resp))
         })
 
-      
+        const usuarios = {
+            emisor: emisor._id,
+            receptor: receptor._id
+        }
+        ChatService.crear(usuarios)
+        .then(resp => console.log(resp))
+
     }
 
     // envia solicitud de PROFESIONAL -> PACIENTE | EMISOR -> RECEPTOR

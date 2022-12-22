@@ -7,13 +7,13 @@ async function traerPorUsuario (id) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-        const pacientes = await db.collection('conexiones').findOne({"medico": ObjectId(id)})
-        //const pacientes = await db.collection('conexiones').find({"pacientes._id": ObjectId(id)}).toArray() // para profesionales
+        //const pacientes = await db.collection('conexiones').findOne({"medico": ObjectId(id)})
+        const pacientes = await db.collection('conexiones').find({"pacientes._id": new ObjectId(id)}).toArray() // para profesionales
      
         if(!pacientes){
             return []
         } else {
-            return pacientes.pacientes
+            return pacientes
         }
     })
     .catch(function (err) {
