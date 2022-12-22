@@ -8,7 +8,7 @@ async function traerTodos () {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-        const pacientes = await db.collection('pacientes').find().toArray()
+        const pacientes = await db.collection('pacientes').find({},{projection: {"password": 0}}).toArray()
         return pacientes
     })
     .catch(function (err) {

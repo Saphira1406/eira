@@ -36,7 +36,7 @@ function Dashboard() {
                             </Link>
                         </Col>
                         <Col>
-                            <Link to="#"className="text-decoration-none">
+                            <Link to="#" className="text-decoration-none">
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
                                         <img src={Recetas} alt="icono tratamiento médico" className="img-fluid mb-2"/>
@@ -51,6 +51,16 @@ function Dashboard() {
                                     <Card.Body className="text-center">
                                         <img src={ImgPerfil} alt="icono tratamiento médico" className="img-fluid mb-2"/>
                                         <p className="mb-0 title-dashboard text-naranja">Mi perfil</p>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link to={`/solicitudes`} className="text-decoration-none">
+                                <Card className="shadow border-0 py-3">
+                                    <Card.Body className="text-center">
+                                        <img src={Recetas} alt="icono tratamiento médico" className="img-fluid mb-2"/>
+                                        <p className="mb-0 title-dashboard text-amarillo">Solicitudes</p>
                                     </Card.Body>
                                 </Card>
                             </Link>

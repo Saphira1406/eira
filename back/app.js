@@ -9,6 +9,7 @@ import NotificacionRoutes from './routes/notificaciones.routes.js'
 import ConexionesRoutes from './routes/seguidores.routes.js'
 import ChatRoutes from './routes/chat.routes.js'
 import MensajesRoutes from './routes/mensajes.routes.js'
+import SolicitudesRoutes from './routes/solicitudes.route.js'
 import * as SocketIO from 'socket.io'
 import UsuariosRoutes from './routes/usuarios.route.js'
 
@@ -90,6 +91,7 @@ app.use('/', ChatRoutes)
 app.use('/', MensajesRoutes)
 app.use('/', UsuariosRoutes)
 app.use('/', RecordatoriosRoutes)
+app.use('/', SolicitudesRoutes)
 
 
 
