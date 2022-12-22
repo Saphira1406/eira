@@ -34,7 +34,6 @@ function Solicitudes() {
 
     // envia solicitud de PROFESIONAL -> PACIENTE | EMISOR -> RECEPTOR
     function enviarSolicitud(paciente, ev) {
-      //  console.log("envio solicitud a:", paciente)
         SolicitudesService.enviarSolicitud(profesional, paciente)
         .then(resp => console.log(resp))
         ev.target.innerText = 'Agregado'

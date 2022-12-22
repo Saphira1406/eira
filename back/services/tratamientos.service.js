@@ -18,7 +18,6 @@ async function crear(tratamiento) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-
         const tratamientoNuevo = await db.collection('tratamientos').insertOne(tratamiento)
         return tratamientoNuevo
         /* const existeTratamiento = await db.collection('tratamientos').findOne({'id_medico': tratamiento.id_medico, 'id_paciente': tratamiento.id_paciente})

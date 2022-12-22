@@ -10,7 +10,6 @@ import { UsuarioContext } from "../../context/UsuarioContext";
 
 function Dashboard() {
     const {usuarioLogueado} = useContext(UsuarioContext)
-
     let navigate = useNavigate();
 
     useEffect(

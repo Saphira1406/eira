@@ -9,7 +9,6 @@ function crear (req, res) {
     } else {
         usuario = req.body
     }
-    console.log(usuario)
     UsuariosServices.crear(usuario)
     .then(function (usuarioNuevo) {
         if(usuario.matricula) {
@@ -23,10 +22,7 @@ function crear (req, res) {
         res.status(500).json({mensaje: "No se pudo crear el usuario... intente de nuevo" })
     })
     .catch(function (err) {
-        res.status(500).json({
-            response: false,
-            message: "Email ya existente.."
-        })
+        res.status(500).json({response: false, message: "Email ya existente.."})
     })
 }
 
@@ -36,9 +32,7 @@ async function login (req, res) {
         const token = jwt.sign(usuario, 'CLAVE_SECRETA_RED_SOCIAL')
         res.status(200).json({usuario,token})
     })
-    .catch(err => res.status(500).json({
-        mensaje: err.message
-    }))
+    .catch(err => res.status(500).json({mensaje: err.message}))
 }
 
 export {

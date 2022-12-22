@@ -39,7 +39,6 @@ import * as PacientesService from './services/pacientes.service.js'
 import { Toaster, toast } from 'react-hot-toast';
 import { SocketContext } from './context/SocketContext'
 import Chat from './pages/Chat'
-
 import { getAuth, signInAnonymously } from 'firebase/auth'
 import { getToken, onMessage } from 'firebase/messaging'
 import { messaging } from './firebase/firebase.js'
@@ -54,7 +53,7 @@ function App() {
   const recordatorios = useContext(RecordatoriosContext)
 
   //localStorage.setItem("misRecordatorios", JSON.stringify(recordatorios))
- 
+
   useEffect(
     () => {
       const token = localStorage.getItem('token')
@@ -66,11 +65,11 @@ function App() {
 
     //console.log(tokenFB)
   function onLogin({usuario, token}) {
-      // #####################################
-      signInAnonymously(getAuth())
-      .then(user => console.log("Auth de firebase",user))
-      activarMensajes(usuario)
-      //######################################
+    // #####################################
+    signInAnonymously(getAuth())
+    .then(user => console.log("Auth de firebase",user))
+    activarMensajes(usuario)
+    //######################################
     localStorage.setItem('usuario', JSON.stringify(usuario))
     setUsuarioLogueado(usuario)
     localStorage.setItem('token', token)
@@ -90,7 +89,6 @@ function App() {
   }
 
     const activarMensajes = async (usuario) => {
-
       const token = await getToken(messaging, {
         vapidKey: "BPplatmpPbXXLUc_fijIyClE1YncaoMQ8ivkU2zTBG14aqv0DhuI3WoFxPLXG6_kVeEc_yxQMHaX5yr6ElwrCmE"
       })
@@ -139,7 +137,6 @@ function App() {
         let horaCom = parseInt(horaComienzo.split(":")[0]);
         let minutosCom = parseInt(horaComienzo.split(":")[1]);
         let horaComienzo24 = horaCom + minutosCom / 60; // 24hs
-
         let numHoras = Math.floor(24 / frecuencia)
         let horaActual = horaComienzo24
 
@@ -162,13 +159,12 @@ function App() {
 
           horaActual = (horaActual + frecuencia) % 24 // como el formato es de 24hs, sirve para q no se pase de ese horario
         }
-    }
+      }
    //agregarRecordatorio("12:10",6)
    // console.log("-->",recordatorios)
 
     const date = new Date()
     const time = `${date.getHours()}:${date.getMinutes()}`
-
     console.log("TU TOKEN",tokenFB)
 
     if(!recordatorios[time]) {
@@ -185,7 +181,6 @@ function App() {
       }
     }
     //console.log("RECOR",recordatorios[time])
-
 
     /* setInterval(() => {
       const date = new Date()

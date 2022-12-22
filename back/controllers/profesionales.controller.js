@@ -32,7 +32,6 @@ function editar (req, res) {
     const id = req.params.id
     const usuario = req.body
 
-    console.log(req.body)
     ProfesionalesServices.editar(id, usuario)
     .then(function (usuarioEditado) {
         usuarioEditado ?

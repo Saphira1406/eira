@@ -9,7 +9,6 @@ import BuscarPaciente from '../imgs/icono-buscar-azul.png'
 
 function Dashboard() {
     const {usuarioLogueado} = useContext(UsuarioContext)
-
     let navigate = useNavigate();
 
     useEffect(

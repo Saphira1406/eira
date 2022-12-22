@@ -15,10 +15,8 @@ function traerPorUsuario(req, res) {
     })
 }
 
-
 function aceptarSolicitud(req, res) {
-    
-   SolicitudesService.aceptarSolicitud(req.body.emisor, req.body.receptor)
+    SolicitudesService.aceptarSolicitud(req.body.emisor, req.body.receptor)
     .then(resp => {
         resp ? res.status(200).json(resp) :
         res.status(404).json({
@@ -31,7 +29,6 @@ function aceptarSolicitud(req, res) {
     })
 }
 
-
 function enviarSolicitud(req, res) {
     const emisor = {
         ...req.body.emisor,
@@ -42,20 +39,18 @@ function enviarSolicitud(req, res) {
         ...req.body.receptor,
         "_id": new ObjectId(req.body.receptor._id)
     }
-    
-    
     SolicitudesService.enviarSolicitud(emisor, receptor)
-     .then(resp => {
-         resp ? res.status(200).json(resp) :
-         res.status(404).json({
-             response: false,
-             message: "No se pudo enviar la solicitud al usuario"
-         })
-     })
-     .catch(err => {
-         res.status(500).json({message: "Ocurrió un error al enviar la solicitud", err})
-     })
- }
+    .then(resp => {
+        resp ? res.status(200).json(resp) :
+        res.status(404).json({
+            response: false,
+            message: "No se pudo enviar la solicitud al usuario"
+        })
+    })
+    .catch(err => {
+        res.status(500).json({message: "Ocurrió un error al enviar la solicitud", err})
+    })
+}
 
 export {
     traerPorUsuario,

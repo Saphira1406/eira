@@ -1,7 +1,6 @@
 import React from 'react'
 import { DateTime } from 'luxon'
 
-//moment.locale('es-mx');
 function Mensajes({mensaje, own}) {
   return (
     <div className={own ? "mensaje-own wrap shadow my-3 p-3 w-75 ms-auto rounded" : "wrap mensaje-other shadow my-3 p-3 w-75 rounded"}>

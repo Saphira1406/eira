@@ -1,7 +1,6 @@
 import { Pagination } from "react-bootstrap"
 
 function Paginador ({ elementosPorPagina, totalElementos, setPaginaActual, paginaActual }) {
-
     const numeroPaginas = []
 
     for(let i=1; i <= Math.ceil(totalElementos / elementosPorPagina); i++) {

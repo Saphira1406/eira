@@ -13,7 +13,6 @@ function EditarPerfilProfesional() {
     const [email, setEmail] = useState(location.state.profesional?.email || "")
     const [dni, setDni] = useState(location.state.profesional?.dni || "")
     const [matricula, setMatricula] = useState(location.state.profesional?.matricula || "")
-
     const { id } = useParams()
     let navigate = useNavigate();
 

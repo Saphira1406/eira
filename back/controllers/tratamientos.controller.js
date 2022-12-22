@@ -22,15 +22,12 @@ function crear(req, res) {
     TratamientosServices.crear(tratamiento)
     .then(function (tratamiento) {
         tratamiento ?
-        res.status(201).json("creado")
-        :
+        res.status(201).json("creado") :
         res.status(500).json("hubo un error")
     })
 }
 
 function traerPorIdPaciente (req, res) {
-   
-    
     TratamientosServices.traerPorIdPaciente(req.params.idPaciente, req.params.idProfesional)
     .then(function (tratamiento) {
         tratamiento ?

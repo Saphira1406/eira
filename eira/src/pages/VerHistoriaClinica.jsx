@@ -1,4 +1,4 @@
-import { Card, Container, Row, Col, Accordion } from 'react-bootstrap'
+import { Card, Container, Row, Col } from 'react-bootstrap'
 import IconoArchivo from '../imgs/icono-archivo.png'
 import { useEffect, useState } from 'react'
 import * as PacientesService from '../services/pacientes.service.js'

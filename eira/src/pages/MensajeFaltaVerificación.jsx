@@ -16,7 +16,6 @@ function MensajeFaltaVerificacion() {
                     </Row>
                 </Container>
             </section>
-
         </main>
     )
 }

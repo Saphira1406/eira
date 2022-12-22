@@ -5,17 +5,16 @@ import IconoUsuarioAzul from '../imgs/icono-usuario-azul.png';
 
 function ChatUsuarios({chat, usuarioLogueado}) {
     const [usuario, setUsuario] = useState([])
- 
+
     useEffect(() => {
         // id del amigo chat
         const receptorId = chat?.usuarios.find((usuario) => usuario !== usuarioLogueado._id)
-       !usuarioLogueado.matricula ? 
+        !usuarioLogueado.matricula ?
           ProfesionalesService.traerPorId(receptorId)
-         .then( usuario => setUsuario(usuario) ) : 
+          .then( usuario => setUsuario(usuario) ) :
           PacientesService.traerPorId(receptorId)
           .then( usuario => setUsuario(usuario) )
     }, [])
-
 
   return (
     <li className="hover">

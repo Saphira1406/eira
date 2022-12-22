@@ -19,16 +19,15 @@ function UsuarioRegistro(){
     const [afiliado, setAfiliado] = useState("")
     const [registroPaciente, setRegistroPaciente] = useState(true)
     const [mostrarPassword, setMostrarPassword] = useState(false)
-
     const { register, formState: { errors }, handleSubmit } = useForm()
+    let navigate = useNavigate()
     let usuario = null
+
     if(!matricula && !especialidad) {
         usuario = {nombre, apellido, email, telefono, dni, password, obraSocial, afiliado}
     } else {
         usuario = {nombre, apellido, email, telefono, dni, password, matricula, especialidad}
     }
-
-    let navigate = useNavigate()
 
     const onSubmit = (data) => {
         console.log(data)
@@ -39,8 +38,6 @@ function UsuarioRegistro(){
             } else {
                 navigate('/login', { replace: true })
             }
-            //navigate('/', { replace: true })
-            console.log(response)
         })
     }
 

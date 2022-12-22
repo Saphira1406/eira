@@ -67,7 +67,6 @@ async function eliminar (id) {
     })
 }
 
-
 async function crearHistoriaClinica(historia) {
     return client.connect()
     .then(async function () {

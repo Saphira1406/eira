@@ -43,17 +43,14 @@ function Chat() {
     useEffect(() => {
         socket.emit("agregarUsuario", usuarioLogueado._id)
         socket.on("getUsuarios", (usuarios) => {
-            //console.log("-->",usuarios)
             setUsuariosOnline(usuarios)
         })
     }, [])
-    console.log("online->",usuariosOnline)
 
     useEffect(() => {
         ChatService.traer(usuarioLogueado._id)
         .then(chats => setChats(chats) )
     }, [usuarioLogueado._id])
-    console.log("HOLAa",chats)
 
     useEffect(() => {
         if(chatActual !== null){

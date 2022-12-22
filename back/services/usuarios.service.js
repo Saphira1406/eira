@@ -53,7 +53,6 @@ async function traerProfesionalesVinculados(idUsuario) {
     .then(async function () {
         const db = client.db('eira')
         const profesionalesVinculados = await db.collection('conexiones').find({"pacientes._id": new ObjectId(idUsuario)}).toArray()
-
         return profesionalesVinculados
     })
     .catch(function (err) {
@@ -73,14 +72,11 @@ async function agregarProfesional(idProfesional, paciente) {
         } else {
             return existe
         }
-    
     })
     .catch(function (err) {
         console.log(err)
     })
 }
-
-
 
 export {
     olvideContrasena,

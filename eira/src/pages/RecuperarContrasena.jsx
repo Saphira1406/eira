@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 import * as UsuariosService from '../services/usuarios.service.js'
-import { Container, Row, Col, Card, Form, FloatingLabel, Button, Alert } from 'react-bootstrap'
+import { Container, Row, Col, Card, Form, FloatingLabel, Button } from 'react-bootstrap'
 
 function RecuperarContrasena() {
     const {token, email} = useParams()
@@ -18,7 +18,6 @@ function RecuperarContrasena() {
     function handleSubmit(e) {
         e.preventDefault(e)
         UsuariosService.recuperarContrasena(token, email, {password})
-
         .then(response => {
             if(response.response === false ) {
                 setError(response.message)
@@ -30,7 +29,7 @@ function RecuperarContrasena() {
     }
 
     return (
-        <main>
+        <main className="fondo-generico">
             <section>
                 <Container>
                     <Row>

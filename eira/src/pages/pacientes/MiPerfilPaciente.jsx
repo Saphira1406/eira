@@ -9,7 +9,6 @@ import IconoIdentificacion from '../../imgs/icono-identificacion.png'
 import { UsuarioContext } from '../../context/UsuarioContext'
 import Swal from 'sweetalert2'
 
-
 function MiPerfilPaciente () {
     const [paciente, setPaciente] = useState({})
     const { id } = useParams()

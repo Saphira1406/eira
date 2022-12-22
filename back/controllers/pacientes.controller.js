@@ -20,7 +20,6 @@ function traerPorId (req ,res) {
     })
 }
 
-
 function traerHistoriaClinica (req ,res) {
     PacientesServices.traerHistoriaClinica(req.params.id)
     .then(function (historiaClinica) {

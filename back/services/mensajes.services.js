@@ -27,7 +27,6 @@ async function traer(chatId) {
     })
 }
 
-
 export {
     enviar,
     traer

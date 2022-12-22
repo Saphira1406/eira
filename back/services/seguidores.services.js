@@ -9,7 +9,6 @@ async function traerPorUsuario (id) {
         const db = client.db('eira')
         const pacientes = await db.collection('conexiones').findOne({"medico": ObjectId(id)})
         //const pacientes = await db.collection('conexiones').find({"pacientes._id": ObjectId(id)}).toArray() // para profesionales
-     
         if(!pacientes){
             return []
         } else {

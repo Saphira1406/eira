@@ -5,7 +5,6 @@ import * as PacientesService from '../../services/pacientes.service.js'
 import { UsuarioContext } from '../../context/UsuarioContext'
 import { Link, useNavigate } from 'react-router-dom'
 
-
 function VerHistoriaClinica() {
     //const usuarioLogueado = useContext(UsuarioContext)
     const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))

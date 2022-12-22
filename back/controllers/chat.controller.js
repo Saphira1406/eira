@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb'
 function crear (req, res) {
     const usuarios = [new ObjectId(req.body.emisor), new ObjectId(req.body.receptor)]
     ChatServices.crear(usuarios)
-    .then((chatNuevo)=>{ 
+    .then((chatNuevo)=>{
         res.status(201).json(chatNuevo)
     })
 }
